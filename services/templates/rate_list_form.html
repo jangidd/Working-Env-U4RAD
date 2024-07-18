@@ -1,0 +1,11 @@
+<form id="rateListForm" data-id="{{ rate_list.id }}">
+    <div class="form-group">
+        <label for="mri1">MRI 1</label>
+        <input type="text" class="form-control" id="mri1" name="mri1" value="{{ rate_list.mri1 }}">
+    </div>
+    <!-- Repeat for other fields -->
+    <div class="form-group">
+        <label for="status">Status</label>
+        <input type="text" class="form-control" id="status" name="status" value="{{ rate_list.status }}" readonly>
+    </div>
+</form>

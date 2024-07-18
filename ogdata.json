@@ -1,0 +1,1782 @@
+[
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "service"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "servicerate"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "profile"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "cart"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "cartvalue"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "order"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "orderhistory"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "6m0ot08jty3r844ofonbizuepje60h6p",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAUBe_C2hCkBX5duu8Zmg8PpGogKe3KeHdt0oVu38y8l5h4W_O0tbhMM8RFGHH63TyHRyw7wJ3LrcpQy7rMXu6KPGiTY0V8Xg_37yBzy99aB6UdoE1SPSiSVkErtgimc6FzA1k4SojeOkaPRCay9UTOwp4TBvH-AOi0OFM:1sOEWJ:3Y3VPTNmNt4d2BGb-oPATGd6-vYpnLUvNG1xnkx6frs",
+        "expire_date": "2024-07-15T10:44:27.020Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "dgp7viwh3n8fyd2hqwxyffy9ewvcnwry",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSFQ3i7d-w1kGBipGkhKuzL-uzbpQrf3nHNfLMK21riNssQ5szOT7PS7JcBHaTvId2i3zrG3dZkT3xV-0MGvPZfn5XD_DiqM-q0DgZiQQCeBORvCYJCctVZ7Q07C5FCiULJ4j1JphVIXp7QPhMmqkNj7A_txOAo:1sRUKN:LnZnMOLeF6iVNSXmw7IyXYWPt56J9ad7MfuGusm_RE4",
+        "expire_date": "2024-07-24T10:13:35.866Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ha1kysoy9ywp5o9m2754skgl1gj0ft6k",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSFQ3i7d-w1kGBipGkhKuzL-uzbpQrf3nHNfLMK21riNssQ5szOT7PS7JcBHaTvId2i3zrG3dZkT3xV-0MGvPZfn5XD_DiqM-q0DgZiQQCeBORvCYJCctVZ7Q07C5FCiULJ4j1JphVIXp7QPhMmqkNj7A_txOAo:1sMnKw:hRoDJ0f0naR9U_qBoJNyh4Y0-60aoc07cwgDCPJrXyQ",
+        "expire_date": "2024-07-11T11:30:46.742Z"
+    }
+},
+{
+    "model": "services.servicerate",
+    "pk": 4,
+    "fields": {
+        "service": 2,
+        "min_quantity": 1,
+        "max_quantity": 100,
+        "rate": "500.00"
+    }
+},
+{
+    "model": "services.servicerate",
+    "pk": 5,
+    "fields": {
+        "service": 2,
+        "min_quantity": 101,
+        "max_quantity": 200,
+        "rate": "450.00"
+    }
+},
+{
+    "model": "services.servicerate",
+    "pk": 6,
+    "fields": {
+        "service": 2,
+        "min_quantity": 201,
+        "max_quantity": 500,
+        "rate": "400.00"
+    }
+},
+{
+    "model": "services.servicerate",
+    "pk": 7,
+    "fields": {
+        "service": 3,
+        "min_quantity": 1,
+        "max_quantity": 100,
+        "rate": "300.00"
+    }
+},
+{
+    "model": "services.servicerate",
+    "pk": 8,
+    "fields": {
+        "service": 3,
+        "min_quantity": 101,
+        "max_quantity": 200,
+        "rate": "250.00"
+    }
+},
+{
+    "model": "services.servicerate",
+    "pk": 9,
+    "fields": {
+        "service": 3,
+        "min_quantity": 201,
+        "max_quantity": 500,
+        "rate": "200.00"
+    }
+},
+{
+    "model": "services.servicerate",
+    "pk": 10,
+    "fields": {
+        "service": 4,
+        "min_quantity": 1,
+        "max_quantity": 100,
+        "rate": "50.00"
+    }
+},
+{
+    "model": "services.servicerate",
+    "pk": 11,
+    "fields": {
+        "service": 4,
+        "min_quantity": 101,
+        "max_quantity": 500,
+        "rate": "45.00"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add service",
+        "content_type": [
+            "services",
+            "service"
+        ],
+        "codename": "add_service"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change service",
+        "content_type": [
+            "services",
+            "service"
+        ],
+        "codename": "change_service"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete service",
+        "content_type": [
+            "services",
+            "service"
+        ],
+        "codename": "delete_service"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view service",
+        "content_type": [
+            "services",
+            "service"
+        ],
+        "codename": "view_service"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add service rate",
+        "content_type": [
+            "services",
+            "servicerate"
+        ],
+        "codename": "add_servicerate"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change service rate",
+        "content_type": [
+            "services",
+            "servicerate"
+        ],
+        "codename": "change_servicerate"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete service rate",
+        "content_type": [
+            "services",
+            "servicerate"
+        ],
+        "codename": "delete_servicerate"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view service rate",
+        "content_type": [
+            "services",
+            "servicerate"
+        ],
+        "codename": "view_servicerate"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add profile",
+        "content_type": [
+            "services",
+            "profile"
+        ],
+        "codename": "add_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change profile",
+        "content_type": [
+            "services",
+            "profile"
+        ],
+        "codename": "change_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete profile",
+        "content_type": [
+            "services",
+            "profile"
+        ],
+        "codename": "delete_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view profile",
+        "content_type": [
+            "services",
+            "profile"
+        ],
+        "codename": "view_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add cart",
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "codename": "add_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change cart",
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "codename": "change_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete cart",
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "codename": "delete_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view cart",
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "codename": "view_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add cart value",
+        "content_type": [
+            "services",
+            "cartvalue"
+        ],
+        "codename": "add_cartvalue"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change cart value",
+        "content_type": [
+            "services",
+            "cartvalue"
+        ],
+        "codename": "change_cartvalue"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete cart value",
+        "content_type": [
+            "services",
+            "cartvalue"
+        ],
+        "codename": "delete_cartvalue"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view cart value",
+        "content_type": [
+            "services",
+            "cartvalue"
+        ],
+        "codename": "view_cartvalue"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add order",
+        "content_type": [
+            "services",
+            "order"
+        ],
+        "codename": "add_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change order",
+        "content_type": [
+            "services",
+            "order"
+        ],
+        "codename": "change_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete order",
+        "content_type": [
+            "services",
+            "order"
+        ],
+        "codename": "delete_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view order",
+        "content_type": [
+            "services",
+            "order"
+        ],
+        "codename": "view_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add order history",
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "codename": "add_orderhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change order history",
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "codename": "change_orderhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete order history",
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "codename": "delete_orderhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view order history",
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "codename": "view_orderhistory"
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "coordinator",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$720000$hOGWngfoEISyCB8LjmX3s7$skCtPt3ViGxmFh+uDFVu+V9IC9gHG9/RS8IyfEnUk0o=",
+        "last_login": "2024-07-10T10:13:35.859Z",
+        "is_superuser": true,
+        "username": "aman",
+        "first_name": "",
+        "last_name": "",
+        "email": "aman@u4rad.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-06-27T11:30:23Z",
+        "groups": [
+            [
+                "coordinator"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$720000$eeG8cHt1ehdQrQiR1qMt6O$lPY702ZRv7nAJ+HE40gkJW7boSVfe53JCEG/eCa+axE=",
+        "last_login": "2024-06-29T14:31:05.481Z",
+        "is_superuser": false,
+        "username": "9999999999",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-06-27T11:31:15.532Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$720000$lTEuoMT66yr08OZAMg9z21$/X698nE/ZHqIiVqaIeW+QGO2ZMoz2Wm3zBVzRDlxWYc=",
+        "last_login": "2024-07-01T10:42:51.944Z",
+        "is_superuser": false,
+        "username": "Ruchi",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-06-27T11:38:36Z",
+        "groups": [
+            [
+                "coordinator"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$720000$2XZBAEK2r14SquScwIwyry$k4tpa4b4keymrbQB5PUDmd+lluHYM9+HvcU1gJpBEoE=",
+        "last_login": "2024-06-29T14:19:26.606Z",
+        "is_superuser": false,
+        "username": "8888888888",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-06-29T14:10:41.141Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$720000$p9P5VeiFwauu0KW3PNzNMJ$aRWZgMalkaaCw0scG3Mu4kct3NP/QyI5WO+Lq/0uZBc=",
+        "last_login": "2024-07-01T10:44:27.020Z",
+        "is_superuser": false,
+        "username": "7390892758",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-07-01T10:34:54.511Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "services.service",
+    "pk": 2,
+    "fields": {
+        "service_name": "MRI",
+        "is_active": true,
+        "added_date": "2024-06-27T11:43:22.562Z",
+        "added_by": [
+            "aman"
+        ],
+        "modified_date": "2024-06-27T11:43:22.562Z",
+        "modified_by": [
+            "aman"
+        ]
+    }
+},
+{
+    "model": "services.service",
+    "pk": 3,
+    "fields": {
+        "service_name": "CT",
+        "is_active": true,
+        "added_date": "2024-06-27T11:45:44.172Z",
+        "added_by": [
+            "aman"
+        ],
+        "modified_date": "2024-06-29T14:30:25.729Z",
+        "modified_by": [
+            "aman"
+        ]
+    }
+},
+{
+    "model": "services.service",
+    "pk": 4,
+    "fields": {
+        "service_name": "X-RAY",
+        "is_active": true,
+        "added_date": "2024-06-29T14:30:30.987Z",
+        "added_by": [
+            "Ruchi"
+        ],
+        "modified_date": "2024-06-29T14:30:30.987Z",
+        "modified_by": [
+            "Ruchi"
+        ]
+    }
+},
+{
+    "model": "services.service",
+    "pk": 5,
+    "fields": {
+        "service_name": "MRI-HEAD",
+        "is_active": true,
+        "added_date": "2024-07-01T10:43:23.430Z",
+        "added_by": [
+            "Ruchi"
+        ],
+        "modified_date": "2024-07-01T10:43:23.430Z",
+        "modified_by": [
+            "Ruchi"
+        ]
+    }
+},
+{
+    "model": "services.profile",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "email": "aman@gmail.com",
+        "address": "Near naka no:- 5 donar road , darbhanga",
+        "organization": "U4RAD"
+    }
+},
+{
+    "model": "services.profile",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "8888888888"
+        ],
+        "email": "",
+        "address": "",
+        "organization": ""
+    }
+},
+{
+    "model": "services.profile",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "7390892758"
+        ],
+        "email": "aman@gmail.com",
+        "address": "Near naka no:- 5 donar road , darbhanga",
+        "organization": "U4RAD"
+    }
+},
+{
+    "model": "services.cart",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service": 2,
+        "quantity": 41,
+        "casecount": 21,
+        "amount": "20500.00"
+    }
+},
+{
+    "model": "services.cart",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service": 3,
+        "quantity": 41,
+        "casecount": 0,
+        "amount": "12300.00"
+    }
+},
+{
+    "model": "services.cart",
+    "pk": 10,
+    "fields": {
+        "user": [
+            "7390892758"
+        ],
+        "service": 2,
+        "quantity": 30,
+        "casecount": 10,
+        "amount": "15000.00"
+    }
+},
+{
+    "model": "services.cart",
+    "pk": 11,
+    "fields": {
+        "user": [
+            "7390892758"
+        ],
+        "service": 3,
+        "quantity": 20,
+        "casecount": 0,
+        "amount": "6000.00"
+    }
+},
+{
+    "model": "services.cart",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "7390892758"
+        ],
+        "service": 4,
+        "quantity": 100,
+        "casecount": 0,
+        "amount": "5000.00"
+    }
+},
+{
+    "model": "services.cartvalue",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "promo_code": "",
+        "total_amount": "34850.00",
+        "discount": "1785.00",
+        "grand_total": "33065.00",
+        "created_at": "2024-06-27T13:05:31.034Z"
+    }
+},
+{
+    "model": "services.cartvalue",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "7390892758"
+        ],
+        "promo_code": "XRAI10",
+        "total_amount": "26000.00",
+        "discount": "2600.00",
+        "grand_total": "23400.00",
+        "created_at": "2024-07-01T10:40:25.091Z"
+    }
+},
+{
+    "model": "services.order",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "name": "U4RAD",
+        "amount": 8500.0,
+        "status": "Success",
+        "provider_order_id": "order_ORnMVrlApWjxlY",
+        "payment_id": "pay_ORnMvhQe7SvOgp",
+        "signature_id": "2fd4aff421d9082e5bceee4a84c3b1ed4e57d0b324bb28ba0cfbb832ed11b153",
+        "order_date": "2024-06-27T13:04:57.703Z"
+    }
+},
+{
+    "model": "services.order",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "name": "U4RAD",
+        "amount": 16065.0,
+        "status": "Success",
+        "provider_order_id": "order_OS5K4CzYPH9DWg",
+        "payment_id": "pay_OS5KN0UHQwCMZl",
+        "signature_id": "d3c2bf864ba535d9fc72137aa699aee49835e4d86bdaaa2a4873a30a05979be7",
+        "order_date": "2024-06-28T06:39:08.585Z"
+    }
+},
+{
+    "model": "services.order",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "name": "U4RAD",
+        "amount": 8500.0,
+        "status": "Pending",
+        "provider_order_id": "order_OSZhWoq4K6LzYY",
+        "payment_id": "",
+        "signature_id": "",
+        "order_date": "2024-06-29T12:22:10.326Z"
+    }
+},
+{
+    "model": "services.order",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "name": "U4RAD",
+        "amount": 8500.0,
+        "status": "Pending",
+        "provider_order_id": "order_OSZhYImxQmJWiR",
+        "payment_id": "",
+        "signature_id": "",
+        "order_date": "2024-06-29T12:22:11.432Z"
+    }
+},
+{
+    "model": "services.order",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "name": "U4RAD",
+        "amount": 8500.0,
+        "status": "Success",
+        "provider_order_id": "order_OSZhoUyAHy4YxI",
+        "payment_id": "pay_OSZiCbk2Ohwd4p",
+        "signature_id": "9c9f3e6095c7a8bb9d364f38ad97080bc05b03f082e8262dfeeac556a6b5e36b",
+        "order_date": "2024-06-29T12:22:26.016Z"
+    }
+},
+{
+    "model": "services.order",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "7390892758"
+        ],
+        "name": "U4RAD",
+        "amount": 23400.0,
+        "status": "Success",
+        "provider_order_id": "order_OTL1qr4izmqGSg",
+        "payment_id": "pay_OTL28d3fOKQ3GZ",
+        "signature_id": "bed0db897425f7a6fdd9f6a5275e6bc221a23e0b900555c6e1a86a42113ad048",
+        "order_date": "2024-07-01T10:39:59.117Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 10,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service_name": "X-RAY",
+        "quantity": 10,
+        "amount": "500.00",
+        "order_date": "2024-06-27T13:05:31.050Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 11,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service_name": "MRI",
+        "quantity": 10,
+        "amount": "5000.00",
+        "order_date": "2024-06-27T13:05:31.081Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service_name": "CT",
+        "quantity": 10,
+        "amount": "3000.00",
+        "order_date": "2024-06-27T13:05:31.103Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 13,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service_name": "X-RAY",
+        "quantity": 21,
+        "amount": "1050.00",
+        "order_date": "2024-06-28T06:39:35.345Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 14,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service_name": "MRI",
+        "quantity": 21,
+        "amount": "10500.00",
+        "order_date": "2024-06-28T06:39:35.362Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 15,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service_name": "CT",
+        "quantity": 21,
+        "amount": "6300.00",
+        "order_date": "2024-06-28T06:39:35.377Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 16,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service_name": "X-RAY",
+        "quantity": 10,
+        "amount": "500.00",
+        "order_date": "2024-06-29T12:22:59.086Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 17,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service_name": "MRI",
+        "quantity": 10,
+        "amount": "5000.00",
+        "order_date": "2024-06-29T12:22:59.127Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 18,
+    "fields": {
+        "user": [
+            "9999999999"
+        ],
+        "service_name": "CT",
+        "quantity": 10,
+        "amount": "3000.00",
+        "order_date": "2024-06-29T12:22:59.151Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 19,
+    "fields": {
+        "user": [
+            "7390892758"
+        ],
+        "service_name": "MRI",
+        "quantity": 30,
+        "amount": "15000.00",
+        "order_date": "2024-07-01T10:40:25.125Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 20,
+    "fields": {
+        "user": [
+            "7390892758"
+        ],
+        "service_name": "CT",
+        "quantity": 20,
+        "amount": "6000.00",
+        "order_date": "2024-07-01T10:40:25.150Z"
+    }
+},
+{
+    "model": "services.orderhistory",
+    "pk": 21,
+    "fields": {
+        "user": [
+            "7390892758"
+        ],
+        "service_name": "X-RAY",
+        "quantity": 100,
+        "amount": "5000.00",
+        "order_date": "2024-07-01T10:40:25.190Z"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2024-06-27T11:35:12.306Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "1",
+        "object_repr": "coordinator",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2024-06-27T11:35:25.309Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "1",
+        "object_repr": "aman",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2024-06-27T11:40:31.504Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "Ruchi",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2024-06-27T11:42:43.285Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "service"
+        ],
+        "object_id": "1",
+        "object_repr": "X-RAY",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"service rate\", \"object\": \"X-RAY (1-100)\"}}, {\"added\": {\"name\": \"service rate\", \"object\": \"X-RAY (101-200)\"}}, {\"added\": {\"name\": \"service rate\", \"object\": \"X-RAY (201-500)\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2024-06-27T11:43:22.576Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "service"
+        ],
+        "object_id": "2",
+        "object_repr": "MRI",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"service rate\", \"object\": \"MRI (1-100)\"}}, {\"added\": {\"name\": \"service rate\", \"object\": \"MRI (101-200)\"}}, {\"added\": {\"name\": \"service rate\", \"object\": \"MRI (201-500)\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2024-06-27T11:45:44.189Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "service"
+        ],
+        "object_id": "3",
+        "object_repr": "CT",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"service rate\", \"object\": \"CT (1-100)\"}}, {\"added\": {\"name\": \"service rate\", \"object\": \"CT (101-200)\"}}, {\"added\": {\"name\": \"service rate\", \"object\": \"CT (201-500)\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2024-06-27T11:57:09.899Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "object_id": "3",
+        "object_repr": "Order by 9999999999 for CT on 2024-06-27 11:46:34.128457+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2024-06-27T11:57:09.907Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "object_id": "2",
+        "object_repr": "Order by 9999999999 for MRI on 2024-06-27 11:46:34.105937+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2024-06-27T11:57:09.907Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "object_id": "1",
+        "object_repr": "Order by 9999999999 for X-RAY on 2024-06-27 11:46:34.079942+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2024-06-27T11:57:17.900Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "cartvalue"
+        ],
+        "object_id": "1",
+        "object_repr": "Cart Item: 9999999999 (Created at: 2024-06-27 11:46:34.054945+00:00)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2024-06-27T11:57:26.545Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "object_id": "3",
+        "object_repr": "Cart Item: CT (Quantity: 10)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2024-06-27T11:57:26.768Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "object_id": "2",
+        "object_repr": "Cart Item: MRI (Quantity: 10)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2024-06-27T11:57:26.886Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "object_id": "1",
+        "object_repr": "Cart Item: X-RAY (Quantity: 10)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2024-06-27T11:57:38.102Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "order"
+        ],
+        "object_id": "1",
+        "object_repr": "1-U4RAD-Success",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2024-06-27T13:04:10.763Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "order"
+        ],
+        "object_id": "3",
+        "object_repr": "3-U4RAD-Success on 2024-06-27 12:03:30.764363+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2024-06-27T13:04:10.770Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "order"
+        ],
+        "object_id": "2",
+        "object_repr": "2-U4RAD-Success on 2024-06-27 11:58:00.246124+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2024-06-27T13:04:17.422Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "object_id": "9",
+        "object_repr": "Order by 9999999999 for CT on 2024-06-27 12:03:56.204236+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2024-06-27T13:04:17.427Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "object_id": "8",
+        "object_repr": "Order by 9999999999 for MRI on 2024-06-27 12:03:56.184985+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2024-06-27T13:04:17.432Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "object_id": "7",
+        "object_repr": "Order by 9999999999 for X-RAY on 2024-06-27 12:03:56.166366+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2024-06-27T13:04:17.435Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "object_id": "6",
+        "object_repr": "Order by 9999999999 for CT on 2024-06-27 11:58:37.703746+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2024-06-27T13:04:17.435Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "object_id": "5",
+        "object_repr": "Order by 9999999999 for MRI on 2024-06-27 11:58:37.668537+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2024-06-27T13:04:17.435Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "orderhistory"
+        ],
+        "object_id": "4",
+        "object_repr": "Order by 9999999999 for X-RAY on 2024-06-27 11:58:37.650734+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2024-06-27T13:04:26.713Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "cartvalue"
+        ],
+        "object_id": "2",
+        "object_repr": "Cart Item: 9999999999 (Created at: 2024-06-27 11:58:37.640034+00:00)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2024-06-27T13:04:36.012Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "object_id": "6",
+        "object_repr": "Cart Item: CT (Quantity: 21)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2024-06-27T13:04:36.017Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "object_id": "5",
+        "object_repr": "Cart Item: MRI (Quantity: 21)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2024-06-27T13:04:36.017Z",
+        "user": [
+            "aman"
+        ],
+        "content_type": [
+            "services",
+            "cart"
+        ],
+        "object_id": "4",
+        "object_repr": "Cart Item: X-RAY (Quantity: 21)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}
+]

@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XRAi Reporting</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 7px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 3px;
+      background-color: #fff;
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .header {
+      margin-bottom: 5px;
+      background-color: #fff;
+      z-index: 10;
+      position: sticky;
+      top: 0;
+      padding: 10px 0;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer {
+      background-color: #f7f7f7;
+      padding: 10px 0;
+      text-align: center;
+      margin-top: auto;
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-container {
+      height: calc(100vh - 250px); /* Adjust as per your layout */
+      overflow-y: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #22c9dc; /* Change to the desired header background color */
+      color: #fff;
+    }
+
+    tbody tr {
+      background-color: #ccc;
+    }
+
+    th, td {
+      border-right: 1px solid #ccc;
+    }
+
+    th:last-child, td:last-child {
+      border-right: none;
+    }
+
+    th:first-child {
+      position: sticky;
+      left: 0;
+      background-color: #22c9dc; /* Same as header background color */
+      z-index: 1;
+    }
+
+    td:first-child {
+      z-index: 2;
+    }
+
+    .count-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: skyblue;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    #count1, #count2, #count3 {
+      margin-bottom: 5px;
+      font-size: 18px;
+      color: black;
+    }
+
+    .filter-dropdown-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .filter-dropdown-container > div {
+      margin-right: 10px;
+    }
+
+    .search-container {
+      margin-top: 10px;
+      margin-right: auto;
+    }
+
+    .greeting {
+      margin-top: 10px;
+      font-weight: bold;
+      color: black;
+    }
+
+    .refresh {
+      background-color: blue;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .refresh:hover {
+      background-color: #0056b3;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: none;
+    }
+
+    .scroll-to-top a {
+      display: block;
+      width: 40px;
+      height: 40px;
+      background-color: green;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 20px;
+      text-align: center;
+      line-height: 40px;
+      text-decoration: none;
+    }
+
+    /* Modal Content Styles */
+  .modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .modal-header {
+    border-bottom: none; /* Remove bottom border */
+    background-color: #22c9dc; /* Header background color */
+    color: #fff; /* Header text color */
+    padding: 10px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .modal-title {
+    font-weight: bold;
+    font-size: 1.25rem; /* Larger title font size */
+  }
+
+  .modal-body {
+    padding: 20px; /* Increased padding for better spacing */
+  }
+
+  .modal-footer {
+    border-top: none; /* Remove top border */
+    background-color: #f7f7f7; /* Footer background color */
+    padding: 10px 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d; /* Button background color */
+    color: #fff; /* Button text color */
+    border-radius: 5px; /* Button border radius */
+    border: none; /* Remove default button border */
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268; /* Button hover background color */
+  }
+  .label {
+  font-weight: bold;
+  margin-right: 5px;
+  color: #333; /* Example color */
+}
+
+.value {
+  color: #666; /* Example color */
+}
+
+/* Change background color of table rows on hover */
+#patientTable tbody tr:hover {
+    background-color: #4a515734; /* You can change this color to your preference */
+}
+
+#callbackTable tbody tr:hover {
+  background-color: #4a515734;
+}
+
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid"> 
+        <a class="navbar-brand" href="#">U4RAD</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        <button class="logout-button btn btn-sm btn-danger"><strong>Logout</strong></button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+  <div class="header">
+    <h2>XRAi Reporting</h2>
+  </div>
+
+  <div class="container">
+    <!-- Toggle Button -->
+    <div class="toggle-container">
+      <button class="toggle-button btn btn-primary" onclick="toggleDetails()">Toggle to Callback Page</button>
+    </div>
+    <div class="radiologist-details-table">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="text-center">Radiologist's Form Dashboard</h2>
+        <div class="row-container">
+          <div><button class="refresh" onclick="refreshPage()">Refresh</button></div>
+          <br>
+          <div class="count-container">
+            <div id="count1">Total Entries: <span id="totalRowCount">0</span></div>
+            <div id="count2">Verified by Coordinator: <span id="CoordinatorVerifiedRowCount">0</span></div>
+            <div id="count3">Verified by Super Coordinator: <span id="SuperCoordinatorVerifiedRowCount">0</span></div>
+          </div>
+          <br>
+          <div><button class="btn btn-primary" onclick="sortCoordinatorTable()">Sort the Table</button></div>
+          <br>
+          <div class="filter-dropdown-container">
+            <div class="dropdown-select">
+              <select id="selectStatus">
+                <option value="">Select Status</option>
+                <option value="applied">Applied</option>
+                <option value="under_progress">Under Progress</option>
+                <option value="verified_by_coordinator">Verified by Coordinator</option>
+                <option value="verification_failed">Verification Failed</option>
+              </select>
+            </div>
+          </div>
+          <div class="search-container">
+            <input type="text" id="myInput" placeholder="Search by Name" onkeyup="searchByName()">
+          </div>
+          <div class="greeting">Hello, {{ request.user.username }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="table-container">
+          <table id="patientTable">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Contact No</th>
+                <th>Form Details</th>
+                <th>Rate List Details</th>
+                <th>Rate List Status</th>
+                <th>Stage 1 Status</th>
+                {% if is_supercoordinator %}
+                <th>Stage 2 Status</th>
+                {% endif %}
+                </th>
+                {% if is_supercoordinator %}
+                <th>Send Confirmation Mail</th>
+                {% endif %}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in personal_info %}
+              <tr>
+                <td>{{ data.first_name }}</td>
+                <td>{{ data.last_name }}</td>
+                <td>{{ data.email }}</td>
+                <td>{{ data.contact_no }}</td>
+                <td>
+                  <button class="btn btn-primary view-form" data-pk="{{ data.pk }}">View Complete Form</button>
+                </td>
+                <td>
+                  <!-- Placeholder for Rate List Details -->
+                  <button class="btn btn-primary view-rate-list" data-pk="{{ data.pk }}">Rate List Details</button>
+                </td>
+                <td>
+                  {{ data.rate_list_status }}
+                </td>
+                <td class="stage1-status-column">
+                  <select class="stage1status-dropdown" data-pk="{{ data.pk }}">
+                    <option value="applied" {% if data.stage1status == 'applied' %} selected {% endif %}>Applied</option>
+                    <option value="under_progress" {% if data.stage1status == 'under_progress' %} selected {% endif %}>Under Progress</option>
+                    <option value="verified_by_coordinator" {% if data.stage1status == 'verified_by_coordinator' %} selected {% endif %}>Verified by Coordinator</option>
+                    <option value="verification_failed" {% if data.stage1status == 'verification_failed' %} selected {% endif %}>Verification Failed</option>
+                  </select>
+                  <br>
+                    <input class="updatemessage1" type="text" placeholder="Coordinator's Message" style="width: 77%;" value="{{ data.updatemessage1 }}">
+                </td>
+                {% if is_supercoordinator %}
+                <td class="stage2-status-column">
+                    <select class="stage2status-dropdown" data-pk="{{ data.pk }}">
+                      <option value="applied" {% if data.stage2status == 'applied' %} selected {% endif %}>Applied</option>
+                      <option value="under_progress" {% if data.stage2status == 'under_progress' %} selected {% endif %}>Under Progress</option>
+                      <option value="verified_by_supercoordinator" {% if data.stage2status == 'verified_by_supercoordinator' %} selected {% endif %}>Verified by Supercoordinator</option>
+                      <option value="verification_failed" {% if data.stage2status == 'verification_failed' %} selected {% endif %}>Verification Failed</option>
+                    </select>
+                    <br>
+                    <input class="updatemessage2" type="text" placeholder="SuperCoordinator's Message" style="width: 83%;" value="{{ data.updatemessage2 }}">
+                </td>
+                {% endif %}
+                {% if is_supercoordinator %}
+                <td>
+                  <a href="{% url 'send_confirmation_mail' data.pk %}" class="btn btn-primary" >Send Confirmation Mail</a>
+                </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Callback Details Table (Initially Hidden) -->
+  <div class="callback-details-table" style="display: none;">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="text-center">Callback Form Dashboard</h2>
+            <div class="row-container">
+                <div class="count-container">
+                    Total Entries: <span id="totalCallbackRowCount">0</span>
+                </div>
+                <br>
+                <button class="btn btn-primary" onclick="sortTable()">Sort the Table</button>
+                <div class="search-container">
+                    <input type="text" id="callbackSearchInput" placeholder="Search by Name" onkeyup="searchByNameCallback()">
+                </div>
+                <div class="greeting">Hello, {{ request.user.username }}</div>
+            </div>
+            <br>
+        <table id="callbackTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Contact</th>
+              <th>View Filled Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Populate this with callback details -->
+            {% for callback in callback_details %}
+            <tr>
+              <td>{{ callback.name }}</td>
+              <td>{{ callback.email }}</td>
+              <td>{{ callback.phone_number }}</td>
+              <td>
+                <button class="btn btn-primary view-callback-form" data-pk="{{ callback.pk }}">View Callback Form</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="footer">
+    <p>&copy; 2024 XRAi Digital . All rights reserved.</p>
+  </div>
+
+  <div class="scroll-to-top">
+    <a href="#top">&#8593;</a>
+  </div>
+
+  <!-- Complete Form Modal -->
+  <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel">Complete Form Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="formDetailsContent">
+            <!-- Form details will be loaded here -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Modal for updating RateList -->
+<div class="modal fade" id="rateListModal" tabindex="-1" aria-labelledby="rateListModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="rateListModalLabel">Update Rate List</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="rateListForm">
+                  <!-- Dynamic form fields will be injected here by JavaScript -->
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="saveRateList">Save Changes</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Callback Form Modal -->
+<div class="modal fade" id="callbackformModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="callbackformModalLabel">Callback Form Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div id="formDetailsContent">
+                  <!-- Callback form details will be loaded here -->
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+  <script>
+    // This function is to give the counting of different fields - Himanshu.
+    $(document).ready(function() {
+    function updateCounts() {
+        let totalRows = 0;
+        let coordinatorVerifiedCount = 0;
+        let superCoordinatorVerifiedCount = 0;
+
+        $('#patientTable tbody tr').each(function() {
+            totalRows++;
+            let stage1Status = $(this).find('td.stage1-status-column select').val();
+            let stage2Status = $(this).find('td.stage2-status-column select').val();
+
+            if (stage1Status === 'verified_by_coordinator') {
+                coordinatorVerifiedCount++;
+            }
+
+            if (stage2Status === 'reported') {
+                superCoordinatorVerifiedCount++;
+            }
+        });
+
+        $('#totalRowCount').text(totalRows);
+        $('#CoordinatorVerifiedRowCount').text(coordinatorVerifiedCount);
+        $('#SuperCoordinatorVerifiedRowCount').text(superCoordinatorVerifiedCount);
+    }
+
+    // Call the function to update counts on page load
+    updateCounts();
+
+    // Optionally, you can call updateCounts() whenever the table is updated
+    // Example: after an AJAX call to update the table
+
+    // Trigger count update when a status dropdown is changed
+    $(document).on('change', '.stage1status-dropdown, .stage2status-dropdown', function() {
+        updateCounts();
+    });
+});
+
+$(document).ready(function() {
+    // Function to filter table rows based on selected status
+    function filterRows() {
+        let selectedStatus = $('#selectStatus').val();
+        $('#patientTable tbody tr').each(function() {
+            let stage1Status = $(this).find('.stage1status-dropdown').val();
+            let stage2Status = $(this).find('.stage2status-dropdown').val();
+            
+            if (selectedStatus === "") {
+                $(this).show();
+            } else if (stage1Status === selectedStatus || stage2Status === selectedStatus) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    // Trigger filterRows function when the status filter dropdown is changed
+    $('#selectStatus').on('change', function() {
+        filterRows();
+    });
+
+    // Initially filter rows based on default dropdown value
+    filterRows();
+});
+
+    // This function I've made to refresh the page - Himanshu.
+     function refreshPage() {
+        location.reload();
+      }
+
+      function sortCoordinatorTable() {x
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("patientTable");
+        switching = true;
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[0]; // Sort by the first column (Name)
+                y = rows[i + 1].getElementsByTagName("TD")[0]; // Sort by the first column (Name)
+                
+                if (ascendingOrder) {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+        // Toggle sorting order flag
+        ascendingOrder = !ascendingOrder;
+    }
+
+
+      // This function I've made to search the person by name on the page - Himanshu.
+      function searchByName() {
+        var input, filter, table, tr, tdFirstName, tdLastName, i, txtValueFirst, txtValueLast;
+        input = document.getElementById("myInput");
+        filter = input.value.toLowerCase().replace(/\s+/g, '');  // Remove spaces from the search input
+        table = document.getElementById("patientTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) {
+          tdFirstName = tr[i].getElementsByTagName("td")[0];  // First name column
+          tdLastName = tr[i].getElementsByTagName("td")[1];   // Last name column
+
+          if (tdFirstName && tdLastName) {
+            txtValueFirst = tdFirstName.textContent || tdFirstName.innerText;
+            txtValueLast = tdLastName.textContent || tdLastName.innerText;
+
+            // Remove spaces from both first and last names before concatenating
+            txtValueFirst = txtValueFirst.toLowerCase().replace(/\s+/g, '');
+            txtValueLast = txtValueLast.toLowerCase().replace(/\s+/g, '');
+
+            // Concatenate first and last names
+            var fullName = txtValueFirst + txtValueLast;
+
+            if (fullName.indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+
+
+    $(document).ready(function() {
+      // Handle click on view-form button
+      $('.view-form').click(function() {
+        var pk = $(this).data('pk');
+    
+        // AJAX call to fetch all form details
+        $.ajax({
+          url: '/view_complete_form/' + pk + '/',
+          method: 'GET',
+          success: function(response) {
+            // Construct HTML for modal content based on the response
+            var modalContent = '<div><h4 style="background-color: lightblue;">Personal Information</h4>';
+            modalContent += '<p><span class="label">First Name: </span><span class="value">' + response.personal_information.first_name + '</span></p>';
+            modalContent += '<p><span class="label">Last Name: </span><span class="value">' + response.personal_information.last_name + '</span></p>';
+            modalContent += '<p><span class="label">Email: </span><span class="value">' + response.personal_information.email + '</span></p>';
+            modalContent += '<p><span class="label">Password: </span><span class="value">' + response.personal_information.password + '</span></p>';
+            modalContent += '<p><span class="label">Address: </span><span class="value">' + response.personal_information.address + '</span></p>';
+            modalContent += '<p><span class="label">Contact No.: </span><span class="value">' + response.personal_information.contact_no + '</span></p>';
+            modalContent += '<p><span class="label">Resume: </span><span class="value">';
+            if (response.personal_information.resume) {
+              modalContent += '<a href="' + response.personal_information.resume + '" target="_blank">View Resume</a>';
+            } else {
+              modalContent += 'No Resume Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">Photo: </span><span class="value">';
+            if (response.personal_information.photo) {
+              modalContent += '<a href="' + response.personal_information.photo + '" target="_blank">View Photo</a>';
+            } else {
+              modalContent += 'No Photo Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">Experience Years: </span><span class="value">' + response.personal_information.experience_years + '</span></p>';
+            modalContent += '</div>';
+
+            // Educational Details
+            modalContent += '<div><h4 style="background-color: lightblue;">Educational Details</h4>';
+            modalContent += '<p><span class="label">10th School Name: </span><span class="value">' + response.educational_info.tenthname + '</span></p>';
+            modalContent += '<p><span class="label">10th Grade: </span><span class="value">' + response.educational_info.tenthgrade + '</span></p>';
+            modalContent += '<p><span class="label">10th Passing Year: </span><span class="value">' + response.educational_info.tenthpsyr + '</span></p>';
+            modalContent += '<p><span class="label">10th Certificate: </span><span class="value">';
+            if (response.educational_info.tenthcertificate) {
+              modalContent += '<a href="' + response.educational_info.tenthcertificate + '" target="_blank">View Certificate</a>';
+            } else {
+              modalContent += 'No Certificate Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">12th School Name: </span><span class="value">' + response.educational_info.twelthname + '</span></p>';
+            modalContent += '<p><span class="label">12th Grade: </span><span class="value">' + response.educational_info.twelthgrade + '</span></p>';
+            modalContent += '<p><span class="label">12th Passing Year: </span><span class="value">' + response.educational_info.twelthpsyr + '</span></p>';
+            modalContent += '<p><span class="label">12th Certificate: </span><span class="value">';
+            if (response.educational_info.twelthcertificate) {
+              modalContent += '<a href="' + response.educational_info.twelthcertificate + '" target="_blank">View Certificate</a>';
+            } else {
+              modalContent += 'No Certificate Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">MBBS Institution: </span><span class="value">' + response.educational_info.mbbsinstitution + '</span></p>';
+            modalContent += '<p><span class="label">MBBS Grade: </span><span class="value">' + response.educational_info.mbbsgrade + '</span></p>';
+            modalContent += '<p><span class="label">MBBS Passing Year: </span><span class="value">' + response.educational_info.mbbspsyr + '</span></p>';
+            modalContent += '<p><span class="label">MBBS Marksheet: </span><span class="value">';
+            if (response.educational_info.mbbsmarksheet) {
+              modalContent += '<a href="' + response.educational_info.mbbsmarksheet + '" target="_blank">View Marksheet</a>';
+            } else {
+              modalContent += 'No Marksheet Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">MBBS Degree: </span><span class="value">';
+            if (response.educational_info.mbbsdegree) {
+              modalContent += '<a href="' + response.educational_info.mbbsdegree + '" target="_blank">View Degree</a>';
+            } else {
+              modalContent += 'No Degree Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">MD Institution: </span><span class="value">' + response.educational_info.mdinstitution + '</span></p>';
+            modalContent += '<p><span class="label">MD Grade: </span><span class="value">' + response.educational_info.mdgrade + '</span></p>';
+            modalContent += '<p><span class="label">MD Passing Year: </span><span class="value">' + response.educational_info.mdpsyr + '</span></p>';
+            modalContent += '<p><span class="label">MD Marksheet: </span><span class="value">';
+            if (response.educational_info.mdmarksheet) {
+              modalContent += '<a href="' + response.educational_info.mdmarksheet + '" target="_blank">View Marksheet</a>';
+            } else {
+              modalContent += 'No Marksheet Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">MD Degree: </span><span class="value">';
+            if (response.educational_info.mddegree) {
+              modalContent += '<a href="' + response.educational_info.mddegree + '" target="_blank">View Degree</a>';
+            } else {
+              modalContent += 'No Degree Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">Video File: </span><span class="value">';
+            if (response.educational_info.videofile) {
+              modalContent += '<a href="' + response.educational_info.videofile + '" target="_blank">View Video</a>';
+            } else {
+              modalContent += 'No Video Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '</div>';
+            // Experience Details
+            modalContent += '<div><h4 style="background-color: lightblue;">Experience Details</h4>';
+            modalContent += '<p><span class="label">Experience 1 Institution: </span><span class="value">' + response.experience_info.exinstitution1 + '</span></p>';
+            modalContent += '<p><span class="label">Experience 1 Starting Date: </span><span class="value">' + response.experience_info.exstdate1 + '</span></p>';
+            modalContent += '<p><span class="label">Experience 1 Ending Date: </span><span class="value">' + response.experience_info.exenddate1 + '</span></p>';
+            modalContent += '<p><span class="label">Experience 2 Institution: </span><span class="value">' + response.experience_info.exinstitution2 + '</span></p>';
+            modalContent += '<p><span class="label">Experience 2 Starting Date: </span><span class="value">' + response.experience_info.exstdate2 + '</span></p>';
+            modalContent += '<p><span class="label">Experience 2 Ending Date: </span><span class="value">' + response.experience_info.exenddate2 + '</span></p>';
+            modalContent += '<p><span class="label">Experience 3 Institution: </span><span class="value">' + response.experience_info.exinstitution3 + '</span></p>';
+            modalContent += '<p><span class="label">Experience 3 Starting Date: </span><span class="value">' + response.experience_info.exstdate3 + '</span></p>';
+            modalContent += '<p><span class="label">Experience 3 Ending Date: </span><span class="value">' + response.experience_info.exenddate3 + '</span></p>';
+            modalContent += '</div>';
+    
+            // Achievement Details
+            modalContent += '<div><h4 style="background-color: lightblue;">Achievement Details</h4>';
+            modalContent += '<p><span class="label">Award 1: </span><span class="value">' + response.achievement_info.award1 + '</span></p>';
+            modalContent += '<p><span class="label">Award Date 1: </span><span class="value">' + response.achievement_info.awarddate1 + '</span></p>';
+            modalContent += '<p><span class="label">Award 2: </span><span class="value">' + response.achievement_info.award2 + '</span></p>';
+            modalContent += '<p><span class="label">Award Date 2: </span><span class="value">' + response.achievement_info.awarddate2 + '</span></p>';
+            modalContent += '<p><span class="label">Publish Link: </span><span class="value">' + response.achievement_info.publishlink + '</span></p>';
+            modalContent += '</div>';
+    
+            // Banking Details
+            modalContent += '<div><h4 style="background-color: lightblue;">Banking Details</h4>';
+            modalContent += '<p><span class="label">Account Holder Name: </span><span class="value">' + response.banking_info.accholdername + '</span></p>';
+            modalContent += '<p><span class="label">Bank Name: </span><span class="value">' + response.banking_info.bankname + '</span></p>';
+            modalContent += '<p><span class="label">Branch Name: </span><span class="value">' + response.banking_info.branchname + '</span></p>';
+            modalContent += '<p><span class="label">Account Number: </span><span class="value">' + response.banking_info.acnumber + '</span></p>';
+            modalContent += '<p><span class="label">IFSC: </span><span class="value">' + response.banking_info.ifsc + '</span></p>';
+            modalContent += '<p><span class="label">Pan Card Number: </span><span class="value">' + response.banking_info.pancardno + '</span></p>';
+            modalContent += '<p><span class="label">Aadhar Card Number: </span><span class="value">' + response.banking_info.aadharcardno + '</span></p>';
+            modalContent += '<p><span class="label">Pan Card: </span><span class="value">';
+              if (response.banking_info.pancard) {
+              modalContent += '<a href="' + response.banking_info.pancard + '" target="_blank">View Pan Card</a>';
+            } else {
+              modalContent += 'No Pan Card Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">Aadhar Card: </span><span class="value">';
+              if (response.banking_info.aadharcard) {
+              modalContent += '<a href="' + response.banking_info.aadharcard + '" target="_blank">View Aadhar Card</a>';
+            } else {
+              modalContent += 'No Aadhar Card Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '<p><span class="label">Cheque: </span><span class="value">';
+              if (response.banking_info.cheque) {
+              modalContent += '<a href="' + response.banking_info.cheque + '" target="_blank">View Cheque</a>';
+            } else {
+              modalContent += 'No Cheque Uploaded';
+            }
+            modalContent += '</span></p>';
+            modalContent += '</div>';
+    
+            // Reporting Area Details
+            modalContent += '<div><h4 style="background-color: lightblue;">Reporting Area Details</h4>';
+            modalContent += '<p><span class="label">MRI Options: </span><span class="value">' + response.reporting_area_info.mriopt + '</span></p>';
+            modalContent += '<p><span class="label">MRI Others: </span><span class="value">' + response.reporting_area_info.mriothers + '</span></p>';
+            modalContent += '<p><span class="label">CT Options: </span><span class="value">' + response.reporting_area_info.ctopt + '</span></p>';
+            modalContent += '<p><span class="label">CT Others: </span><span class="value">' + response.reporting_area_info.ctothers + '</span></p>';
+            modalContent += '<p><span class="label">Xray: </span><span class="value">' + response.reporting_area_info.xray + '</span></p>';
+            modalContent += '<p><span class="label">Others: </span><span class="value">' + response.reporting_area_info.others + '</span></p>';
+            modalContent += '<p><span class="label">Others Text: </span><span class="value">' + response.reporting_area_info.otherText + '</span></p>';
+            modalContent += '</div>';
+    
+            // Availability Details
+            modalContent += '<div><h4 style="background-color: lightblue;">Availability Details</h4>';
+            modalContent += '<p><span class="label">Monday: </span><span class="value">' + response.availability_info.monday + '</span></p>';
+            modalContent += '<p><span class="label">Tuesday: </span><span class="value">' + response.availability_info.tuesday + '</span></p>';
+            modalContent += '<p><span class="label">Wednesday: </span><span class="value">' + response.availability_info.wednesday + '</span></p>';
+            modalContent += '<p><span class="label">Thurssday: </span><span class="value">' + response.availability_info.thursday + '</span></p>';
+            modalContent += '<p><span class="label">Friday: </span><span class="value">' + response.availability_info.friday + '</span></p>';
+            modalContent += '<p><span class="label">Saturday: </span><span class="value">' + response.availability_info.saturday + '</span></p>';
+            modalContent += '<p><span class="label">Sunday: </span><span class="value">' + response.availability_info.sunday + '</span></p>';
+            modalContent += '<p><span class="label">Start Time Slot 1: </span><span class="value">' + response.availability_info.starttime1 + '</span></p>';
+            modalContent += '<p><span class="label">End Time Slot 1: </span><span class="value">' + response.availability_info.endtime1 + '</span></p>';
+            modalContent += '<p><span class="label">Start Time Slot 2: </span><span class="value">' + response.availability_info.starttime2 + '</span></p>';
+            modalContent += '<p><span class="label">End Time Slot 2: </span><span class="value">' + response.availability_info.endtime2 + '</span></p>';
+            modalContent += '<p><span class="label">Start Time Slot 3: </span><span class="value">' + response.availability_info.starttime3 + '</span></p>';
+            modalContent += '<p><span class="label">End Time Slot 3: </span><span class="value">' + response.availability_info.endtime3 + '</span></p>';
+            modalContent += '<p><span class="label">Start Time Slot 4: </span><span class="value">' + response.availability_info.starttime4 + '</span></p>';
+            modalContent += '<p><span class="label">End Time Slot 4: </span><span class="value">' + response.availability_info.endtime4 + '</span></p>';
+            modalContent += '</div>';
+
+            modalContent += '<div><h4 style="background-color: lightblue;">Complete Response</h4>';
+            modalContent += '<br>'
+            modalContent += '<p><button id="generate-pdf-button" class="btn btn-primary" data-pk="' + pk + '">Generate Response PDF</button></p>';
+            modalContent += '</div>';
+
+    
+            // Example: Display moxdal using Bootstrap modal
+            $('#formModal .modal-body').html(modalContent);
+            $('#formModal').modal('show');
+          },
+          error: function(xhr, status, error) {
+            console.error('Error fetching complete form data:', error);
+          }
+        });
+      });
+
+      $(document).ready(function(){
+    $(document).on("click", "#generate-pdf-button", function(){
+
+        var pk = $(this).data('pk');  
+
+        // Construct the URL using Django's template tags
+        var url = "/generate_pdf/" + pk + "/";
+
+        // Open the PDF in a new tab
+        window.open(url, '_blank');
+    });
+});
+
+      // Handle click on generate-pdf button
+      // $('#viewFormModal').on('click', '#generate-pdf', function() {
+      //   var pk = $('.view-form').data('pk'); // Get the primary key
+      //   window.location.href = '/generate_response_pdf/' + pk + '/';
+      // });
+    
+      window.addEventListener("scroll", function () {
+        var scrollToTopBtn = document.querySelector(".scroll-to-top");
+        if (window.scrollY > 300) {
+          scrollToTopBtn.style.display = "block";
+        } else {
+          scrollToTopBtn.style.display = "none";
+        }
+      });
+    
+      $('.stage1status-dropdown').change(function() {
+        var pk = $(this).data('pk');
+        var stage1status = $(this).val();
+    
+        $.ajax({
+          url: '/update_stage1status/' + pk + '/',
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': 'btDBzuNgd1Eb2YF74okLNpHWui8SHxUesJdS1IqWN5PL0cM1n2fIabNYWCIvbnRG'
+          },
+          data: {
+            'stage1status': stage1status
+          },
+          success: function(response) {
+            console.log('Stage 1 status updated successfully');
+          },
+          error: function(xhr, status, error) {
+            console.error('Error updating Stage 1 status:', error);
+          }
+        });
+      });
+    
+      $('.stage2status-dropdown').change(function() {
+        var pk = $(this).data('pk');
+        var stage2status = $(this).val();
+    
+        $.ajax({
+          url: '/update_stage2status/' + pk + '/',
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': 'btDBzuNgd1Eb2YF74okLNpHWui8SHxUesJdS1IqWN5PL0cM1n2fIabNYWCIvbnRG'
+          },
+          data: {
+            'stage2status': stage2status
+          },
+          success: function(response) {
+            console.log('Stage 2 status updated successfully');
+          },
+          error: function(xhr, status, error) {
+            console.error('Error updating Stage 2 status:', error);
+          }
+        });
+      });
+    });
+
+    $(document).ready(function() {
+    $('.stage1-status-column input[type="text"]').on('change', function() {
+        var pk = $(this).siblings('.stage1status-dropdown').data('pk');
+        var message = $(this).val();
+        
+        $.ajax({
+            url: "{% url 'update_messages' %}",
+            method: 'POST',
+            data: {
+                pk: pk,
+                coordinator_message: message,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    console.log('Message saved successfully');
+                } else {
+                    console.error(response.message);
+                }
+            }
+        });
+    });
+
+    $('.stage2-status-column input[type="text"]').on('change', function() {
+        var pk = $(this).siblings('.stage2status-dropdown').data('pk');
+        var message = $(this).val();
+        
+        $.ajax({
+            url: "{% url 'update_messages' %}",
+            method: 'POST',
+            data: {
+                pk: pk,
+                supercoordinator_message: message,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    console.log('Message saved successfully');
+                } else {
+                    console.error(response.message);
+                }
+            }
+        });
+    });
+});
+
+$(document).ready(function() {
+    // Handle click on view-rate-list button
+    $('.view-rate-list').on('click', function() {
+        const radiologistId = $(this).data('pk');
+        $.ajax({
+            type: 'GET',
+            url: '{% url "view_rate_list_form" 0 %}'.replace('0', radiologistId),
+            success: function(response) {
+                if (response.rate_list) {
+                    // Construct HTML for modal content based on the response
+                    let tableRows = `
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr style="background-color: lightblue;">
+                                    <th>Serial Number</th>
+                                    <th>Modality</th>
+                                    <th>Case Type</th>
+                                    <th>Doctor Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1.</td><td>MRI</td><td>Head/Brain/Chest/Abdomen/Pelvis/PNS/Face</td><td><input type="text" name="mri1" value="${response.rate_list.mri1 || ''}" /></td></tr>
+                                <tr><td>2.</td><td>MRI</td><td>MRI Screening(per body parts)</td><td><input type="text" name="mri2" value="${response.rate_list.mri2 || ''}" /></td></tr>
+                                <tr><td>3.</td><td>MRI</td><td>MSK</td><td><input type="text" name="mri3" value="${response.rate_list.mri3 || ''}" /></td></tr>
+                                <tr><td>4.</td><td>MRI</td><td>Whole Abdomen</td><td><input type="text" name="mri4" value="${response.rate_list.mri4 || ''}" /></td></tr>
+                                <tr><td>5.</td><td>MRI</td><td>Special Cases(ex. Neurography, Defacography, Breast)</td><td><input type="text" name="mri5" value="${response.rate_list.mri5 || ''}" /></td></tr>
+                                <tr><td>6.</td><td>MRI</td><td>MRI Angiography(per body parts)</td><td><input type="text" name="mri6" value="${response.rate_list.mri6 || ''}" /></td></tr>
+                                <tr><td>7.</td><td>CT</td><td>Head/Brain/PNS/Face/Orbit</td><td><input type="text" name="ct1" value="${response.rate_list.ct1 || ''}" /></td></tr>
+                                <tr><td>8.</td><td>CT</td><td>NCCT Spine</td><td><input type="text" name="ct2" value="${response.rate_list.ct2 || ''}" /></td></tr>
+                                <tr><td>9.</td><td>CT</td><td>HRCT Chest/KUB</td><td><input type="text" name="ct3" value="${response.rate_list.ct3 || ''}" /></td></tr>
+                                <tr><td>10.</td><td>CT</td><td>Abdomen/Pelvis/Neck</td><td><input type="text" name="ct4" value="${response.rate_list.ct4 || ''}" /></td></tr>
+                                <tr><td>11.</td><td>CT</td><td>Whole Abdomen</td><td><input type="text" name="ct5" value="${response.rate_list.ct5 || ''}" /></td></tr>
+                                <tr><td>12.</td><td>CT</td><td>CT Angiography(per body parts)</td><td><input type="text" name="ct6" value="${response.rate_list.ct6 || ''}" /></td></tr>
+                                <tr><td>13.</td><td>CT</td><td>Cardiac Angiography</td><td><input type="text" name="ct7" value="${response.rate_list.ct7 || ''}" /></td></tr>
+                                <tr><td>14.</td><td>X-Ray</td><td>Per Exposure - any body parts</td><td><input type="text" name="xray1" value="${response.rate_list.xray1 || ''}" /></td></tr>
+                                <tr><td>15.</td><td>X-Ray</td><td>Special Procedure - Barium/IVP/HSG</td><td><input type="text" name="xray2" value="${response.rate_list.xray2 || ''}" /></td></tr>
+                                <tr style="background-color: lightblue;">
+                                    <td colspan="4" style="text-align: center; font-weight: bold;">Note: One Sunday and 5 Night on a call to be performed.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                    
+                    // Inject HTML into the modal
+                    $('#rateListForm').html(tableRows);
+                    $('#rateListModal').modal('show');
+                } else {
+                    alert('Error fetching rate list data.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching rate list data:', error);
+            }
+        });
+    });
+
+    // Handle form submission
+    $('#saveRateList').on('click', function() {
+        $('#rateListForm').submit();
+    });
+
+    $('#rateListForm').on('submit', function(e) {
+        e.preventDefault();
+        const radiologistId = $('.view-rate-list').data('pk'); // Get the ID from the button
+        $.ajax({
+            type: 'POST',
+            url: '{% url "update_rate_list" 0 %}'.replace('0', radiologistId),
+            data: $(this).serialize(),
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Rate List updated successfully!');
+                    location.reload(); // Reload the page to see updated data
+                } else {
+                    alert('Error updating Rate List.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error updating rate list:', error);
+            }
+        });
+    });
+});
+
+function toggleDetails() {
+    var radiologistTable = document.querySelector('.radiologist-details-table');
+    var callbackTable = document.querySelector('.callback-details-table');
+    var filterDropdown = document.querySelector('.filter-dropdown-container');
+    var toggleButton = document.querySelector('.toggle-button');
+
+    if (radiologistTable.style.display === 'none') {
+        // Show radiologist table, hide callback table
+        radiologistTable.style.display = 'block';
+        callbackTable.style.display = 'none';
+        filterDropdown.style.display = 'block'; // Show the filter dropdown if hidden
+        toggleButton.textContent = 'Toggle to Callback Page'; // Change button text
+    } else {
+        // Show callback table, hide radiologist table
+        radiologistTable.style.display = 'none';
+        callbackTable.style.display = 'block';
+        filterDropdown.style.display = 'none'; // Hide the filter dropdown
+        toggleButton.textContent = 'Toggle to Complete Form'; // Change button text
+    }
+}
+  
+    $(document).ready(function() {
+    // Handle click on view-callback-form button
+    $('.view-callback-form').click(function() {
+        var pk = $(this).data('pk');
+        if (!pk) {
+            console.error('Primary key is undefined.');
+            return;
+        }
+
+        // AJAX call to fetch callback form details
+        $.ajax({
+            url: '/view_callback_form/' + pk + '/',  // Adjust URL endpoint for callback form
+            method: 'GET',
+            success: function(response) {
+                // Construct HTML for modal content based on the response
+                var modalContent = '<div><h4 style="background-color: lightblue;">Callback Form Details</h4>';
+                modalContent += '<p><span class="label">Name: </span><span class="value">' + response.callback_details.name + '</span></p>';
+                modalContent += '<p><span class="label">Phone Number: </span><span class="value">' + response.callback_details.phone_number + '</span></p>';
+                modalContent += '<p><span class="label">Email: </span><span class="value">' + response.callback_details.email + '</span></p>';
+                modalContent += '<p><span class="label">Qualification: </span><span class="value">' + response.callback_details.qualification + '</span></p>';
+                modalContent += '<p><span class="label">Experience: </span><span class="value">' + response.callback_details.experience + '</span></p>';
+                modalContent += '<p><span class="label">CT Modality: </span><span class="value">' + response.callback_details.ctcheckbox + '</span></p>';
+                modalContent += '<p><span class="label">MRI Modality: </span><span class="value">' + response.callback_details.mricheckbox + '</span></p>';
+                modalContent += '<p><span class="label">X-ray Modality: </span><span class="value">' + response.callback_details.xraycheckbox + '</span></p>';
+                modalContent += '<p><span class="label">Mammography Modality: </span><span class="value">' + response.callback_details.mammographycheckbox + '</span></p>';
+                modalContent += '</div>';
+
+                // Display modal using Bootstrap modal
+                $('#callbackformModal .modal-body').html(modalContent);
+                $('#callbackformModal').modal('show');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching callback form data:', error);
+            }
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Update callback row count on page load
+    updateCallbackRowCount();
+});
+
+function updateCallbackRowCount() {
+    let rowCount = document.getElementById("callbackTable").rows.length - 1; // Exclude header row
+    document.getElementById("totalCallbackRowCount").textContent = rowCount;
+}
+
+
+
+function searchByNameCallback() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("callbackSearchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("callbackTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0]; // Column index where name is located
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+let ascendingOrder = true; // Flag to track current sorting order
+
+function sortTable() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("callbackTable");
+    switching = true;
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[0]; // Sort by the first column (Name)
+            y = rows[i + 1].getElementsByTagName("TD")[0]; // Sort by the first column (Name)
+            
+            if (ascendingOrder) {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+    // Toggle sorting order flag
+    ascendingOrder = !ascendingOrder;
+}
+// $(document).ready(function() {
+//     $('#send-email-button').on('click', function(e) {
+//         e.preventDefault();
+//         var button = $(this);
+//         var userId = button.data('id');
+        
+//         $.ajax({
+//             url: '/send_confirmation_mail/' + userId + '/',
+//             method: 'GET',
+//             success: function(response) {
+//                 alert(response.message);
+//                 var count = response.count;
+//                 button.text('Email Sent! Send Again. (' + count + ')');
+//             },
+//             error: function() {
+//                 alert('An error occurred while sending the email.');
+//             }
+//         });
+//     });
+// });
+
+    </script>
+    </body>
+    </html>
+    

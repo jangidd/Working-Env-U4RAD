@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Callback Form</title>
+  <link rel="stylesheet" href="{% static 'Multiform_app/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="main-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'login' %}"><img src="{% static 'logo.png' %}" alt="Logo" style='height: 50px;'></a>
+            </div>
+        </nav>
+        <header>Callback Form</header>
+        <div class="form-outer">
+            <form id="callback-form" action="{% url 'callback_form' %}" method="post">
+                {% csrf_token %}
+                <div >
+                    <div class="title">Callback Request :</div>
+                    <div>Please fill the following details :</div>
+                    <br>
+                    <div class="field">
+                        <div class="label">Name</div>
+                        <input type="text" name="name" required />
+                    </div>
+                    <div class="field">
+                        <div class="label">Phone Number</div>
+                        <input type="text" name="phone_number" required />
+                    </div>
+                    <div class="field">
+                        <div class="label">Email</div>
+                        <input type="email" name="email" required />
+                    </div>
+                    <div class="field">
+                        <div class="label">Qualifications</div>
+                        <input type="text" name="qualification" required />
+                    </div>
+                    <div class="field">
+                        <div class="label">Experience in Years</div>
+                        <input type="number" name="experience" required />
+                    </div>
+                    <div class="field">
+                        <div class="label">Modalities You Want to Report</div>
+                        <input type="checkbox" name="ctcheckbox" />CT
+                        <br>
+                        <input type="checkbox" name="mricheckbox" />MRI
+                        <br>
+                        <input type="checkbox" name="xraycheckbox" />Xray
+                        <br>
+                        <input type="checkbox" name="mammographycheckbox" />Mammography
+                    </div>
+                    <div class="field btns">
+                        <button type="submit" class="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

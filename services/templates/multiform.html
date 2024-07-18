@@ -1,0 +1,991 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multistep form</title>
+  <link rel="stylesheet" href="{% static 'Multiform_app/css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+
+
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="main-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'login' %}" ><img src="{% static 'logo.png' %}" alt="" style='height: 50px;'></a>
+                
+            </div>
+        </nav>
+        <header>Radiologist's Signup Form</header>
+        <div class="progress-bar">
+            <div class="step">
+                <p>Info.</p>
+                <div class="bullet">
+                    <span>1</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+                <p>Qual.</p>
+                <div class="bullet">
+                    <span>2</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+                <p>Exp.</p>
+                <div class="bullet">
+                    <span>3</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+                <p>Achiev.</p>
+                <div class="bullet">
+                    <span>4</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+                <p>Bank.</p>
+                <div class="bullet">
+                    <span>5</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+                <p>Area.</p>
+                <div class="bullet">
+                    <span>6</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+            <div class="step">
+                <p>Time.</p>
+                <div class="bullet">
+                    <span>7</span>
+                </div>
+                <div class="check fas fa-check"></div>
+            </div>
+        </div>
+        <div class="form-outer">
+            <form id="signup-form" action="{% url 'submit' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Page 1: Personal Information -->
+                <div class="page slide-page page1">
+                    <div class="column1">
+                    <div class="title">Personal Information :</div>
+                    <div class="field">
+                        <div class="label">First Name</div>
+                        <input type="text" name="first_name" class="form-field" />
+                    </div>
+                    <div class="field">
+                        <div class="label">Last Name</div>
+                        <input type="text" name="last_name" class="form-field" />
+                    </div>
+                    <div class="field">
+                        <div id="id_email" class="label">Email ID</div>
+                        <input type="email" name="email" class="form-field" placeholder="xyz@gmail.com"  />
+                        <div id="email-error" class="error-message" style="color: red;"></div>
+                    </div>
+                    <div class="field">
+                        <div class="label">Create Password</div>
+                        <input id="password" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-sm form-field" maxlength="15" >
+                        show
+                        <input type="checkbox" onclick="passWord()" >
+                    </div>
+                    <div id="message">
+                        <h5>Password must contain the following:</h5>
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="charlength" class="invalid">Minimum <b>8 characters</b></p>
+                    </div>
+                    <div class="field">
+                        <div class="label">Confirm Password</div>
+                        <input id="cnfpassword" type="password" name="cnfpassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-sm form-field" maxlength="15" >  
+                        show
+                        <input type="checkbox" onclick="cnfpassWord()" style="display: inline-block;" />
+                    </div>
+                    
+                    <div class="field">
+                        <div class="label">Address</div>
+                        <input type="text" name="address"class="form-field" />
+                    </div>
+                    <div class="field">
+                        <div class="label">Contact No.</div>
+                        <div class="tel-input-field">
+                            <input type="tel" id="contact_no" name="contact_no" class="form-field">
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div class="field">
+                        <div class="label">Upload Resume</div>
+                        <input type="file" name="resume" class="form-field" />
+                    </div>
+                    <div class="field">
+                        <div class="label">Upload Passport Size Photo</div>
+                        <input type="file" name="photo" class="form-field" />
+                    </div>
+                    <div class="field">
+                        <div class="label">Years of Experience</div>
+                        <input id="experience_years" class="form-field" type="number" name="experience_years" min="0" max="50" maxlength="2" />
+                    </div>
+
+                </div>
+                    <div class="field btns" >
+                        <button type="button" class="firstNext next" style="margin-left: 45%">Next</button>
+                        <!-- Here i have added inline css to keep the next button on the right side -->
+                    </div>
+                    <div>
+                        <button type="button" style="margin-left: 39%" class="btn btn-primary" onclick="window.location.href='{% url 'callback_form' %}'">Go to Callback Form</button>
+                    </div>
+                </div> 
+                
+                <!-- Page 2: Qualification Info -->
+                <div class="page page2">
+                    <div class="title">Educational Information :</div>
+                        
+                        <h3>Class 10th details</h3>
+                        <br>
+                        <div class="field">
+                            <div class="label">School Name</div>
+                            <input type="text" name="tenthname" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Grade</div>
+                            <input type="text" name="tenthgrade" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Passing Year</div>
+                            <input type="month" name="tenthpsyr" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Upload 10th Certificate</div>
+                            <input type="file" name="tenthcertificate" class="form-field" />
+                        </div>
+                        <br>
+                        <h3>Class 12th details</h3>
+                        <br>
+                        <div class="field">
+                            <div class="label">School Name</div>
+                            <input type="text" name="twelthname"  class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Grade</div>
+                            <input type="text" name="twelthgrade" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Passing Year</div>
+                            <input type="month" name="twelthpsyr" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Upload 12th Certificate</div>
+                            <input type="file" name="twelthcertificate" class="form-field" />
+                        </div>
+                        <br>
+                        <h3>MBBS Details</h3>
+                        <br>
+                        <div class="field">
+                            <div class="label">Institution Name</div>
+                            <input type="text" name="mbbsinstitution" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Grade</div>
+                            <input type="text" name="mbbsgrade"class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Passing Year</div>
+                            <input type="month" name="mbbspsyr" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Upload Marksheets (Use ctrl to upload multiple files)</div>
+                            <input type="file" multiple name="mbbsmarksheet" class="form-field"/>
+                        </div>
+                        <div class="field">
+                            <div class="label">Upload Degree</div>
+                            <input type="file" name="mbbsdegree" class="form-field" />
+                        </div>
+                        <br>
+                         <h3>MD/DNB Details</h3>
+                         <br>
+                        <div class="field">
+                            <div class="label">Institution Name</div>
+                            <input type="text" name="mdinstitution" class="form-field"/>
+                        </div>
+                        <div class="field">
+                            <div class="label">Grade</div>
+                            <input type="text" name="mdgrade" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Passing Year</div>
+                            <input type="month" name="mdpsyr" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Upload Marksheets (Use ctrl to upload multiple files)</div>
+                            <input type="file" multiple name="mdmarksheet" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Upload Degree</div>
+                            <input type="file" name="mddegree" class="form-field" />
+                        </div>
+                        <br>
+                        <h3>About You</h3>
+                        <br>
+                        <div class="field">
+                            <div class="label">Upload a video of yourself stating your strengths and weaknesses.</div>
+                            <input type="file" name="videofile" class="form-field" />
+                        </div>
+                    <div class="field btns">
+                        <button type="button" class="prev-1 prev">Previous</button>
+                        <button type="button" class="next-1 next">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 3: Work Experience Info  -->
+                <div class="page page3">
+                    <div class="title">Work Experience :</div>
+                    <div class="experience-container">
+                        <h3>Work Experience 1</h3>
+                        <br>
+                        <div class="field">
+                            <div class="label">Name of the Institution</div>
+                            <input type="text" name="exinstitution1" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Starting Date</div>
+                            <input type="date" name="exstdate1" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">End Date (Leave the field if Currently working)</div>
+                            <input type="date" name="exenddate1" class="form-field" />
+                        </div>
+                        <br>
+                        <h3>Work Experience 2</h3>
+                        <br>
+                        <div class="field">
+                            <div class="label">Name of the Institution</div>
+                            <input type="text" name="exinstitution2" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Starting Date</div>
+                            <input type="date" name="exstdate2" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">End Date (Leave the field if Currently working)</div>
+                            <input type="date" name="exenddate2" class="form-field" />
+                        </div>
+                        <br>
+                        <h3>Work Experience 3</h3>
+                        <br>
+                        <div class="field">
+                            <div class="label">Name of the Institution</div>
+                            <input type="text" name="exinstitution3" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">Starting Date</div>
+                            <input type="date" name="exstdate3" class="form-field" />
+                        </div>
+                        <div class="field">
+                            <div class="label">End Date / Currently Working</div>
+                            <input type="date" name="exenddate3" class="form-field" />
+                        </div>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <button type="button" class="add-more-experience btn btn-primary" >Add More Experience</button>
+                        </div>
+                    <div class="field btns">
+                        <button type="button" class="prev-2 prev">Previous</button>
+                        <button type="button" class="next-2 next">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 4: Achievements Info -->
+                <div class="page page4">
+                    <div class="title">Achievements :</div>
+                    <div class="awards-container">
+                  
+                    <h3>Recognition / Awards (1)</h3>
+                    <br>
+                    <div class="field">
+                        <div class="label">Name of the Award</div>
+                        <input type="text" name="award1" class="form-field" />
+                    </div>
+                    <div class="field">
+                        <div class="label">Date of Recieving the Award</div>
+                        <input type="date" name="awarddate1" class="form-field" />
+                    </div>
+                    <br>
+                    <h3>Recognition / Awards (2)</h3>
+                    <br>
+                    <div class="field">
+                        <div class="label">Name of the Award</div>
+                        <input type="text" name="award2" class="form-field" />
+                    </div>
+                    <div class="field">
+                        <div class="label">Date of Recieving the Award</div>
+                        <input type="date" name="awarddate2" class="form-field" />
+                    </div>
+                    </div>
+                    <br>
+                    <div class="field">
+                        <button type="button" class="add-more-awards btn btn-primary">Add More Awards</button>
+                    </div>
+                    <br>
+                    <h3>Paper Published (if any)</h3>
+                    <br>
+                    <div class="field">
+                        <div class="label">Link of the Paper</div>
+                        <input type="text" name="publishlink" class="form-field" />
+                    </div>
+                    <div class="field btns">
+                        <button type="button" class="prev-3 prev">Previous</button>
+                        <button type="button" class="next-3 next">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Page 5: Banking  -->
+                <div class="page page5">
+                    <div class="title">Banking Details :</div>
+                            <br>
+                            <div class="field">
+                                <div class="label">Account Holder's Name</div>
+                                <input type="text" name="accholdername" class="form-field" />
+                            </div>
+                            <div class="field">
+                                <div class="label">Bank Name</div>
+                                <input type="text" name="bankname" class="form-field" />
+                            </div>
+                            <div class="field">
+                                <div class="label">Branch Name</div>
+                                <input type="text" name="branchname" class="form-field" />
+                            </div>
+                            <div class="field">
+                                <div class="label">Account Number</div>
+                                <input type="text" name="acnumber" maxlength="20" class="form-field" />
+                            </div>
+                            <div class="field">
+                                <div class="label">IFSC Code</div>
+                                <input type="text" name="ifsc" class="form-field" />
+                            </div>
+                            <div class="field">
+                                <div class="label">PAN Card Number</div>
+                                <input type="text" class="form-field" name="pancardno" maxlength="10"/>
+                            </div>
+                            <div class="field">
+                                <div class="label">AADHAR Card Number</div>
+                                <input type="text" name="aadharcardno" maxlength="12" class="form-field"/>
+                                </div>
+                            <div class="field">
+                                <div class="label">Upload PAN Card </div>
+                                <input type="file" name="pancard" class="form-field" />
+                            </div>
+                            <div class="field">
+                                <div class="label">Upload AADHAR Card </div>
+                                <input type="file" name="aadharcard" class="form-field" />
+                            </div>
+                            <div class="field">
+                                <div class="label">Upload Cancelled Cheque </div>
+                                <input type="file" name="cheque" class="form-field" />
+                            </div>
+                    <div class="field btns">
+                        <button type="button" class="prev-4 prev">Previous</button>
+                        <button type="button" class="next-4 next">Next</button>
+                    </div>
+                </div>
+
+                <!-- Page 6: Reporting Area Info -->
+                <div class="page page5">
+                    <div class="title">Reporting Area :</div>
+                    <div class="field">
+                        <div class="label">MRI :</div>
+                        <div>(hold ctrl to select more than one)</div>
+                        <select multiple class="form-select form-field" id="mri" name="mriopt" >
+                            <option value="Brain">Brain</option>
+                            <option value="Spine">Spine</option>
+                            <option value="MSK">MSK</option>
+                            <option value="Body">Body</option>
+                        </select>
+                        <br>
+                        <div class="label">Other</div>
+                        <input type="text" name="mriothers" class="form-control form-control-sm form-field" maxlength="100" >
+                    </div>
+                    <br>
+                    <div class="field">
+                        <div class="label">CT :</div>
+                        <div>(hold ctrl to select more than one)</div>
+                        <select multiple class="form-select no-scroll form-field" id="ct" name="ctopt" >
+                            <option value="Brain">Brain</option>
+                            <option value="Chest">Chest</option>
+                            <option value="Abdomen">Abdomen</option>
+                            <option value="Neck">Neck</option>
+                            <option value="Angio">Angio</option>
+                        </select>
+                        <br>
+                        <div class="label">Other</div>
+                        <input type="text" name="ctothers" class="form-control form-control-sm form-field" maxlength="100" >
+                    </div>
+
+                    <div class="field">
+                        <label for="xray" class="form-check-label" style="display:inline-block;">
+                            <input type="checkbox" class="form-check-input form-field" id="xray" name="xray" style="display:inline-block;" > X-ray
+                        </label>
+                    </div>
+                    <div class="field">
+                        <label for="other" class="form-check-label" style="display:inline-block;">
+                            <input type="checkbox" class="form-check-input form-field" id="other" name="other" style="display:inline-block;" onclick="toggleOtherInput(this)"> Other
+                        </label>
+                        <input type="text" id="otherText" name="otherText" class="form-control form-control-sm form-field" style="display:none; margin-top:10px;" placeholder="Please specify">
+                    </div>
+                    <div class="field btns">
+                        <button type="button" class="prev-5 prev">Previous</button>
+                        <button type="button" class="next-5 next">Next</button>
+                    </div>
+                </div>
+
+
+                <!-- Page 7: Time Availability Info -->
+                <div class="page page6">
+                    <div class="title">Time Availability :</div>
+                    <div class="field">
+                        <label class="label form-field" style="display:inline-block;"> 
+                            <input type="checkbox" name="monday" style="display:inline-block;" />Monday
+                            <input type="checkbox" name="tuesday" style="display:inline-block;" />Tuesday 
+                            <input type="checkbox" name="wednesday" style="display:inline-block;" />Wednesday
+                            <input type="checkbox" name="thursday" style="display:inline-block;" />Thursday
+                            <input type="checkbox" name="friday" style="display:inline-block;" />Friday 
+                            <input type="checkbox" name="saturday" style="display:inline-block;" />Saturday
+                            <input type="checkbox" name="sunday" style="display:inline-block;" />Sunday
+
+                        </label>
+                    </div>
+                    <div class="field">
+                        <div class="label">Preferred Time Slots :</div>
+                    </div>
+                    <div class="time-slots-container">
+                        <div class="field time-slot" style="margin-left: 20%;">
+                            <div class="label form-field">From:</div>
+                            <input type="time" name="starttime1" value="00:00" class="form-control-sm">
+                            <br>
+                            <div class="label form-field">To:</div>
+                            <input type="time" name="endtime1" value="00:00" class="form-control-sm">
+                        </div>
+                    </div>
+                    <div class="field">
+                    <button type="button" class="add-more-slots btn btn-primary" style="margin-left: 20%;">Add More Slots</button>
+                    </div>
+                    <div class="field btns">
+                        <button type="button" class="prev-6 prev">Previous</button>
+                        <button type="submit" class="submit">Submit</button>
+                    </div>
+                </div>
+
+
+                
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"></script>
+    <!-- Example CDN inclusion -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+  
+    <script>
+        initMultiStepForm();
+
+// function initMultiStepForm() {
+//     const progressNumber = document.querySelectorAll(".step").length;
+//     const slidePage = document.querySelector(".slide-page");
+//     const submitBtn = document.querySelector(".submit");
+//     const progressText = document.querySelectorAll(".step p");
+//     const progressCheck = document.querySelectorAll(".step .check");
+//     const bullet = document.querySelectorAll(".step .bullet");
+//     const pages = document.querySelectorAll(".page");
+//     const nextButtons = document.querySelectorAll(".next");
+//     const prevButtons = document.querySelectorAll(".prev");
+//     const stepsNumber = pages.length;
+
+//     if (progressNumber !== stepsNumber) {
+//         console.warn(
+//             "Error, number of steps in progress bar do not match number of pages"
+//         );
+//     }
+
+//     document.documentElement.style.setProperty("--stepNumber", stepsNumber);
+
+//     let current = 1;
+
+//     for (let i = 0; i < nextButtons.length; i++) {
+//         nextButtons[i].addEventListener("click", function (event) {
+//             event.preventDefault();
+
+//             inputsValid = validateInputs(this);
+//             // inputsValid = true;
+
+//             if (inputsValid) {
+//                 slidePage.style.marginLeft = `-${
+//                     (100 / stepsNumber) * current
+//                 }%`;
+//                 bullet[current - 1].classList.add("active");
+//                 progressCheck[current - 1].classList.add("active");
+//                 progressText[current - 1].classList.add("active");
+//                 current += 1;
+//             }
+//         });
+//     }
+
+//     for (let i = 0; i < prevButtons.length; i++) {
+//         prevButtons[i].addEventListener("click", function (event) {
+//             event.preventDefault();
+//             slidePage.style.marginLeft = `-${
+//                 (100 / stepsNumber) * (current - 2)
+//             }%`;
+//             bullet[current - 2].classList.remove("active");
+//             progressCheck[current - 2].classList.remove("active");
+//             progressText[current - 2].classList.remove("active");
+//             current -= 1;
+//         });
+//     }
+//     submitBtn.addEventListener("click", function () {
+//         bullet[current - 1].classList.add("active");
+//         progressCheck[current - 1].classList.add("active");
+//         progressText[current - 1].classList.add("active");
+//         current += 1;
+//         // setTimeout(function () {
+//         //     alert("Your Form Successfully Signed up");
+//         //     location.reload();
+//         // }, 800);
+//     });
+
+//     function validateInputs(ths) {
+//         let inputsValid = true;
+
+//         const inputs =
+//             ths.parentElement.parentElement.querySelectorAll("input, select");
+//         for (let i = 0; i < inputs.length; i++) {
+//             const valid = inputs[i].checkValidity();
+//             if (!valid) {
+//                 inputsValid = false;
+//                 inputs[i].classList.add("invalid-input");
+//             } else {
+//                 inputs[i].classList.remove("invalid-input");
+//             }
+//         }
+//         return inputsValid;
+//     }
+// }
+
+function initMultiStepForm() {
+    const progressNumber = document.querySelectorAll(".step").length;
+    const slidePage = document.querySelector(".slide-page");
+    const submitBtn = document.querySelector(".submit");
+    const progressText = document.querySelectorAll(".step p");
+    const progressCheck = document.querySelectorAll(".step .check");
+    const bullet = document.querySelectorAll(".step .bullet");
+    const pages = document.querySelectorAll(".page");
+    const nextButtons = document.querySelectorAll(".next");
+    const prevButtons = document.querySelectorAll(".prev");
+    const stepsNumber = pages.length;
+
+    if (progressNumber !== stepsNumber) {
+        console.warn(
+            "Error, number of steps in progress bar do not match number of pages"
+        );
+    }
+
+    document.documentElement.style.setProperty("--stepNumber", stepsNumber);
+
+    let current = 1;
+    // Show the first page and activate the first bullet
+    pages[0].classList.add('active');
+    bullet[0].classList.add('active');
+    progressCheck[0].classList.add('active');
+    progressText[0].classList.add('active');
+
+    for (let i = 0; i < nextButtons.length; i++) {
+        nextButtons[i].addEventListener("click", function (event) {
+            event.preventDefault();
+
+            // Only check email on the first page
+            if (current === 1) {
+                const email = document.querySelector('input[name="email"]').value.trim();
+                if (email !== '') {
+                    checkEmailExistence(email).then(exists => {
+                        if (exists) {
+                            alert('This email is already registered.');
+                        } else {
+                            proceedToNextPage();
+                        }
+                    }).catch(error => {
+                        console.error('Error checking email existence:', error);
+                    });
+                }
+            } else {
+                proceedToNextPage();
+            }
+        });
+    }
+
+    for (let i = 0; i < prevButtons.length; i++) {
+        prevButtons[i].addEventListener("click", function (event) {
+            event.preventDefault();
+            pages[current - 1].classList.remove('active');
+            pages[current - 2].classList.add('active');
+            slidePage.style.marginLeft = `-${
+                (100 / stepsNumber) * (current - 2)
+            }%`;
+            bullet[current - 1].classList.remove("active");
+            progressCheck[current - 1].classList.remove("active");
+            progressText[current - 1].classList.remove("active");
+            current -= 1;
+        });
+    }
+
+    submitBtn.addEventListener("click", function () {
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
+    });
+
+    function validateInputs(ths) {
+        let inputsValid = true;
+
+        const inputs =
+            ths.parentElement.parentElement.querySelectorAll("input, select");
+        for (let i = 0; i < inputs.length; i++) {
+            const valid = inputs[i].checkValidity();
+            if (!valid) {
+                inputsValid = false;
+                inputs[i].classList.add("invalid-input");
+            } else {
+                inputs[i].classList.remove("invalid-input");
+            }
+        }
+        return inputsValid;
+    }
+
+    function proceedToNextPage() {
+        const inputsValid = validateInputs(nextButtons[current - 1]);
+        if (inputsValid) {
+            pages[current - 1].classList.remove('active');
+            pages[current].classList.add('active');
+            bullet[current].classList.add("active");
+            progressCheck[current].classList.add("active");
+            progressText[current].classList.add("active");
+            current += 1;
+        }
+    }
+}
+
+    function checkEmailExistence(email) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/check_email_existence/',
+                type: 'POST',
+                data: {
+                    'email': email,
+                    'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
+                },
+                success: function(response) {
+                    resolve(response.exists);
+                },
+                error: function(xhr, status, error) {
+                    reject(error);
+                }
+            });
+        });
+    }
+
+var myInput = document.getElementById("password");
+    // When the user clicks on the password field, show the message box
+    myInput.onfocus = function() {
+      document.getElementById("message").style.display = "block";
+    }
+
+    // When the user clicks outside of the password field, hide the message box
+    myInput.onblur = function() {
+      document.getElementById("message").style.display = "none";
+    }
+
+    // When the user starts to type something inside the password field
+    myInput.onkeyup = function() {
+      // Validate lowercase letters
+      var lowerCaseLetters = /[a-z]/g;
+      if(myInput.value.match(lowerCaseLetters)) {
+        letter.classList.remove("invalid");
+        letter.classList.add("valid");
+      } else {
+        letter.classList.remove("valid");
+        letter.classList.add("invalid");
+      }
+
+      // Validate capital letters
+      var upperCaseLetters = /[A-Z]/g;
+      if(myInput.value.match(upperCaseLetters)) {
+        capital.classList.remove("invalid");
+        capital.classList.add("valid");
+      } else {
+        capital.classList.remove("valid");
+        capital.classList.add("invalid");
+      }
+
+      // Validate numbers
+      var numbers = /[0-9]/g;
+      if(myInput.value.match(numbers)) {
+        number.classList.remove("invalid");
+        number.classList.add("valid");
+      } else {
+        number.classList.remove("valid");
+        number.classList.add("invalid");
+      }
+
+      // Validate length
+      if(myInput.value.length >= 8) {
+        charlength.classList.remove("invalid");
+        charlength.classList.add("valid");
+      } else {
+        charlength.classList.remove("valid");
+        charlength.classList.add("invalid");
+      }
+    }
+
+    //show password
+    function passWord() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+    function cnfpassWord() {
+      var x = document.getElementById("cnfpassword");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+
+
+    function toggleOtherInput(checkbox) {
+        var otherText = document.getElementById('otherText');
+        if (checkbox.checked) {
+            otherText.style.display = 'block';
+        } else {
+            otherText.style.display = 'none';
+        }
+    }
+
+    // The below function i've made to restrict the user from typing not more than 2 digits - Himanshu.
+
+    document.getElementById('experience_years').addEventListener('input', function (e) {
+    const input = e.target;
+    let value = input.value;
+
+    // Limit to 2 digits
+    if (value.length > 2) {
+        input.value = value.slice(0, 2);
+    }
+
+    // Ensure value is between 0 and 99
+    value = parseInt(input.value, 10);
+    if (value < 0) {
+        input.value = 0;
+    } else if (value > 50) {
+        input.value = 50;
+    }
+});
+
+// The below function I've made to restrict all the input type numbers to get any special character if a user types any number - Himanshu.
+function restrictSpecialCharacters(input) {
+    input.addEventListener('input', function (e) {
+        const value = e.target.value;
+
+        // Remove any non-numeric characters
+        e.target.value = value.replace(/\D/g, '');
+    });
+}
+
+// Apply the restriction to all number inputs
+document.addEventListener('DOMContentLoaded', function () {
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    numberInputs.forEach(input => {
+        restrictSpecialCharacters(input);
+    });
+});
+
+// This function i've created to add more time slots on the last page of the form.
+document.addEventListener('DOMContentLoaded', function () {
+    const addMoreSlotsBtn = document.querySelector('.add-more-slots');
+    const timeSlotsContainer = document.querySelector('.time-slots-container');
+    let slotsAdded = 0;
+    const maxSlots = 3;
+
+    addMoreSlotsBtn.addEventListener('click', function () {
+        if (slotsAdded < maxSlots) {
+            const newTimeSlot = document.createElement('div');
+            newTimeSlot.classList.add('field', 'time-slot', 'custom-margin-left');
+            const startTimeName = `starttime${slotsAdded}`;
+            const endTimeName = `endtime${slotsAdded}`;
+            newTimeSlot.innerHTML = `
+                <div " class="label">From:</div>
+                <input " type="time" name="${startTimeName}" value="00:00" class="form-control-sm">
+                <br>
+                <div  class="label">To:</div>
+                <input " type="time" name="${endTimeName}" value="00:00" class="form-control-sm">
+            `;
+            timeSlotsContainer.appendChild(newTimeSlot);
+            slotsAdded++;
+
+            // Hide the button if maxSlots is reached
+            if (slotsAdded === maxSlots) {
+                addMoreSlotsBtn.style.display = 'none';
+            }
+        }
+    });
+});
+
+// to handle the contact field.
+// var input = document.querySelector("#contact_no");
+//     var iti = window.intlTelInput(input, {
+//         initialCountry: "auto",
+//         separateDialCode: true,
+//         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/23.1.0/js/utils.js"
+//     });
+
+// Initialize intlTelInput after scripts are loaded
+document.addEventListener("DOMContentLoaded", function() {
+      var input = document.querySelector("#contact_no");
+      var iti = window.intlTelInput(input, {
+        initialCountry: "auto",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js",
+        dropdownContainer: document.getElementById("phone-dropdown"),
+        formatOnDisplay: false,
+        autoPlaceholder: "aggressive",
+        nationalMode: false,
+        hiddenInput: "full_number",
+        placeholderNumberType: "MOBILE",
+        geoIpLookup: function(success, failure) {
+          // Optional: Use a service to determine user's location
+          // success('IN'); // Example: Set the default country
+        },
+        preferredCountries: ['us', 'gb', 'in'],
+        excludeCountries: ['ch'],
+        separateDialCode: true,
+        customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+          return "e.g. " + selectedCountryPlaceholder;
+        },
+      });
+
+      // Adjust dropdown size after initialization
+      var inputParent = document.querySelector(".tel-input-field");
+      var dropdown = inputParent.querySelector(".iti__country-list");
+
+      dropdown.style.width = "100% + 30px"; // Adjust dropdown width to match input field
+
+      // Adjust input field width
+      input.style.width = "calc(100% - 35px)"; // Adjust width based on dropdown width and margins
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+            let fields = document.querySelectorAll('.form-field');
+            fields.forEach((field, index) => {
+                field.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        let nextField = fields[index + 1];
+                        if (nextField) {
+                            nextField.focus();
+                        } else {
+                            let nextButton = field.closest('.page').querySelector('.next');
+                            if (nextButton) {
+                                nextButton.click();
+                            }
+                        }
+                    }
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+                // Experience Section
+                const addMoreExperienceBtn = document.querySelector('.add-more-experience');
+                const experienceContainer = document.querySelector('.experience-container');
+                let experienceCount = 3;
+                const maxExperience = 5;
+
+                addMoreExperienceBtn.addEventListener('click', function () {
+                    if (experienceCount < maxExperience) {
+                        experienceCount++;
+                        const newExperience = document.createElement('div');
+                        newExperience.classList.add('field');
+                        newExperience.innerHTML = `
+                        <br>    
+                        <h3>Work Experience ${experienceCount}</h3>
+                            <br>
+                            <div class="label">Name of the Institution</div>
+                            <input type="text" name="exinstitution${experienceCount}" class="form-field" />
+                            <br><br>
+                            <div class="label">Starting Date</div>
+                            <input type="date" name="exstdate${experienceCount}" class="form-field" />
+                            <br><br>
+                            <div class="label">End Date (Leave the field if Currently working)</div>
+                            <input type="date" name="exenddate${experienceCount}" class="form-field" />
+                            <br>
+                        `;
+                        experienceContainer.appendChild(newExperience);
+
+                        if (experienceCount === maxExperience) {
+                            addMoreExperienceBtn.style.display = 'none';
+                        }
+                    }
+                });
+
+                // Awards Section
+                const addMoreAwardsBtn = document.querySelector('.add-more-awards');
+                const awardsContainer = document.querySelector('.awards-container');
+                let awardsCount = 2;
+                const maxAwards = 5;
+
+                addMoreAwardsBtn.addEventListener('click', function () {
+                    if (awardsCount < maxAwards) {
+                        awardsCount++;
+                        const newAward = document.createElement('div');
+                        newAward.classList.add('field');
+                        newAward.innerHTML = `
+                            <br>
+                            <h3>Recognition / Awards (${awardsCount})</h3>
+                            <br>
+                            <div class="label">Name of the Award</div>
+                            <input type="text" name="award${awardsCount}" class="form-field" />
+                            <br><br>
+                            <div class="label">Date of Receiving the Award</div>
+                            <input type="date" name="awarddate${awardsCount}" class="form-field" />
+                            <br>
+                        `;
+                        awardsContainer.appendChild(newAward);
+
+                        if (awardsCount === maxAwards) {
+                            addMoreAwardsBtn.style.display = 'none';
+                        }
+                    }
+                });
+            });
+
+
+    </script>
+</body>
+</html>

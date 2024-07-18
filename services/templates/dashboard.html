@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <!-- Include necessary CSS and JavaScript libraries -->
+</head>
+<body>
+    <nav>
+        <ul>
+            {% if 'coordinator' in groups %}
+            <li><a href="{% url 'coordinator_dashboard' %}">Coordinator Dashboard</a></li>
+            {% endif %}
+            {% if 'supercoordinator' in groups %}
+            <li><a href="{% url 'supercoordinator_dashboard' %}">Supercoordinator Dashboard</a></li>
+            {% endif %}
+            <!-- Add more links/buttons based on other group permissions -->
+        </ul>
+    </nav>
+
+    <!-- Your content here -->
+
+</body>
+</html>

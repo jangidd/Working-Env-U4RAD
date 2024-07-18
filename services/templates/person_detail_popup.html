@@ -1,0 +1,60 @@
+<!-- view_complete_data.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Data</title>
+    <style>
+        /* Add your CSS styles for the popup content here */
+        .popup-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="popup-content">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <!-- Display person's complete data here -->
+    <h2>{{ person.first_name }} {{ person.last_name }}</h2>
+    
+    <h3>Personal Information</h3>
+    <p>Email: {{ person.email }}</p>
+    <p>Address: {{ person.address }}</p>
+    <!-- Add other fields as per your models -->
+
+    <h3>Educational Details</h3>
+    <p>Tenth Grade: {{ educational_details.tenthgrade }}</p>
+    <p>Twelfth Grade: {{ educational_details.twelthgrade }}</p>
+    <!-- Add other fields as per your models -->
+
+    <!-- Repeat for other model details -->
+</div>
+
+<script>
+    function closePopup() {
+        // Close the popup
+        window.location.href = "{% url 'coordinator' %}";  // Replace with the URL to coordinator.html or any other page you want to redirect
+    }
+</script>
+
+</body>
+</html>

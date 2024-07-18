@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit</title>
+</head>
+<body>
+    <h1>Review and Submit</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Submit All Data">
+    </form>
+</body>
+</html>

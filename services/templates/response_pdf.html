@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Response PDF</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .section { margin-bottom: 20px; }
+        .section h4 { background-color: lightblue; padding: 10px; }
+        .label { font-weight: bold; }
+        .value { margin-left: 10px; }
+        a { color: blue; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h4>Personal Information</h4>
+        <p><span class="label">First Name:</span><span class="value">{{ personal_information.first_name }}</span></p>
+        <p><span class="label">Last Name:</span><span class="value">{{ personal_information.last_name }}</span></p>
+        <p><span class="label">Email:</span><span class="value">{{ personal_information.email }}</span></p>
+        <p><span class="label">Password:</span><span class="value">{{ personal_information.password }}</span></p>
+        <p><span class="label">Address:</span><span class="value">{{ personal_information.address }}</span></p>
+        <p><span class="label">Contact No.:</span><span class="value">{{ personal_information.contact_no }}</span></p>
+        <p><span class="label">Resume:</span>
+            {% if personal_information.resume %}
+                <a href="{{ personal_information.resume }}" target="_blank">View Resume</a>
+            {% else %}
+                No Resume Uploaded
+            {% endif %}
+        </p>
+        <p><span class="label">Photo:</span>
+            {% if personal_information.photo %}
+                <a href="{{ personal_information.photo }}" target="_blank">View Photo</a>
+            {% else %}
+                No Photo Uploaded
+            {% endif %}
+        </p>
+        <p><span class="label">Experience Years:</span><span class="value">{{ personal_information.experience_years }}</span></p>
+    </div>
+    <!-- Add other sections for educational_info, experience_info, achievement_info, banking_info, reporting_info, availability_info similarly -->
+</body>
+</html>

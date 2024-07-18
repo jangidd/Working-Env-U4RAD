@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Response</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Add your custom styles here */
+        body {
+            padding-top: 70px; /* Adjust based on your navbar height */
+        }
+        .btn-back {
+            margin-right: 5px;
+        }
+        .label {
+        font-weight: bold;
+        margin-right: 5px;
+        color: #333; /* Example color */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">U4RAD</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <button class="logout-button btn btn-sm btn-danger"><strong>Login Page</strong></button>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a href="{% url 'success' personal_info.pk %}" class="nav-link">
+                            <button class="btn btn-primary btn-back btn-sm btn-danger"><strong>Submit Page</strong></button>
+                        </a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a href="{% url 'rate_list' personal_info.pk %}" class="nav-link">
+                            <button class="btn btn-primary btn-back btn-sm btn-danger"><strong>Rate List Page</strong></button>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-link">
+                        
+                            <button id="generate-pdf-btn" class="btn btn-primary btn-back btn-sm  btn-danger"><strong>Generate Pdf</strong></button>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 style="background-color: lightblue;">Submitted Information</h2>
+        <br>
+
+        <!-- Personal Information -->
+        <h3 style="background-color: lightblue;">Personal Information</h3>
+        <p><span class="label">First Name:</span> {{ personal_info.first_name|default:"None" }}</p>
+        <p><span class="label">Last Name:</span> {{ personal_info.last_name|default:"None" }}</p>
+        <p><span class="label">Email:</span> {{ personal_info.email|default:"None" }}</p>
+        <p><span class="label">Password:</span> {{ personal_info.password|default:"None" }}</p>
+        <p><span class="label">Confirm Password:</span> {{ personal_info.cnfpassword|default:"None" }}</p>
+        <p><span class="label">Address:</span> {{ personal_info.address|default:"None" }}</p>
+        <p><span class="label">Contact Number:</span> {{ personal_info.contact_no|default:"None" }}</p>
+        <p><span class="label">Years of Experience:</span> {{ personal_info.experience_years|default:"None" }}</p>
+        <p><span class="label">Resume:</span> {% if personal_info.resume %}<a href="{{ personal_info.resume.url }}">View Resume</a>{% else %}None{% endif %}</p>
+        <p><span class="label">Photo:</span> {% if personal_info.photo %}<a href="{{ personal_info.photo.url }}">View Photo</a>{% else %}None{% endif %}</p>
+
+        <!-- Educational Details -->
+        <h3 style="background-color: lightblue;">Educational Details</h3>
+        <p><span class="label">Tenth Name:</span> {{ educational_info.tenthname|default:"None" }}</p>
+        <p><span class="label">Tenth Grade:</span> {{ educational_info.tenthgrade|default:"None" }}</p>
+        <p><span class="label">Tenth Passing Year:</span> {{ educational_info.tenthpsyr|default:"None" }}</p>
+        <p><span class="label">Tenth Certificate:</span> {% if educational_info.tenthcertificate %}<a href="{{ educational_info.tenthcertificate.url }}">View 10th Certificate</a>{% else %}None{% endif %}</p>
+        <p><span class="label">Twelfth Name:</span> {{ educational_info.twelthname|default:"None" }}</p>
+        <p><span class="label">Twelfth Grade:</span> {{ educational_info.twelthgrade|default:"None" }}</p>
+        <p><span class="label">Twelfth Passing Year:</span> {{ educational_info.twelthpsyr|default:"None" }}</p>
+        <p><span class="label">Twelfth Certificate:</span> {% if educational_info.twelthcertificate %}<a href="{{ educational_info.twelthcertificate.url }}">View 12th Certificate</a>{% else %}None{% endif %}</p>
+        <p><span class="label">MBBS Institution:</span> {{ educational_info.mbbsinstitution|default:"None" }}</p>
+        <p><span class="label">MBBS Grade:</span> {{ educational_info.mbbsgrade|default:"None" }}</p>
+        <p><span class="label">MBBS Passing Year:</span> {{ educational_info.mbbspsyr|default:"None" }}</p>
+        <p><span class="label">MBBS Marksheet:</span> {% if educational_info.mbbsmarksheet %}<a href="{{ educational_info.mbbsmarksheet.url }}">View Marksheets</a>{% else %}None{% endif %}</p>
+        <p><span class="label">MBBS Degree:</span> {% if educational_info.mbbsdegree %}<a href="{{ educational_info.mbbsdegree.url }}">View Degree</a>{% else %}None{% endif %}</p>
+        <p><span class="label">MD Institution:</span> {{ educational_info.mdinstitution|default:"None" }}</p>
+        <p><span class="label">MD Grade:</span> {{ educational_info.mdgrade|default:"None" }}</p>
+        <p><span class="label">MD Passing Year:</span> {{ educational_info.mdpsyr|default:"None" }}</p>
+        <p><span class="label">MD Marksheet:</span> {% if educational_info.mdmarksheet %}<a href="{{ educational_info.mdmarksheet.url }}">View Marksheets</a>{% else %}None{% endif %}</p>
+        <p><span class="label">MD Degree:</span> {% if educational_info.mddegree %}<a href="{{ educational_info.mddegree.url }}">View Degree</a>{% else %}None{% endif %}</p>
+        <p><span class="label">Video File:</span> {% if educational_info.videofile %}<a href="{{ educational_info.videofile.url }}">View Video</a>{% else %}None{% endif %}</p>
+
+        <!-- Experience Details -->
+        <h3 style="background-color: lightblue;">Experience Details</h3>
+        <p><span class="label">Institution 1:</span> {{ experience_info.exinstitution1|default:"None" }}</p>
+        <p><span class="label">Start Date 1:</span> {{ experience_info.exstdate1|default:"None" }}</p>
+        <p><span class="label">End Date 1:</span> {{ experience_info.exenddate1|default:"None" }}</p>
+        <p><span class="label">Institution 2:</span> {{ experience_info.exinstitution2|default:"None" }}</p>
+        <p><span class="label">Start Date 2:</span> {{ experience_info.exstdate2|default:"None" }}</p>
+        <p><span class="label">End Date 2:</span> {{ experience_info.exenddate2|default:"None" }}</p>
+        <p><span class="label">Institution 3:</span> {{ experience_info.exinstitution3|default:"None" }}</p>
+        <p><span class="label">Start Date 3:</span> {{ experience_info.exstdate3|default:"None" }}</p>
+        <p><span class="label">End Date 3:</span> {{ experience_info.exenddate3|default:"None" }}</p>
+
+        <!-- Achievement Details -->
+        <h3 style="background-color: lightblue;">Achievement Details</h3>
+        <p><span class="label">Award 1:</span> {{ achievement_info.award1|default:"None" }}</p>
+        <p><span class="label">Award Date 1:</span> {{ achievement_info.awarddate1|default:"None" }}</p>
+        <p><span class="label">Award 2:</span> {{ achievement_info.award2|default:"None" }}</p>
+        <p><span class="label">Award Date 2:</span> {{ achievement_info.awarddate2|default:"None" }}</p>
+        <p><span class="label">Publication Link:</span> {{ achievement_info.publishlink|default:"None" }}</p>
+
+        <!-- Banking Details -->
+        <h3 style="background-color: lightblue;">Banking Details</h3>
+        <p><span class="label">Account Holder Name:</span> {{ banking_info.accholdername|default:"None" }}</p>
+        <p><span class="label">Bank Name:</span> {{ banking_info.bankname|default:"None" }}</p>
+        <p><span class="label">Branch Name:</span> {{ banking_info.branchname|default:"None" }}</p>
+        <p><span class="label">Account Number:</span> {{ banking_info.acnumber|default:"None" }}</p>
+        <p><span class="label">IFSC Code:</span> {{ banking_info.ifsc|default:"None" }}</p>
+        <p><span class="label">PAN Card Number:</span> {{ banking_info.pancardno|default:"None" }}</p>
+        <p><span class="label">Aadhar Card Number:</span> {{ banking_info.aadharcardno|default:"None" }}</p>
+        <p><span class="label">PAN Card:</span>{% if banking_info.pancard %} <a href="{{ banking_info.pancard.url }}">View Pan Card</a>{% else %}None{% endif %}</p>
+        <p><span class="label">Aadhar Card:</span>{% if banking_info.aadharcard %} <a href="{{ banking_info.aadharcard.url }}">View Aadhar Card</a>{% else %}None{% endif %}</p>
+        <p><span class="label">Cheque:</span>{% if banking_info.cheque %} <a href="{{ banking_info.cheque.url }}">View Cheque</a>{% else %}None{% endif %}</p>
+
+        <!-- Reporting Area Details -->
+        <h3 style="background-color: lightblue;">Reporting Area Details</h3>
+        <p><span class="label">MRI Options:</span> {{ reporting_area_info.mriopt|default:"None" }}</p>
+        <p><span class="label">MRI Others:</span> {{ reporting_area_info.mriothers|default:"None" }}</p>
+        <p><span class="label">CT Options:</span> {{ reporting_area_info.ctopt|default:"None" }}</p>
+        <p><span class="label">CT Others:</span> {{ reporting_area_info.ctothers|default:"None" }}</p>
+        <p><span class="label">X-Ray:</span> {{ reporting_area_info.xray|default:"None" }}</p>
+        <p><span class="label">Others:</span> {{ reporting_area_info.others|default:"None" }}</p>
+        <p><span class="label">Other Text:</span> {{ reporting_area_info.otherText|default:"None" }}</p>
+
+        <!-- Availability Details -->
+        <h3 style="background-color: lightblue;">Availability Details</h3>
+        <p><span class="label">Monday:</span> {{ availability_info.monday|default:"None" }}</p>
+        <p><span class="label">Tuesday:</span> {{ availability_info.tuesday|default:"None" }}</p>
+        <p><span class="label">Wednesday:</span> {{ availability_info.wednesday|default:"None" }}</p>
+        <p><span class="label">Thursday:</span> {{ availability_info.thursday|default:"None" }}</p>
+        <p><span class="label">Friday:</span> {{ availability_info.friday|default:"None" }}</p>
+        <p><span class="label">Saturday:</span> {{ availability_info.saturday|default:"None" }}</p>
+        <p><span class="label">Sunday:</span> {{ availability_info.sunday|default:"None" }}</p>
+        <p><span class="label">Start Time 1:</span> {{ availability_info.starttime1|default:"None" }}</p>
+        <p><span class="label">End Time 1:</span> {{ availability_info.endtime1|default:"None" }}</p>
+        <p><span class="label">Start Time 2:</span> {{ availability_info.starttime2|default:"None" }}</p>
+        <p><span class="label">End Time 2:</span> {{ availability_info.endtime2|default:"None" }}</p>
+        <p><span class="label">Start Time 3:</span> {{ availability_info.starttime3|default:"None" }}</p>
+        <p><span class="label">End Time 3:</span> {{ availability_info.endtime3|default:"None" }}</p>
+        <p><span class="label">Start Time 4:</span> {{ availability_info.starttime4|default:"None" }}</p>
+        <p><span class="label">End Time 4:</span> {{ availability_info.endtime4|default:"None" }}</p>
+
+        
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#generate-pdf-btn").on("click", function(){
+                window.open("{% url 'generate_pdf' personal_info.pk %}", '_blank');
+            });
+        });
+    </script>
+    
+</body>
+</html>

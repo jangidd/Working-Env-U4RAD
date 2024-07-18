@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Success</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-topk">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">U4RAD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <button class="logout-button btn btn-sm btn-danger"><strong>Logout</strong></button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> 
+    <div class="container mt-5">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Success!</h4>
+            <p>Data saved successfully for <strong>{{ first_name }} {{ last_name }}</strong>.</p>
+            <hr>
+            <a href="{% url 'view_response' personal_info_pk %}" class="btn btn-primary">View Response</a>
+        </div>
+        <div>To proceed to the Rate List section, Click the following button :</div>
+        <hr>
+        <div class="alert">
+            <a href="{% url 'rate_list' personal_info.pk %}" class="btn btn-primary">Rate List Section</a>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <p>Dear Dr. {{ person.first_name }} {{ person.last_name }},</p>
+
+    <p>We at U4RAD would like to thank you for the interest you have shown in our organization. Given below are the tele-radiology reporting service offer details, as per your discussion with Mr Partha/Dr. Ruchi:</p>
+
+    <p><strong>Role:</strong> Consultant Radiologist, you will be independently reporting radiology cases – All CT &amp; X-RAY assigned to you, following the quality processes, laid down as per U4RAD, &amp; reputed clinical organizations. You will be provided with online software (PACS), that will give you access to images and relevant clinical information required for reporting. The standard TAT (turnaround time) for regular (Non-Emergency) reporting is 2 (Two) hours. In case of Emergency reporting, you will be intimated in advance for the same, and reporting TAT will be 30 (Thirty) minutes for such cases.</p>
+
+    <p><strong>Type of Engagement:</strong> Retainership: You will work with U4RAD on retainer ship basis and be paid as per rates discussed (shown in the rate card given below), At a later date dependent on certain factors we may discuss, and review the rates accordingly. Remuneration is subject to tax deduction at source (TDS) and any other withholding taxes that are deductible as per law.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sl</th>
+                <th>Modality</th>
+                <th>Case Type</th>
+                <th>Doctor Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rate_list in rate_lists %}
+            <tr>
+                        <td>1.</td>
+                        <td>MRI</td>
+                        <td>Head/Brain/Chest/Abdomen/Pelvis/PNS/Face</td>
+                        <td>&#8377; {{ rate_list.mri1 }} </td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>MRI</td>
+                        <td>MRI Screening(per body parts)</td>
+                        <td>&#8377; {{ rate_list.mri2 }} </td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>MRI</td>
+                        <td>MSK</td>
+                        <td>&#8377; {{ rate_list.mri3 }} </td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>MRI</td>
+                        <td>Whole Abdomen</td>
+                        <td>&#8377; {{ rate_list.mri4 }} </td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td>MRI</td>
+                        <td>Special Cases(ex. Neurography, Defacography, Breast)</td>
+                        <td>&#8377; {{ rate_list.mri5}} </td>
+                    </tr>
+                    <tr>
+                        <td>6.</td>
+                        <td>MRI</td>
+                        <td>MRI Angiography(per body parts)</td>
+                        <td>&#8377; {{ rate_list.mri6 }} </td>
+                    </tr>
+                    <tr>
+                        <td>7.</td>
+                        <td>CT</td>
+                        <td>Head/Brain/PNS/Face/Orbit</td>
+                        <td>&#8377; {{ rate_list.ct1 }} </td>
+                    </tr>
+                    <tr>
+                        <td>8.</td>
+                        <td>CT</td>
+                        <td>NCCT Spine</td>
+                        <td>&#8377; {{ rate_list.ct2 }} </td>
+                    </tr>
+                    <tr>
+                        <td>9.</td>
+                        <td>CT</td>
+                        <td>HRCT Chest/KUB</td>
+                        <td>&#8377; {{ rate_list.ct3 }} </td>
+                    </tr>
+                    <tr>
+                        <td>10.</td>
+                        <td>CT</td>
+                        <td>Abdomen/Pelvis/Neck</td>
+                        <td>&#8377; {{ rate_list.ct4 }} </td>
+                    </tr>
+                    <tr>
+                        <td>11.</td>
+                        <td>CT</td>
+                        <td>Whole Abdomen</td>
+                        <td>&#8377; {{ rate_list.ct5 }} </td>
+                    </tr>
+                    <tr>
+                        <td>12.</td>
+                        <td>CT</td>
+                        <td>CT Angiography(per body parts)</td>
+                        <td>&#8377; {{ rate_list.ct6 }} </td>
+                    </tr>
+                    <tr>
+                        <td>13.</td>
+                        <td>CT</td>
+                        <td>Cardiac Angiography</td>
+                        <td>&#8377; {{ rate_list.ct7 }} </td>
+                    </tr>
+                    <tr>
+                        <td>14.</td>
+                        <td>X-Ray</td>
+                        <td>Per Exposure - any body parts</td>
+                        <td>&#8377; {{ rate_list.xray1 }} </td>
+                    </tr>
+                    <tr>
+                        <td>15.</td>
+                        <td>X-Ray</td>
+                        <td>Special Procedure - Barium/IVP/HSG</td>
+                        <td>&#8377; {{ rate_list.xray2 }} </td>
+                    </tr>
+                
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Note: Radiologists are required to have appropriate computer and high-speed internet connection to view images and report.</p>
+
+    <p><strong>Timings:</strong> Monday to Saturday day 6 pm to 12 am (IST) &amp; Sunday 9 am - 12 am</p>
+    <p><strong>Professional Indemnity insurance:</strong> You will have your own self-provided professional indemnity insurance of INR 20 (Twenty) lakhs for the period of engagement.</p>
+    <p><strong>Date of Joining:</strong> 29th April 2024</p>
+    <p><strong>Engagement Period:</strong> 1 (One) year, with the option of either party to end this engagement with 30-day notice period.</p>
+    <p><strong>Location of Work:</strong> Work from home or at U4RAD designated centre.</p>
+
+    <p>We request you to please click the link below, fill up the form, and upload all relevant documents requested for our records. In addition, to this we request you to please upload your 10th &amp; 12th class certificates as well.</p>
+
+    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfj5hEwXv7Q5IyH6yyBZVZRPK1H9pTOqNlR0G7cfjDaW2NaMg/viewform">U4RAD Engagement form for Radiologist (google.com)</a></p>
+
+    <p>You are requested to send us a signed copy of this letter or respond to this mail as a sign of acceptance of this offer, as soon as possible, along with which we request you to please provide us references.</p>
+
+    <p>Please call Dr Kriti (9717917604) for any clarification. She will facilitate you with the onboarding process as well as coordinate with you for case allocation and reporting.</p>
+
+    <p>Thanks</p>
+    <p>Regards,</p>
+    <p>HR Team - U4RAD Technologies Pvt Ltd.</p>
+</body>
+</html>

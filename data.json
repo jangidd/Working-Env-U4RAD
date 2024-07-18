@@ -1,0 +1,4769 @@
+[
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "personalinformation"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "reportingareadetails"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "experiencedetails"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "educationaldetails"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "bankingdetails"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "availabilitydetails"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "achievementdetails"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "callback"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "services",
+        "model": "ratelist"
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 11,
+    "fields": {
+        "first_name": "Himanshu",
+        "last_name": "Jangid",
+        "email": "himanshu1234@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "new york",
+        "contact_no": "6289542836",
+        "resume": "",
+        "photo": "",
+        "experience_years": 4,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 13,
+    "fields": {
+        "first_name": "Chhota",
+        "last_name": "don",
+        "email": "don@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "ye thodi bataunga",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "verified_by_coordinator",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 14,
+    "fields": {
+        "first_name": "Chhota",
+        "last_name": "don",
+        "email": "don@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "ye thodi bataunga",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 15,
+    "fields": {
+        "first_name": "Bada",
+        "last_name": "don",
+        "email": "don@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "ye thodi bataunga",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 16,
+    "fields": {
+        "first_name": "Sabse Bada",
+        "last_name": "don",
+        "email": "don@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "ye thodi bataunga",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 17,
+    "fields": {
+        "first_name": "Sabse Bada",
+        "last_name": "don",
+        "email": "don@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "ye thodi bataunga",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 18,
+    "fields": {
+        "first_name": "Asli",
+        "last_name": "don",
+        "email": "don@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "ye thodi bataunga",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "verified_by_coordinator",
+        "stage2status": "under_progress",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 19,
+    "fields": {
+        "first_name": "Asli",
+        "last_name": "don",
+        "email": "don@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "ye thodi bataunga",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 20,
+    "fields": {
+        "first_name": "Asli",
+        "last_name": "don",
+        "email": "don@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "ye thodi bataunga",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 21,
+    "fields": {
+        "first_name": "Himanshu",
+        "last_name": "Jangid",
+        "email": "jangid1@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "dfdsf",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 22,
+    "fields": {
+        "first_name": "Himanshu",
+        "last_name": "Jangid",
+        "email": "jangid1@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "dfdsf",
+        "contact_no": "nhi dunga",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 23,
+    "fields": {
+        "first_name": "Himanshu",
+        "last_name": "Jangid",
+        "email": "jangid1@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "dfdsf",
+        "contact_no": "nhi dunga",
+        "resume": "uploads/6280_Satpal_9.pdf",
+        "photo": "uploads/Gurgaon_Redcliffe_Responses_-_Form_Responses_1_1in.csv",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 25,
+    "fields": {
+        "first_name": "bhagya",
+        "last_name": "Jangid",
+        "email": "bhagya@gmail.com",
+        "password": null,
+        "cnfpassword": null,
+        "address": "dfdsf",
+        "contact_no": "7878787878",
+        "resume": "uploads/6280_Satpal_9_4qK1kiU.pdf",
+        "photo": "uploads/6280_Satpal_8_VbN8OkY.pdf",
+        "experience_years": 5,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 26,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Cena",
+        "email": "johncena@wwe.com",
+        "password": "Youcantcme7",
+        "cnfpassword": "Youcantcme7",
+        "address": "wwe ring",
+        "contact_no": "7878787878",
+        "resume": "uploads/6280_Satpal_9_cUP2khR.pdf",
+        "photo": "uploads/6280_Satpal_9_YG8BxJC.pdf",
+        "experience_years": 30,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 27,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Cena",
+        "email": "johncena@wwe.com",
+        "password": "Youcantcme7",
+        "cnfpassword": "Youcantcme7",
+        "address": "wwe ring",
+        "contact_no": "7878787878",
+        "resume": "uploads/6280_Satpal_9_ZVT02Is.pdf",
+        "photo": "uploads/6280_Satpal_9_aDk6TvQ.pdf",
+        "experience_years": 30,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 28,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Cena",
+        "email": "johncena@wwe.com",
+        "password": "Youcantcme7",
+        "cnfpassword": "Youcantcme7",
+        "address": "wwe ring",
+        "contact_no": "7878787878",
+        "resume": "uploads/6280_Satpal_9_VV9oHLt.pdf",
+        "photo": "uploads/6280_Satpal_9_3sQBhkx.pdf",
+        "experience_years": 30,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 29,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Cena",
+        "email": "johncena@wwe.com",
+        "password": "",
+        "cnfpassword": "",
+        "address": "wwe ring",
+        "contact_no": "7878787878",
+        "resume": "uploads/6280_Satpal_9_emiNER3.pdf",
+        "photo": "uploads/6280_Satpal_9_z7Qac8U.pdf",
+        "experience_years": 30,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 30,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Cena",
+        "email": "johncena@wwe.com",
+        "password": "Ucantseeme7",
+        "cnfpassword": "Ucantseeme7",
+        "address": "wwe ring",
+        "contact_no": "7878787878",
+        "resume": "uploads/6280_Satpal_9_U4Yoo9V.pdf",
+        "photo": "uploads/6280_Satpal_9_zOitBFW.pdf",
+        "experience_years": 30,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 31,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Cena",
+        "email": "johncena@wwe.com",
+        "password": "Ucantseeme7",
+        "cnfpassword": "Ucantseeme7",
+        "address": "wwe ring",
+        "contact_no": "7878787878",
+        "resume": "uploads/6280_Satpal_9_2byo2DU.pdf",
+        "photo": "uploads/6280_Satpal_9_xtXEWHr.pdf",
+        "experience_years": 30,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 32,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Cena",
+        "email": "johncena@wwe.com",
+        "password": "",
+        "cnfpassword": "",
+        "address": "wwe ring",
+        "contact_no": "7878787878",
+        "resume": "uploads/6280_Satpal_9_MJibgWz.pdf",
+        "photo": "uploads/6280_Satpal_9_mmQCLlg.pdf",
+        "experience_years": 30,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 33,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Cena",
+        "email": "johncena@wwe.com",
+        "password": "",
+        "cnfpassword": "",
+        "address": "wwe ring",
+        "contact_no": "7878787878",
+        "resume": "uploads/6280_Satpal_9_ergljP0.pdf",
+        "photo": "uploads/6280_Satpal_9_YsCVyQD.pdf",
+        "experience_years": 30,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 39,
+    "fields": {
+        "first_name": "Dwayne the rocky",
+        "last_name": "Johnson",
+        "email": "therockyjohnson@wwe.com",
+        "password": "Himanshu4",
+        "cnfpassword": "Himanshu4",
+        "address": "there are a lot which one you want",
+        "contact_no": "9999999999",
+        "resume": "uploads/6280_Satpal_9_VYnxOTs.pdf",
+        "photo": "uploads/adhar_back.jpeg",
+        "experience_years": 25,
+        "stage1status": "applied",
+        "stage2status": "verified_by_supercoordinator",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 40,
+    "fields": {
+        "first_name": "Dwayne the rocky",
+        "last_name": "Johnson",
+        "email": "therock@wwe.com",
+        "password": "Himanshu4",
+        "cnfpassword": "Himanshu4",
+        "address": "there are a lot which one you want",
+        "contact_no": "9999999999",
+        "resume": "uploads/6280_Satpal_9_dLUgdEd.pdf",
+        "photo": "uploads/photo_yudh.jpeg",
+        "experience_years": 25,
+        "stage1status": "verification_failed",
+        "stage2status": "under_progress",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 41,
+    "fields": {
+        "first_name": "Sallu ",
+        "last_name": "Bhai",
+        "email": "beinghuman@gmail.com",
+        "password": "Sallu@1234",
+        "cnfpassword": "Sallu@1234",
+        "address": "konsa wala chahiye",
+        "contact_no": "8888888888",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 42,
+    "fields": {
+        "first_name": "Sallu ",
+        "last_name": "Bhai",
+        "email": "beinghuman@gmail.com",
+        "password": "",
+        "cnfpassword": "",
+        "address": "konsa wala chahiye",
+        "contact_no": "8888888888",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 43,
+    "fields": {
+        "first_name": "Sallu ",
+        "last_name": "Bhai",
+        "email": "beinghuman@gmail.com",
+        "password": "",
+        "cnfpassword": "",
+        "address": "konsa wala chahiye",
+        "contact_no": "8888888888",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 44,
+    "fields": {
+        "first_name": "salman",
+        "last_name": "Bhai",
+        "email": "beinghuman@gmail.com",
+        "password": "",
+        "cnfpassword": "",
+        "address": "konsa wala chahiye",
+        "contact_no": "8888888888",
+        "resume": "",
+        "photo": "",
+        "experience_years": 50,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 45,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "john.doe@example.com",
+        "password": "password",
+        "cnfpassword": "password",
+        "address": "123 Main St",
+        "contact_no": "1234567890",
+        "resume": "uploads/resume.pdf",
+        "photo": "uploads/photo.jpg",
+        "experience_years": 5,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 46,
+    "fields": {
+        "first_name": "Aashish",
+        "last_name": "ram",
+        "email": "aashish@gmail.com",
+        "password": "Aashish@123",
+        "cnfpassword": "Aashish@123",
+        "address": "there are a lot which one you want",
+        "contact_no": "6289542836",
+        "resume": "uploads/6280_Satpal_9_S5ApjkY.pdf",
+        "photo": "uploads/6280_Satpal_9_5q5Gmmj.pdf",
+        "experience_years": 6,
+        "stage1status": "under_progress",
+        "stage2status": "verification_failed",
+        "coordinator_message": "hi himanshu.",
+        "supercoordinator_message": "hey this is the coordinator 2."
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 47,
+    "fields": {
+        "first_name": "Aakash",
+        "last_name": "Dhaka",
+        "email": "akki@gmail.com",
+        "password": "Aakash123",
+        "cnfpassword": "Aakash123",
+        "address": "12/13,Nandavan Vihar Colony",
+        "contact_no": "9660330638",
+        "resume": "uploads/6280_Satpal_9_ssQqNFg.pdf",
+        "photo": "uploads/6280_Satpal_9_zh4F8xr.pdf",
+        "experience_years": 23,
+        "stage1status": "applied",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.personalinformation",
+    "pk": 48,
+    "fields": {
+        "first_name": "Enrique",
+        "last_name": "Iglesias",
+        "email": "enrique@gmail.com",
+        "password": "Enrique123",
+        "cnfpassword": "Enrique123",
+        "address": "New York",
+        "contact_no": "629123345",
+        "resume": "uploads/6280_Satpal_9_m7LSsUs.pdf",
+        "photo": "uploads/kashmir.jpg",
+        "experience_years": 50,
+        "stage1status": "verified_by_coordinator",
+        "stage2status": "applied",
+        "coordinator_message": null,
+        "supercoordinator_message": null
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 9,
+    "fields": {
+        "tenthname": "cgps",
+        "tenthgrade": "a",
+        "tenthpsyr": "2024-01-01",
+        "tenthcertificate": "",
+        "twelthname": "matrix",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-03-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "aiims",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-02-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "aiims",
+        "mdgrade": "a",
+        "mdpsyr": "2024-07-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 11
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 11,
+    "fields": {
+        "tenthname": "gaya hi nhi",
+        "tenthgrade": "nhi h ",
+        "tenthpsyr": "2024-11-01",
+        "tenthcertificate": "",
+        "twelthname": "yaad nhi",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-12-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "bola na nhi yad",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-02-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "na maane",
+        "mdgrade": "a",
+        "mdpsyr": "2024-12-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 13
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 12,
+    "fields": {
+        "tenthname": "gaya hi nhi",
+        "tenthgrade": "nhi h ",
+        "tenthpsyr": "2024-11-01",
+        "tenthcertificate": "",
+        "twelthname": "yaad nhi",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-12-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "bola na nhi yad",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-02-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "na maane",
+        "mdgrade": "a",
+        "mdpsyr": "2024-12-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 14
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 13,
+    "fields": {
+        "tenthname": "gaya hi nhi",
+        "tenthgrade": "nhi h ",
+        "tenthpsyr": "2024-11-01",
+        "tenthcertificate": "",
+        "twelthname": "yaad nhi",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-12-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "bola na nhi yad",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-02-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "na maane",
+        "mdgrade": "a",
+        "mdpsyr": "2024-12-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 15
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 14,
+    "fields": {
+        "tenthname": "gaya hi nhi",
+        "tenthgrade": "nhi h ",
+        "tenthpsyr": "2024-11-01",
+        "tenthcertificate": "",
+        "twelthname": "yaad nhi",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-12-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "bola na nhi yad",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-02-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "na maane",
+        "mdgrade": "a",
+        "mdpsyr": "2024-12-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 16
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 15,
+    "fields": {
+        "tenthname": "gaya hi nhi",
+        "tenthgrade": "nhi h ",
+        "tenthpsyr": "2024-11-01",
+        "tenthcertificate": "",
+        "twelthname": "yaad nhi",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-12-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "bola na nhi yad",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-02-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "na maane",
+        "mdgrade": "a",
+        "mdpsyr": "2024-12-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 17
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 16,
+    "fields": {
+        "tenthname": "gaya hi nhi",
+        "tenthgrade": "nhi h ",
+        "tenthpsyr": "2024-11-01",
+        "tenthcertificate": "",
+        "twelthname": "yaad nhi",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-12-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "bola na nhi yad",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-02-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "na maane",
+        "mdgrade": "a",
+        "mdpsyr": "2024-12-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 18
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 17,
+    "fields": {
+        "tenthname": "gaya hi nhi",
+        "tenthgrade": "nhi h ",
+        "tenthpsyr": "2024-11-01",
+        "tenthcertificate": "",
+        "twelthname": "yaad nhi",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-12-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "bola na nhi yad",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-02-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "na maane",
+        "mdgrade": "a",
+        "mdpsyr": "2024-12-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 19
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 18,
+    "fields": {
+        "tenthname": "gaya hi nhi",
+        "tenthgrade": "nhi h ",
+        "tenthpsyr": "2024-11-01",
+        "tenthcertificate": "",
+        "twelthname": "yaad nhi",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-12-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "bola na nhi yad",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-02-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "na maane",
+        "mdgrade": "a",
+        "mdpsyr": "2024-12-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 20
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 19,
+    "fields": {
+        "tenthname": "",
+        "tenthgrade": "",
+        "tenthpsyr": "2024-03-01",
+        "tenthcertificate": "",
+        "twelthname": "",
+        "twelthgrade": "",
+        "twelthpsyr": "2024-03-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "",
+        "mbbsgrade": "",
+        "mbbspsyr": "2024-05-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "",
+        "mdgrade": "",
+        "mdpsyr": "2024-02-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 22
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 20,
+    "fields": {
+        "tenthname": "",
+        "tenthgrade": "",
+        "tenthpsyr": "2024-03-01",
+        "tenthcertificate": "",
+        "twelthname": "",
+        "twelthgrade": "",
+        "twelthpsyr": "2024-03-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "",
+        "mbbsgrade": "",
+        "mbbspsyr": "2024-05-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "",
+        "mdgrade": "",
+        "mdpsyr": "2024-02-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 23
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 22,
+    "fields": {
+        "tenthname": "u4rada",
+        "tenthgrade": "nhi h ",
+        "tenthpsyr": "2024-08-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_yBk0c1t.pdf",
+        "twelthname": "bps",
+        "twelthgrade": "a",
+        "twelthpsyr": "2024-06-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_FUezbDT.pdf",
+        "mbbsinstitution": "aiims",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-06-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_plp1nDy.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_8_nrdsZCz.pdf",
+        "mdinstitution": "aiims",
+        "mdgrade": "a",
+        "mdpsyr": "2024-03-01",
+        "mdmarksheet": "uploads/6280_Satpal_9_ORZbKZP.pdf",
+        "mddegree": "uploads/6280_Satpal_9_CI4XIOj.pdf",
+        "videofile": "uploads/6280_Satpal_9_pAlzt0c.pdf",
+        "personal_information": 25
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 23,
+    "fields": {
+        "tenthname": "undertaker school of fighting",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-01-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_3HQaY4R.pdf",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_yXLJaj2.pdf",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_j0BJUkZ.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_KPyIfUb.pdf",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-04-01",
+        "mdmarksheet": "uploads/6280_Satpal_8_2s7g2gW.pdf",
+        "mddegree": "uploads/6280_Satpal_9_6LE4b0e.pdf",
+        "videofile": "uploads/6280_Satpal_8_X6mcEja.pdf",
+        "personal_information": 26
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 24,
+    "fields": {
+        "tenthname": "undertaker school of fighting",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-01-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_nt21VEF.pdf",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_LUeWZdd.pdf",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_CgFMvVc.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_jKZRsuf.pdf",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-04-01",
+        "mdmarksheet": "uploads/6280_Satpal_8_CJAwW8P.pdf",
+        "mddegree": "uploads/6280_Satpal_9_lhc5i0S.pdf",
+        "videofile": "uploads/6280_Satpal_8_28vNauB.pdf",
+        "personal_information": 27
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 25,
+    "fields": {
+        "tenthname": "undertaker school of fighting",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-01-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_6F8bM7y.pdf",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_7qY529v.pdf",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_Yzz9TwK.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_9WinwOr.pdf",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-04-01",
+        "mdmarksheet": "uploads/6280_Satpal_8_rKsm1ut.pdf",
+        "mddegree": "uploads/6280_Satpal_9_OYxIs58.pdf",
+        "videofile": "uploads/6280_Satpal_8_X5MG8Nc.pdf",
+        "personal_information": 28
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 26,
+    "fields": {
+        "tenthname": "undertaker school of fighting",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-01-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_FKGUDJc.pdf",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_LKpxAKU.pdf",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_Xtd0Q7d.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_MV5jrcd.pdf",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-04-01",
+        "mdmarksheet": "uploads/6280_Satpal_8_94WSyxS.pdf",
+        "mddegree": "uploads/6280_Satpal_9_Lk637Th.pdf",
+        "videofile": "uploads/6280_Satpal_8_Fp21f2r.pdf",
+        "personal_information": 29
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 27,
+    "fields": {
+        "tenthname": "undertaker school of fighting",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-01-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_rjPvokM.pdf",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_VodLbyz.pdf",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_ZiuThCw.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_oowjmJB.pdf",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-04-01",
+        "mdmarksheet": "uploads/6280_Satpal_8_xI89AXD.pdf",
+        "mddegree": "uploads/6280_Satpal_9_KIB1w51.pdf",
+        "videofile": "uploads/6280_Satpal_8_Sf16XKe.pdf",
+        "personal_information": 30
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 28,
+    "fields": {
+        "tenthname": "undertaker school of fighting",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-01-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_vWLuPUV.pdf",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_X3izQkc.pdf",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_g6TKywv.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_OBqrU2n.pdf",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-04-01",
+        "mdmarksheet": "uploads/6280_Satpal_8_H1WL4ZF.pdf",
+        "mddegree": "uploads/6280_Satpal_9_5KKFauu.pdf",
+        "videofile": "uploads/6280_Satpal_8_axgllBm.pdf",
+        "personal_information": 31
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 29,
+    "fields": {
+        "tenthname": "undertaker school of fighting",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-01-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_5BcbxkV.pdf",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_nVywoEC.pdf",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_9p1O7eC.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_RoTAzK7.pdf",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-04-01",
+        "mdmarksheet": "uploads/6280_Satpal_8_Yvi95E3.pdf",
+        "mddegree": "uploads/6280_Satpal_9_XEo0lAQ.pdf",
+        "videofile": "uploads/6280_Satpal_8_XfvgZk9.pdf",
+        "personal_information": 32
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 30,
+    "fields": {
+        "tenthname": "undertaker school of fighting",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-01-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_kl9uNzx.pdf",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_gVx9Xmr.pdf",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_cGBlyMs.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_fJezpbL.pdf",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-04-01",
+        "mdmarksheet": "uploads/6280_Satpal_8_COlh8j0.pdf",
+        "mddegree": "uploads/6280_Satpal_9_gqsNjlg.pdf",
+        "videofile": "uploads/6280_Satpal_8_pLsSXr1.pdf",
+        "personal_information": 33
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 36,
+    "fields": {
+        "tenthname": "it doesn't matter where i studied",
+        "tenthgrade": "a",
+        "tenthpsyr": "2024-05-01",
+        "tenthcertificate": "",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-02-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 39
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 37,
+    "fields": {
+        "tenthname": "it doesn't matter where i studied",
+        "tenthgrade": "a",
+        "tenthpsyr": "2024-05-01",
+        "tenthcertificate": "",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-02-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 40
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 38,
+    "fields": {
+        "tenthname": "nam bhul gya",
+        "tenthgrade": "a",
+        "tenthpsyr": "2024-05-01",
+        "tenthcertificate": "",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-03-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 41
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 39,
+    "fields": {
+        "tenthname": "nam bhul gya",
+        "tenthgrade": "a",
+        "tenthpsyr": "2024-05-01",
+        "tenthcertificate": "",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-03-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 42
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 40,
+    "fields": {
+        "tenthname": "nam bhul gya",
+        "tenthgrade": "a",
+        "tenthpsyr": "2024-05-01",
+        "tenthcertificate": "",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-03-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 43
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 41,
+    "fields": {
+        "tenthname": "nam bhul gya",
+        "tenthgrade": "a",
+        "tenthpsyr": "2024-05-01",
+        "tenthcertificate": "",
+        "twelthname": "undertaker school of fighting",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-01-01",
+        "twelthcertificate": "",
+        "mbbsinstitution": "wwe ",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-04-01",
+        "mbbsmarksheet": "",
+        "mbbsdegree": "",
+        "mdinstitution": "wwf",
+        "mdgrade": "a",
+        "mdpsyr": "2024-03-01",
+        "mdmarksheet": "",
+        "mddegree": "",
+        "videofile": "",
+        "personal_information": 44
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 42,
+    "fields": {
+        "tenthname": "cgps",
+        "tenthgrade": "a",
+        "tenthpsyr": "2024-03-01",
+        "tenthcertificate": "uploads/6280_Satpal_9_UMV9Lbw.pdf",
+        "twelthname": "matrix",
+        "twelthgrade": "b",
+        "twelthpsyr": "2024-04-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_2U7lcqS.pdf",
+        "mbbsinstitution": "gnit",
+        "mbbsgrade": "a",
+        "mbbspsyr": "2024-08-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_8_yCKJOLq.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_8_4K4Dseh.pdf",
+        "mdinstitution": "aiims",
+        "mdgrade": "a",
+        "mdpsyr": "2024-06-01",
+        "mdmarksheet": "uploads/6280_Satpal_9_2y3zNA7.pdf",
+        "mddegree": "uploads/6280_Satpal_8_6A5fDUX.pdf",
+        "videofile": "uploads/6280_Satpal_9_p9YfaNh.pdf",
+        "personal_information": 46
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 43,
+    "fields": {
+        "tenthname": "Birla Public School",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-12-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_UxKOE2g.pdf",
+        "twelthname": "CGPS",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-08-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_dvP8XRG.pdf",
+        "mbbsinstitution": "AIIMS",
+        "mbbsgrade": "A++",
+        "mbbspsyr": "2024-08-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_8_qWgaxq3.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_AcuPcoL.pdf",
+        "mdinstitution": "AIIMS",
+        "mdgrade": "a++",
+        "mdpsyr": "2024-08-01",
+        "mdmarksheet": "uploads/6280_Satpal_9_9tZuVZB.pdf",
+        "mddegree": "uploads/6280_Satpal_8_g6KOAj8.pdf",
+        "videofile": "uploads/VID_20200316_095212.mp4",
+        "personal_information": 47
+    }
+},
+{
+    "model": "services.educationaldetails",
+    "pk": 44,
+    "fields": {
+        "tenthname": "new york public school",
+        "tenthgrade": "a++",
+        "tenthpsyr": "2024-12-01",
+        "tenthcertificate": "uploads/6280_Satpal_8_VdOIMpv.pdf",
+        "twelthname": "boston school of music",
+        "twelthgrade": "a++",
+        "twelthpsyr": "2024-06-01",
+        "twelthcertificate": "uploads/6280_Satpal_9_od2JVGc.pdf",
+        "mbbsinstitution": "aiims india",
+        "mbbsgrade": "a++",
+        "mbbspsyr": "2024-05-01",
+        "mbbsmarksheet": "uploads/6280_Satpal_9_imCxwMz.pdf",
+        "mbbsdegree": "uploads/6280_Satpal_9_Awn2Xfq.pdf",
+        "mdinstitution": "aiims delhi india",
+        "mdgrade": "a++",
+        "mdpsyr": "2024-09-01",
+        "mdmarksheet": "uploads/6280_Satpal_9_dnGA3UP.pdf",
+        "mddegree": "uploads/6280_Satpal_8_5v7F7hv.pdf",
+        "videofile": "uploads/VID_20200316_095212_B7F9qIk.mp4",
+        "personal_information": 48
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 4,
+    "fields": {
+        "exinstitution1": "",
+        "exstdate1": null,
+        "exenddate1": null,
+        "exinstitution2": "",
+        "exstdate2": null,
+        "exenddate2": null,
+        "exinstitution3": "",
+        "exstdate3": null,
+        "exenddate3": null,
+        "personal_information": 11
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 6,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-06-01",
+        "exenddate1": "2024-05-01",
+        "exinstitution2": "kim jong assistant",
+        "exstdate2": "2024-08-01",
+        "exenddate2": "2024-08-01",
+        "exinstitution3": "hitler's assistant",
+        "exstdate3": "2024-02-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 13
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 7,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-06-01",
+        "exenddate1": "2024-05-01",
+        "exinstitution2": "kim jong assistant",
+        "exstdate2": "2024-08-01",
+        "exenddate2": "2024-08-01",
+        "exinstitution3": "hitler's assistant",
+        "exstdate3": "2024-02-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 14
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 8,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-06-01",
+        "exenddate1": "2024-05-01",
+        "exinstitution2": "kim jong assistant",
+        "exstdate2": "2024-08-01",
+        "exenddate2": "2024-08-01",
+        "exinstitution3": "hitler's assistant",
+        "exstdate3": "2024-02-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 15
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 9,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-06-01",
+        "exenddate1": "2024-05-01",
+        "exinstitution2": "kim jong assistant",
+        "exstdate2": "2024-08-01",
+        "exenddate2": "2024-08-01",
+        "exinstitution3": "hitler's assistant",
+        "exstdate3": "2024-02-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 16
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 10,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-06-01",
+        "exenddate1": "2024-05-01",
+        "exinstitution2": "kim jong assistant",
+        "exstdate2": "2024-08-01",
+        "exenddate2": "2024-08-01",
+        "exinstitution3": "hitler's assistant",
+        "exstdate3": "2024-02-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 17
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 11,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-06-01",
+        "exenddate1": "2024-05-01",
+        "exinstitution2": "kim jong assistant",
+        "exstdate2": "2024-08-01",
+        "exenddate2": "2024-08-01",
+        "exinstitution3": "hitler's assistant",
+        "exstdate3": "2024-02-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 18
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 12,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-06-01",
+        "exenddate1": "2024-05-01",
+        "exinstitution2": "kim jong assistant",
+        "exstdate2": "2024-08-01",
+        "exenddate2": "2024-08-01",
+        "exinstitution3": "hitler's assistant",
+        "exstdate3": "2024-02-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 19
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 13,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-06-01",
+        "exenddate1": "2024-05-01",
+        "exinstitution2": "kim jong assistant",
+        "exstdate2": "2024-08-01",
+        "exenddate2": "2024-08-01",
+        "exinstitution3": "hitler's assistant",
+        "exstdate3": "2024-02-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 20
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 14,
+    "fields": {
+        "exinstitution1": "",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-08-01",
+        "exinstitution2": "",
+        "exstdate2": "2024-07-01",
+        "exenddate2": "2024-12-01",
+        "exinstitution3": "",
+        "exstdate3": "2024-08-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 22
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 15,
+    "fields": {
+        "exinstitution1": "",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-08-01",
+        "exinstitution2": "",
+        "exstdate2": "2024-07-01",
+        "exenddate2": "2024-12-01",
+        "exinstitution3": "",
+        "exstdate3": "2024-08-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 23
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 17,
+    "fields": {
+        "exinstitution1": "Hitesh Mishra",
+        "exstdate1": "2024-04-01",
+        "exenddate1": "2024-06-01",
+        "exinstitution2": "Himanshu",
+        "exstdate2": "2024-12-01",
+        "exenddate2": "2024-12-01",
+        "exinstitution3": "Himanshu Jangid",
+        "exstdate3": "2024-06-01",
+        "exenddate3": "2024-01-01",
+        "personal_information": 25
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 18,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2024-12-01",
+        "personal_information": 26
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 19,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2024-12-01",
+        "personal_information": 27
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 20,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2024-12-01",
+        "personal_information": 28
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 21,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2024-12-01",
+        "personal_information": 29
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 22,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2024-12-01",
+        "personal_information": 30
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 23,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2024-12-01",
+        "personal_information": 31
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 24,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2024-12-01",
+        "personal_information": 32
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 25,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2024-12-01",
+        "personal_information": 33
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 31,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-05-01",
+        "exenddate3": "2024-04-01",
+        "personal_information": 39
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 32,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-05-01",
+        "exenddate3": "2024-04-01",
+        "personal_information": 40
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 33,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "bollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2028-06-01",
+        "personal_information": 41
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 34,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "bollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2028-06-01",
+        "personal_information": 42
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 35,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "bollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2028-06-01",
+        "personal_information": 43
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 36,
+    "fields": {
+        "exinstitution1": "underworld",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "bollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2028-06-01",
+        "personal_information": 44
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 37,
+    "fields": {
+        "exinstitution1": "wwe club",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-04-01",
+        "exinstitution2": "hollywood",
+        "exstdate2": "2024-02-01",
+        "exenddate2": "2024-04-01",
+        "exinstitution3": "the warner bros company",
+        "exstdate3": "2024-08-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 46
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 38,
+    "fields": {
+        "exinstitution1": "google",
+        "exstdate1": "2024-03-01",
+        "exenddate1": "2024-08-01",
+        "exinstitution2": "microsoft",
+        "exstdate2": "2024-01-01",
+        "exenddate2": "2024-03-01",
+        "exinstitution3": "",
+        "exstdate3": "2024-08-01",
+        "exenddate3": null,
+        "personal_information": 47
+    }
+},
+{
+    "model": "services.experiencedetails",
+    "pk": 39,
+    "fields": {
+        "exinstitution1": "world tour ",
+        "exstdate1": "2024-04-01",
+        "exenddate1": "2024-12-01",
+        "exinstitution2": "hollywood music industry",
+        "exstdate2": "2024-08-01",
+        "exenddate2": "2024-12-01",
+        "exinstitution3": "hollywood films and television",
+        "exstdate3": "2024-12-01",
+        "exenddate3": "2024-08-01",
+        "personal_information": 48
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 4,
+    "fields": {
+        "award1": "",
+        "awarddate1": null,
+        "award2": "",
+        "awarddate2": null,
+        "publishlink": "",
+        "personal_information": 11
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 6,
+    "fields": {
+        "award1": "Don of the World",
+        "awarddate1": null,
+        "award2": "The fearless gangster",
+        "awarddate2": null,
+        "publishlink": "khabron m hi rehta hu",
+        "personal_information": 13
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 7,
+    "fields": {
+        "award1": "Don of the World",
+        "awarddate1": null,
+        "award2": "The fearless gangster",
+        "awarddate2": null,
+        "publishlink": "khabron m hi rehta hu",
+        "personal_information": 14
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 8,
+    "fields": {
+        "award1": "Don of the World",
+        "awarddate1": null,
+        "award2": "The fearless gangster",
+        "awarddate2": null,
+        "publishlink": "khabron m hi rehta hu",
+        "personal_information": 15
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 9,
+    "fields": {
+        "award1": "Don of the World",
+        "awarddate1": null,
+        "award2": "The fearless gangster",
+        "awarddate2": null,
+        "publishlink": "khabron m hi rehta hu",
+        "personal_information": 16
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 10,
+    "fields": {
+        "award1": "Don of the World",
+        "awarddate1": null,
+        "award2": "The fearless gangster",
+        "awarddate2": null,
+        "publishlink": "khabron m hi rehta hu",
+        "personal_information": 17
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 11,
+    "fields": {
+        "award1": "Don of the World",
+        "awarddate1": null,
+        "award2": "The fearless gangster",
+        "awarddate2": null,
+        "publishlink": "khabron m hi rehta hu",
+        "personal_information": 18
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 12,
+    "fields": {
+        "award1": "Don of the World",
+        "awarddate1": null,
+        "award2": "The fearless gangster",
+        "awarddate2": null,
+        "publishlink": "khabron m hi rehta hu",
+        "personal_information": 19
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 13,
+    "fields": {
+        "award1": "Don of the World",
+        "awarddate1": null,
+        "award2": "The fearless gangster",
+        "awarddate2": null,
+        "publishlink": "khabron m hi rehta hu",
+        "personal_information": 20
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 14,
+    "fields": {
+        "award1": "",
+        "awarddate1": null,
+        "award2": "",
+        "awarddate2": null,
+        "publishlink": "",
+        "personal_information": 22
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 15,
+    "fields": {
+        "award1": "",
+        "awarddate1": null,
+        "award2": "",
+        "awarddate2": null,
+        "publishlink": "",
+        "personal_information": 23
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 17,
+    "fields": {
+        "award1": "Himanshu Jangid",
+        "awarddate1": null,
+        "award2": "Himanshu Jangid",
+        "awarddate2": null,
+        "publishlink": "toi m aaya h ",
+        "personal_information": 25
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 18,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": null,
+        "award2": "various awards in film industry",
+        "awarddate2": null,
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 26
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 19,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": null,
+        "award2": "various awards in film industry",
+        "awarddate2": null,
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 27
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 20,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": null,
+        "award2": "various awards in film industry",
+        "awarddate2": null,
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 28
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 21,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": "2024-07-11",
+        "award2": "various awards in film industry",
+        "awarddate2": "2024-07-26",
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 29
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 22,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": null,
+        "award2": "various awards in film industry",
+        "awarddate2": null,
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 30
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 23,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": null,
+        "award2": "various awards in film industry",
+        "awarddate2": null,
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 31
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 24,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": "2024-07-11",
+        "award2": "various awards in film industry",
+        "awarddate2": "2024-07-26",
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 32
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 25,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": "2024-07-11",
+        "award2": "various awards in film industry",
+        "awarddate2": "2024-07-26",
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 33
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 31,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": "2024-07-12",
+        "award2": "various awards in film industry",
+        "awarddate2": "2024-07-27",
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 39
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 32,
+    "fields": {
+        "award1": "wwe championship belts",
+        "awarddate1": "2024-07-12",
+        "award2": "various awards in film industry",
+        "awarddate2": "2024-07-27",
+        "publishlink": "i am in every paper but u can't see me",
+        "personal_information": 40
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 33,
+    "fields": {
+        "award1": "milte hi rehte h ",
+        "awarddate1": "2024-07-02",
+        "award2": "ab konsa wala bataun",
+        "awarddate2": "2024-07-26",
+        "publishlink": "har paper m h apna charcha",
+        "personal_information": 41
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 34,
+    "fields": {
+        "award1": "milte hi rehte h ",
+        "awarddate1": "2024-07-02",
+        "award2": "ab konsa wala bataun",
+        "awarddate2": "2024-07-26",
+        "publishlink": "har paper m h apna charcha",
+        "personal_information": 42
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 35,
+    "fields": {
+        "award1": "milte hi rehte h ",
+        "awarddate1": "2024-07-02",
+        "award2": "ab konsa wala bataun",
+        "awarddate2": "2024-07-26",
+        "publishlink": "har paper m h apna charcha",
+        "personal_information": 43
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 36,
+    "fields": {
+        "award1": "milte hi rehte h ",
+        "awarddate1": "2024-07-02",
+        "award2": "ab konsa wala bataun",
+        "awarddate2": "2024-07-26",
+        "publishlink": "har paper m h apna charcha",
+        "personal_information": 44
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 37,
+    "fields": {
+        "award1": "Himanshu Jangid",
+        "awarddate1": "2024-07-16",
+        "award2": "Himanshu Jangid",
+        "awarddate2": "2024-07-20",
+        "publishlink": "toi m aaya h ",
+        "personal_information": 46
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 38,
+    "fields": {
+        "award1": "employee of the month",
+        "awarddate1": "2024-07-04",
+        "award2": "player of the match",
+        "awarddate2": "2024-07-19",
+        "publishlink": "aakashdhaka.toi.com",
+        "personal_information": 47
+    }
+},
+{
+    "model": "services.achievementdetails",
+    "pk": 39,
+    "fields": {
+        "award1": "music award",
+        "awarddate1": "2024-07-18",
+        "award2": "acting award",
+        "awarddate2": "2024-07-19",
+        "publishlink": "enriqueiglesias.cnn.in",
+        "personal_information": 48
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 4,
+    "fields": {
+        "accholdername": "",
+        "bankname": "",
+        "branchname": "",
+        "acnumber": "",
+        "ifsc": "",
+        "pancardno": "",
+        "aadharcardno": "",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 11
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 6,
+    "fields": {
+        "accholdername": "don",
+        "bankname": "underworld bank",
+        "branchname": "classified ",
+        "acnumber": "nhi dunga",
+        "ifsc": "ye bhi nhi dung",
+        "pancardno": "boldiya na ",
+        "aadharcardno": "samajh nhi aaya kya",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 13
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 7,
+    "fields": {
+        "accholdername": "don",
+        "bankname": "underworld bank",
+        "branchname": "classified ",
+        "acnumber": "nhi dunga",
+        "ifsc": "ye bhi nhi dung",
+        "pancardno": "boldiya na ",
+        "aadharcardno": "samajh nhi aaya kya",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 14
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 8,
+    "fields": {
+        "accholdername": "don",
+        "bankname": "underworld bank",
+        "branchname": "classified ",
+        "acnumber": "nhi dunga",
+        "ifsc": "ye bhi nhi dung",
+        "pancardno": "boldiya na ",
+        "aadharcardno": "samajh nhi aaya kya",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 15
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 9,
+    "fields": {
+        "accholdername": "don",
+        "bankname": "underworld bank",
+        "branchname": "classified ",
+        "acnumber": "nhi dunga",
+        "ifsc": "ye bhi nhi dung",
+        "pancardno": "boldiya na ",
+        "aadharcardno": "samajh nhi aaya kya",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 16
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 10,
+    "fields": {
+        "accholdername": "don",
+        "bankname": "underworld bank",
+        "branchname": "classified ",
+        "acnumber": "nhi dunga",
+        "ifsc": "ye bhi nhi dung",
+        "pancardno": "boldiya na ",
+        "aadharcardno": "samajh nhi aaya kya",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 17
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 11,
+    "fields": {
+        "accholdername": "don",
+        "bankname": "underworld bank",
+        "branchname": "classified ",
+        "acnumber": "nhi dunga",
+        "ifsc": "ye bhi nhi dung",
+        "pancardno": "boldiya na ",
+        "aadharcardno": "samajh nhi aaya kya",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 18
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 12,
+    "fields": {
+        "accholdername": "don",
+        "bankname": "underworld bank",
+        "branchname": "classified ",
+        "acnumber": "nhi dunga",
+        "ifsc": "ye bhi nhi dung",
+        "pancardno": "boldiya na ",
+        "aadharcardno": "samajh nhi aaya kya",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 19
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 13,
+    "fields": {
+        "accholdername": "don",
+        "bankname": "underworld bank",
+        "branchname": "classified ",
+        "acnumber": "nhi dunga",
+        "ifsc": "ye bhi nhi dung",
+        "pancardno": "boldiya na ",
+        "aadharcardno": "samajh nhi aaya kya",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 20
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 14,
+    "fields": {
+        "accholdername": "",
+        "bankname": "",
+        "branchname": "",
+        "acnumber": "",
+        "ifsc": "",
+        "pancardno": "",
+        "aadharcardno": "",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 22
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 15,
+    "fields": {
+        "accholdername": "",
+        "bankname": "",
+        "branchname": "",
+        "acnumber": "",
+        "ifsc": "",
+        "pancardno": "",
+        "aadharcardno": "",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 23
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 17,
+    "fields": {
+        "accholdername": "don",
+        "bankname": "bob",
+        "branchname": "rampur",
+        "acnumber": "nahi bataunga",
+        "ifsc": "ye bhi nhi dung",
+        "pancardno": "bola n nhi dung",
+        "aadharcardno": "samajh nhi aaya kya",
+        "pancard": "uploads/6280_Satpal_8_Mfh9YlE.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_rRjWR6y.pdf",
+        "cheque": "uploads/6280_Satpal_9_oME72qx.pdf",
+        "personal_information": 25
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 18,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "uploads/6280_Satpal_9_1UafGLE.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_jiTaIE7.pdf",
+        "cheque": "uploads/6280_Satpal_8_vBXu0gG.pdf",
+        "personal_information": 26
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 19,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "uploads/6280_Satpal_9_FWG0HCv.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_0oLbwFu.pdf",
+        "cheque": "uploads/6280_Satpal_8_fzhcSeY.pdf",
+        "personal_information": 27
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 20,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "uploads/6280_Satpal_9_l5LW1lO.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_mZADwMf.pdf",
+        "cheque": "uploads/6280_Satpal_8_HLxdkAz.pdf",
+        "personal_information": 28
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 21,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "uploads/6280_Satpal_9_PvVTZaa.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_EzvgN01.pdf",
+        "cheque": "uploads/6280_Satpal_8_RayaVSS.pdf",
+        "personal_information": 29
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 22,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "uploads/6280_Satpal_9_khDESqD.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_xDIy4SR.pdf",
+        "cheque": "uploads/6280_Satpal_8_sXUPB1d.pdf",
+        "personal_information": 30
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 23,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "uploads/6280_Satpal_9_BhHeHSd.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_BliW3la.pdf",
+        "cheque": "uploads/6280_Satpal_8_lSHU8dF.pdf",
+        "personal_information": 31
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 24,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "uploads/6280_Satpal_9_LDO1hrL.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_lFVGS6q.pdf",
+        "cheque": "uploads/6280_Satpal_8_2ladny1.pdf",
+        "personal_information": 32
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 25,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "uploads/6280_Satpal_9_zN3ZOOt.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_d0cU4rZ.pdf",
+        "cheque": "uploads/6280_Satpal_8_m6oRKn3.pdf",
+        "personal_information": 33
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 31,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 39
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 32,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible coz there is my photo",
+        "aadharcardno": "invisible coz there is my photo",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 40
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 33,
+    "fields": {
+        "accholdername": "Salman Khan",
+        "bankname": "bank of Abu Dhabi",
+        "branchname": "nahi pata",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "shera ka dedun",
+        "aadharcardno": "shera ki photo h uspr ",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 41
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 34,
+    "fields": {
+        "accholdername": "Salman Khan",
+        "bankname": "bank of Abu Dhabi",
+        "branchname": "nahi pata",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "shera ka dedun",
+        "aadharcardno": "shera ki photo h uspr ",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 42
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 35,
+    "fields": {
+        "accholdername": "Salman Khan",
+        "bankname": "bank of Abu Dhabi",
+        "branchname": "nahi pata",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "shera ka dedun",
+        "aadharcardno": "shera ki photo h uspr ",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 43
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 36,
+    "fields": {
+        "accholdername": "Salman Khan",
+        "bankname": "bank of Abu Dhabi",
+        "branchname": "nahi pata",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "shera ka dedun",
+        "aadharcardno": "shera ki photo h uspr ",
+        "pancard": "",
+        "aadharcard": "",
+        "cheque": "",
+        "personal_information": 44
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 37,
+    "fields": {
+        "accholdername": "john cena anthony felix junior",
+        "bankname": "bank of wwe",
+        "branchname": "royal rumble",
+        "acnumber": "63434095345",
+        "ifsc": "i don't know",
+        "pancardno": "invisible ",
+        "aadharcardno": "invisible co",
+        "pancard": "uploads/6280_Satpal_9_efQcbmP.pdf",
+        "aadharcard": "uploads/6280_Satpal_8_K1jsFeA.pdf",
+        "cheque": "uploads/6280_Satpal_9_aczhmr2.pdf",
+        "personal_information": 46
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 38,
+    "fields": {
+        "accholdername": "Aakash Dhaka",
+        "bankname": "Bank of Baroda",
+        "branchname": "Laxmangarh",
+        "acnumber": "6119467821",
+        "ifsc": "BOBN0032394",
+        "pancardno": "KDLPJ6978P",
+        "aadharcardno": "992300678734",
+        "pancard": "uploads/IMG_20200519_234911_066.jpg",
+        "aadharcard": "uploads/IMG_20221004_141654.jpg",
+        "cheque": "uploads/Snapchat-1516720214.mp4",
+        "personal_information": 47
+    }
+},
+{
+    "model": "services.bankingdetails",
+    "pk": 39,
+    "fields": {
+        "accholdername": "Enrique Iglesias",
+        "bankname": "Bank of New York",
+        "branchname": "New York",
+        "acnumber": "9980987987977",
+        "ifsc": "nybank4343445435",
+        "pancardno": "09809809",
+        "aadharcardno": "098098098",
+        "pancard": "uploads/6280_Satpal_9_DDX1Hmc.pdf",
+        "aadharcard": "uploads/6280_Satpal_9_ogyysHr.pdf",
+        "cheque": "uploads/6280_Satpal_9_2WbCIc4.pdf",
+        "personal_information": 48
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 2,
+    "fields": {
+        "mriopt": "False",
+        "mriothers": "",
+        "ctopt": "False",
+        "ctothers": "",
+        "xray": false,
+        "others": false,
+        "otherText": null,
+        "personal_information": 11
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 4,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "",
+        "ctopt": "True",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": null,
+        "personal_information": 13
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 5,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "",
+        "ctopt": "True",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": null,
+        "personal_information": 14
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 6,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "",
+        "ctopt": "True",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": null,
+        "personal_information": 15
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 7,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "",
+        "ctopt": "True",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": null,
+        "personal_information": 16
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 8,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "",
+        "ctopt": "True",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": null,
+        "personal_information": 17
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 9,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "",
+        "ctopt": "True",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": null,
+        "personal_information": 18
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 10,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "",
+        "ctopt": "True",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": null,
+        "personal_information": 19
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 11,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "",
+        "ctopt": "True",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": null,
+        "personal_information": 20
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 12,
+    "fields": {
+        "mriopt": "False",
+        "mriothers": "",
+        "ctopt": "False",
+        "ctothers": "",
+        "xray": false,
+        "others": false,
+        "otherText": null,
+        "personal_information": 22
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 13,
+    "fields": {
+        "mriopt": "False",
+        "mriothers": "",
+        "ctopt": "False",
+        "ctothers": "",
+        "xray": false,
+        "others": false,
+        "otherText": null,
+        "personal_information": 23
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 15,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "",
+        "ctopt": "True",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": null,
+        "personal_information": 25
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 16,
+    "fields": {
+        "mriopt": "True",
+        "mriothers": "none",
+        "ctopt": "True",
+        "ctothers": "none",
+        "xray": true,
+        "others": false,
+        "otherText": "I can do anything.",
+        "personal_information": 28
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 17,
+    "fields": {
+        "mriopt": "2, 3",
+        "mriothers": "none",
+        "ctopt": "4",
+        "ctothers": "none",
+        "xray": true,
+        "others": false,
+        "otherText": "I can do anything.",
+        "personal_information": 29
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 18,
+    "fields": {
+        "mriopt": "2, 3",
+        "mriothers": "none",
+        "ctopt": "4",
+        "ctothers": "none",
+        "xray": true,
+        "others": false,
+        "otherText": "I can do anything.",
+        "personal_information": 33
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 23,
+    "fields": {
+        "mriopt": "",
+        "mriothers": "none",
+        "ctopt": "",
+        "ctothers": "none",
+        "xray": false,
+        "others": false,
+        "otherText": "I can do anything.",
+        "personal_information": 40
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 24,
+    "fields": {
+        "mriopt": "msk",
+        "mriothers": "",
+        "ctopt": "brain, chest",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": "I can do anything.",
+        "personal_information": 43
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 25,
+    "fields": {
+        "mriopt": "msk",
+        "mriothers": "",
+        "ctopt": "brain, chest",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": "I can do anything.",
+        "personal_information": 44
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 26,
+    "fields": {
+        "mriopt": "Spine, Body",
+        "mriothers": "",
+        "ctopt": "Chest",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": "I can do anything.",
+        "personal_information": 46
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 27,
+    "fields": {
+        "mriopt": "Brain",
+        "mriothers": "none",
+        "ctopt": "Chest, Angio",
+        "ctothers": "none",
+        "xray": true,
+        "others": false,
+        "otherText": "none",
+        "personal_information": 47
+    }
+},
+{
+    "model": "services.reportingareadetails",
+    "pk": 28,
+    "fields": {
+        "mriopt": "Spine",
+        "mriothers": "none",
+        "ctopt": "Brain, Chest, Abdomen, Neck",
+        "ctothers": "",
+        "xray": true,
+        "others": false,
+        "otherText": "",
+        "personal_information": 48
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 2,
+    "fields": {
+        "monday": false,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 11
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 4,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 13
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 5,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 14
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 6,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 15
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 7,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 16
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 8,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 17
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 9,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 18
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 10,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 19
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 11,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 20
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 12,
+    "fields": {
+        "monday": false,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 22
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 13,
+    "fields": {
+        "monday": false,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 23
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 15,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": null,
+        "endtime1": null,
+        "starttime2": null,
+        "endtime2": null,
+        "starttime3": null,
+        "endtime3": null,
+        "starttime4": null,
+        "endtime4": null,
+        "personal_information": 25
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 16,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": true,
+        "saturday": true,
+        "sunday": false,
+        "starttime1": "",
+        "endtime1": "1",
+        "starttime2": "",
+        "endtime2": "",
+        "starttime3": "",
+        "endtime3": "2",
+        "starttime4": null,
+        "endtime4": "",
+        "personal_information": 27
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 17,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": true,
+        "saturday": true,
+        "sunday": false,
+        "starttime1": "",
+        "endtime1": "1",
+        "starttime2": "",
+        "endtime2": "",
+        "starttime3": "",
+        "endtime3": "2",
+        "starttime4": null,
+        "endtime4": "",
+        "personal_information": 28
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 18,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": true,
+        "saturday": true,
+        "sunday": false,
+        "starttime1": "",
+        "endtime1": "1",
+        "starttime2": "",
+        "endtime2": "1, 3",
+        "starttime3": "",
+        "endtime3": "2",
+        "starttime4": null,
+        "endtime4": "",
+        "personal_information": 29
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 19,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": true,
+        "saturday": true,
+        "sunday": false,
+        "starttime1": "",
+        "endtime1": "1",
+        "starttime2": "",
+        "endtime2": "1, 3",
+        "starttime3": "",
+        "endtime3": "2",
+        "starttime4": null,
+        "endtime4": "",
+        "personal_information": 33
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 24,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": true,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": "",
+        "endtime1": "",
+        "starttime2": "",
+        "endtime2": "",
+        "starttime3": "",
+        "endtime3": "",
+        "starttime4": null,
+        "endtime4": "",
+        "personal_information": 40
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 25,
+    "fields": {
+        "monday": true,
+        "tuesday": true,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": "",
+        "endtime1": "",
+        "starttime2": "3",
+        "endtime2": "2",
+        "starttime3": "",
+        "endtime3": "",
+        "starttime4": null,
+        "endtime4": "",
+        "personal_information": 43
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 26,
+    "fields": {
+        "monday": true,
+        "tuesday": true,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": "",
+        "endtime1": "",
+        "starttime2": "3",
+        "endtime2": "2",
+        "starttime3": "",
+        "endtime3": "",
+        "starttime4": null,
+        "endtime4": "",
+        "personal_information": 44
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 27,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": true,
+        "thursday": false,
+        "friday": true,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": "00:00",
+        "endtime1": "00:00",
+        "starttime2": "",
+        "endtime2": "",
+        "starttime3": "",
+        "endtime3": "",
+        "starttime4": "",
+        "endtime4": "",
+        "personal_information": 46
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 28,
+    "fields": {
+        "monday": false,
+        "tuesday": true,
+        "wednesday": false,
+        "thursday": false,
+        "friday": true,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": "03:00",
+        "endtime1": "05:00",
+        "starttime2": "",
+        "endtime2": "",
+        "starttime3": "",
+        "endtime3": "",
+        "starttime4": "",
+        "endtime4": "",
+        "personal_information": 47
+    }
+},
+{
+    "model": "services.availabilitydetails",
+    "pk": 29,
+    "fields": {
+        "monday": true,
+        "tuesday": false,
+        "wednesday": true,
+        "thursday": false,
+        "friday": true,
+        "saturday": false,
+        "sunday": false,
+        "starttime1": "01:00",
+        "endtime1": "05:00",
+        "starttime2": "",
+        "endtime2": "",
+        "starttime3": "",
+        "endtime3": "",
+        "starttime4": "",
+        "endtime4": "",
+        "personal_information": 48
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 1,
+    "fields": {
+        "radiologist": 47,
+        "mri1": 600,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 800,
+        "ct7": 500,
+        "xray1": 70,
+        "xray2": 75,
+        "status": "Radiologist Disagreed to the Rates"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 2,
+    "fields": {
+        "radiologist": 48,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 800,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 900,
+        "status": "Radiologist Agreed to the Rates"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 7,
+    "fields": {
+        "radiologist": 46,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 8,
+    "fields": {
+        "radiologist": 45,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 9,
+    "fields": {
+        "radiologist": 18,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 10,
+    "fields": {
+        "radiologist": 19,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 11,
+    "fields": {
+        "radiologist": 20,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 12,
+    "fields": {
+        "radiologist": 44,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 13,
+    "fields": {
+        "radiologist": 43,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 14,
+    "fields": {
+        "radiologist": 15,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 15,
+    "fields": {
+        "radiologist": 25,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 16,
+    "fields": {
+        "radiologist": 13,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 17,
+    "fields": {
+        "radiologist": 14,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 18,
+    "fields": {
+        "radiologist": 39,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.ratelist",
+    "pk": 19,
+    "fields": {
+        "radiologist": 40,
+        "mri1": 200,
+        "mri2": 100,
+        "mri3": 250,
+        "mri4": 250,
+        "mri5": 300,
+        "mri6": 300,
+        "ct1": 150,
+        "ct2": 150,
+        "ct3": 150,
+        "ct4": 200,
+        "ct5": 225,
+        "ct6": 200,
+        "ct7": 500,
+        "xray1": 20,
+        "xray2": 75,
+        "status": "No Status Yet"
+    }
+},
+{
+    "model": "services.callback",
+    "pk": 1,
+    "fields": {
+        "name": "Himanshu Jangid",
+        "phone_number": "09988776655",
+        "email": "jangid1@gmail.com",
+        "qualification": null,
+        "experience": null,
+        "ctcheckbox": false,
+        "mricheckbox": false,
+        "xraycheckbox": false,
+        "mammographycheckbox": false
+    }
+},
+{
+    "model": "services.callback",
+    "pk": 2,
+    "fields": {
+        "name": "Ms. Ruchi Jangra",
+        "phone_number": "7878787878",
+        "email": "ruchi@gmail.com",
+        "qualification": "doctorate, graduate",
+        "experience": 10,
+        "ctcheckbox": true,
+        "mricheckbox": true,
+        "xraycheckbox": false,
+        "mammographycheckbox": false
+    }
+},
+{
+    "model": "services.callback",
+    "pk": 4,
+    "fields": {
+        "name": "aman gupta",
+        "phone_number": "8787878787",
+        "email": "guptaman2W@gmail.com",
+        "qualification": "not qualified",
+        "experience": 7,
+        "ctcheckbox": false,
+        "mricheckbox": true,
+        "xraycheckbox": true,
+        "mammographycheckbox": false
+    }
+},
+{
+    "model": "services.callback",
+    "pk": 5,
+    "fields": {
+        "name": "Aakash Dhaka",
+        "phone_number": "9660330638",
+        "email": "akki@gmail.com",
+        "qualification": "graduate",
+        "experience": 0,
+        "ctcheckbox": true,
+        "mricheckbox": false,
+        "xraycheckbox": true,
+        "mammographycheckbox": false
+    }
+},
+{
+    "model": "services.callback",
+    "pk": 6,
+    "fields": {
+        "name": "Robert Downey Jr.",
+        "phone_number": "6378305607",
+        "email": "rdj@jarvis.com",
+        "qualification": "graduate, phd, doctorate,",
+        "experience": 20,
+        "ctcheckbox": true,
+        "mricheckbox": true,
+        "xraycheckbox": true,
+        "mammographycheckbox": true
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add personal information",
+        "content_type": [
+            "services",
+            "personalinformation"
+        ],
+        "codename": "add_personalinformation"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change personal information",
+        "content_type": [
+            "services",
+            "personalinformation"
+        ],
+        "codename": "change_personalinformation"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete personal information",
+        "content_type": [
+            "services",
+            "personalinformation"
+        ],
+        "codename": "delete_personalinformation"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view personal information",
+        "content_type": [
+            "services",
+            "personalinformation"
+        ],
+        "codename": "view_personalinformation"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add reporting area details",
+        "content_type": [
+            "services",
+            "reportingareadetails"
+        ],
+        "codename": "add_reportingareadetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change reporting area details",
+        "content_type": [
+            "services",
+            "reportingareadetails"
+        ],
+        "codename": "change_reportingareadetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete reporting area details",
+        "content_type": [
+            "services",
+            "reportingareadetails"
+        ],
+        "codename": "delete_reportingareadetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view reporting area details",
+        "content_type": [
+            "services",
+            "reportingareadetails"
+        ],
+        "codename": "view_reportingareadetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add experience details",
+        "content_type": [
+            "services",
+            "experiencedetails"
+        ],
+        "codename": "add_experiencedetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change experience details",
+        "content_type": [
+            "services",
+            "experiencedetails"
+        ],
+        "codename": "change_experiencedetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete experience details",
+        "content_type": [
+            "services",
+            "experiencedetails"
+        ],
+        "codename": "delete_experiencedetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view experience details",
+        "content_type": [
+            "services",
+            "experiencedetails"
+        ],
+        "codename": "view_experiencedetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add educational details",
+        "content_type": [
+            "services",
+            "educationaldetails"
+        ],
+        "codename": "add_educationaldetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change educational details",
+        "content_type": [
+            "services",
+            "educationaldetails"
+        ],
+        "codename": "change_educationaldetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete educational details",
+        "content_type": [
+            "services",
+            "educationaldetails"
+        ],
+        "codename": "delete_educationaldetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view educational details",
+        "content_type": [
+            "services",
+            "educationaldetails"
+        ],
+        "codename": "view_educationaldetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add banking details",
+        "content_type": [
+            "services",
+            "bankingdetails"
+        ],
+        "codename": "add_bankingdetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change banking details",
+        "content_type": [
+            "services",
+            "bankingdetails"
+        ],
+        "codename": "change_bankingdetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete banking details",
+        "content_type": [
+            "services",
+            "bankingdetails"
+        ],
+        "codename": "delete_bankingdetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view banking details",
+        "content_type": [
+            "services",
+            "bankingdetails"
+        ],
+        "codename": "view_bankingdetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add availability details",
+        "content_type": [
+            "services",
+            "availabilitydetails"
+        ],
+        "codename": "add_availabilitydetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change availability details",
+        "content_type": [
+            "services",
+            "availabilitydetails"
+        ],
+        "codename": "change_availabilitydetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete availability details",
+        "content_type": [
+            "services",
+            "availabilitydetails"
+        ],
+        "codename": "delete_availabilitydetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view availability details",
+        "content_type": [
+            "services",
+            "availabilitydetails"
+        ],
+        "codename": "view_availabilitydetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add achievement details",
+        "content_type": [
+            "services",
+            "achievementdetails"
+        ],
+        "codename": "add_achievementdetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change achievement details",
+        "content_type": [
+            "services",
+            "achievementdetails"
+        ],
+        "codename": "change_achievementdetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete achievement details",
+        "content_type": [
+            "services",
+            "achievementdetails"
+        ],
+        "codename": "delete_achievementdetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view achievement details",
+        "content_type": [
+            "services",
+            "achievementdetails"
+        ],
+        "codename": "view_achievementdetails"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add callback",
+        "content_type": [
+            "services",
+            "callback"
+        ],
+        "codename": "add_callback"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change callback",
+        "content_type": [
+            "services",
+            "callback"
+        ],
+        "codename": "change_callback"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete callback",
+        "content_type": [
+            "services",
+            "callback"
+        ],
+        "codename": "delete_callback"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view callback",
+        "content_type": [
+            "services",
+            "callback"
+        ],
+        "codename": "view_callback"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add rate list",
+        "content_type": [
+            "services",
+            "ratelist"
+        ],
+        "codename": "add_ratelist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change rate list",
+        "content_type": [
+            "services",
+            "ratelist"
+        ],
+        "codename": "change_ratelist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete rate list",
+        "content_type": [
+            "services",
+            "ratelist"
+        ],
+        "codename": "delete_ratelist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view rate list",
+        "content_type": [
+            "services",
+            "ratelist"
+        ],
+        "codename": "view_ratelist"
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "radiologist",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "coordinator",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "supercoordinator",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$BmO5CcKjuyabCggbWFzvXJ$s8elJQy+23drAgGAe7pZLMdBR4N9TwCXVUX04UD80wU=",
+        "last_login": "2024-07-03T11:46:42Z",
+        "is_superuser": true,
+        "username": "honey",
+        "first_name": "Honey",
+        "last_name": "Jangid",
+        "email": "honey@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-06-29T08:05:55Z",
+        "groups": [
+            [
+                "coordinator"
+            ],
+            [
+                "supercoordinator"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$5VpxRtA3dwrR2ZyQmOC4YL$yRFKgiQpkNkkRhpmUtEHkQh42bVVLAkvv7/YM22FOSo=",
+        "last_login": "2024-07-13T12:57:24.840Z",
+        "is_superuser": false,
+        "username": "ruchi@gmail.com",
+        "first_name": "Ruchi",
+        "last_name": "Jangra",
+        "email": "ruchi@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-06-30T15:56:17Z",
+        "groups": [
+            [
+                "coordinator"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$weuKSQSGgO685HPGnPXFk3$W4ho3jiAIUs1zF++fh7if7MJNwFhgqvHefyAWh9hx+Q=",
+        "last_login": "2024-07-06T12:24:11.342Z",
+        "is_superuser": false,
+        "username": "radiologist@gmail.com",
+        "first_name": "Himanshu",
+        "last_name": "Jangid",
+        "email": "radiologist@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-06-30T15:57:20Z",
+        "groups": [
+            [
+                "radiologist"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$gypNhf9EypxSUK5JfhS6QK$PhycP5x8dgrawmu2cqTVARqFXoP0CKdEo2gGgoh4n10=",
+        "last_login": "2024-07-13T13:12:55.848Z",
+        "is_superuser": true,
+        "username": "jangid",
+        "first_name": "",
+        "last_name": "",
+        "email": "jangidhoney@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-07-03T12:02:48.999Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$XcvnRdbkj0llBFDBZkN0xg$V/zR+EZNgrqhgbyKEefuh0KFFs16GWb+4isde2JbP/A=",
+        "last_login": "2024-07-13T13:01:21.124Z",
+        "is_superuser": false,
+        "username": "guptaaman@gmail.com",
+        "first_name": "Aman",
+        "last_name": "Gupta",
+        "email": "guptaaman@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-07-03T12:21:53Z",
+        "groups": [
+            [
+                "supercoordinator"
+            ]
+        ],
+        "user_permissions": []
+    }
+}
+]
