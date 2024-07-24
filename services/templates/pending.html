@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registration Pending</title>
+    <title>Registration Status</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -59,12 +59,31 @@
         </div>
     </nav>
     <div class="container">
-        <h1>Registration Pending</h1>
-        <p>Your registration is currently under process. Please check back later.</p>
-        <p>You can reach out to the Rate List Section using this link.</p>
-        <a href="{% url 'rate_list' personal_info.pk %}" class="nav-link">
-            <button class="btn btn-primary btn-back"><strong>Rate List Page</strong></button>
-        </a>
+        {% if personal_info.stage2status == 'under_progress' or personal_info.stage2status == 'applied' %}
+            <h1>Registration Pending</h1>
+            <p>Hello {{personal_info.first_name}} {{personal_info.last_name}}</p>
+            <p>Your registration status is {{ personal_info.stage2status }}. Please check back later.</p>
+            <p>You can reach out to the Rate List Section using this link.</p>
+            <a href="{% url 'rate_list' personal_info.pk %}" class="nav-link">
+                <button class="btn btn-primary btn-back"><strong>Rate List Page</strong></button>
+            </a>
+        {% elif personal_info.stage2status == 'verified_by_supercoordinator' %}
+            <h1>Registration Successful</h1>
+            <p>Hello {{personal_info.first_name}} {{personal_info.last_name}}</p>
+            <p>Welcome to the U4RAD team!</p>
+            <p>You can reach out to the Rate List Section using this link.</p>
+            <a href="{% url 'rate_list' personal_info.pk %}" class="nav-link">
+                <button class="btn btn-primary btn-back"><strong>Rate List Page</strong></button>
+            </a>
+        {% elif personal_info.stage2status == 'verification_failed' %}
+            <h1>Registration Failed</h1>
+            <p>Hello {{personal_info.first_name}} {{personal_info.last_name}}</p>
+            <p>Sorry! Your registration was not successful.</p>
+        {% else %}
+            <h1>Registration Status</h1>
+            <p>Hello {{personal_info.first_name}} {{personal_info.last_name}}</p>
+            <p>Unknown status.</p>
+        {% endif %}
     </div>
 </body>
 </html>

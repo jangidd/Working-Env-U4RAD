@@ -29,7 +29,7 @@
                     </div>
                     <div class="field">
                         <div class="label">Phone Number</div>
-                        <input type="text" name="phone_number" required />
+                        <input type="number" name="phone_number" maxlength="11" oninput="this.value = this.value.slice(0, 10)" required />
                     </div>
                     <div class="field">
                         <div class="label">Email</div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="field">
                         <div class="label">Experience in Years</div>
-                        <input type="number" name="experience" required />
+                        <input type="number" id="experience" name="experience" required />
                     </div>
                     <div class="field">
                         <div class="label">Modalities You Want to Report</div>
@@ -61,4 +61,41 @@
         </div>
     </div>
 </body>
+<script>
+    document.getElementById('experience').addEventListener('input', function (e) {
+    const input = e.target;
+    let value = input.value;
+
+    // Limit to 2 digits
+    if (value.length > 2) {
+        input.value = value.slice(0, 2);
+    }
+
+    // Ensure value is between 0 and 99
+    value = parseInt(input.value, 10);
+    if (value < 0) {
+        input.value = 0;
+    } else if (value > 50) {
+        input.value = 50;
+    }
+});
+
+// The below function I've made to restrict all the input type numbers to get any special character if a user types any number - Himanshu.
+function restrictSpecialCharacters(input) {
+    input.addEventListener('input', function (e) {
+        const value = e.target.value;
+
+        // Remove any non-numeric characters
+        e.target.value = value.replace(/\D/g, '');
+    });
+}
+
+// Apply the restriction to all number inputs
+document.addEventListener('DOMContentLoaded', function () {
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    numberInputs.forEach(input => {
+        restrictSpecialCharacters(input);
+    });
+});
+</script>
 </html>

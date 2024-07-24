@@ -102,14 +102,29 @@
       z-index: 2;
     }
 
+    .helpers {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      
+    }
+    .helpers > div {
+      flex-grow: 1;
+      text-align: center;
+      margin: 0 10px; /* Optional: Adjust margin for spacing between elements */
+    }
+
     .count-container {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       background-color: skyblue;
       border-radius: 10px;
       padding: 10px;
     }
+    
 
     #count1, #count2, #count3 {
       margin-bottom: 5px;
@@ -137,7 +152,7 @@
       color: black;
     }
 
-    .refresh {
+    /* .refresh {
       background-color: blue;
       color: white;
       padding: 5px 10px;
@@ -146,7 +161,9 @@
       font-size: 14px;
       cursor: pointer;
       transition: background-color 0.3s;
-    }
+    } */
+
+
 
     .refresh:hover {
       background-color: #0056b3;
@@ -233,7 +250,23 @@
 #callbackTable tbody tr:hover {
   background-color: #4a515734;
 }
+/* Disabled dropdown styling */
+select:disabled {
+  
+  cursor: not-allowed;
+}
 
+/* Disabled input styling */
+input[readonly] {
+ 
+  cursor: not-allowed;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
 
   </style>
 </head>
@@ -247,6 +280,20 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
+                <!-- Toggle Button -->
+                <li class="nav-item nav-link">
+                  <button class="toggle-button btn btn-sm btn-primary" onclick="toggleDetails()">Toggle to Callback Page</button>
+                </li>
+                <li class="nav-item">
+                    <a href="/coordinator_dashboard" class="nav-link">
+                        <button class="customer-dashboard-button btn btn-sm btn-danger"><strong>Customer's Dashboard</strong></button>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/services" class="nav-link">
+                        <button class="service-dashboard-button btn btn-sm btn-danger"><strong>Service Dashboard</strong></button>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="/" class="nav-link">
                         <button class="logout-button btn btn-sm btn-danger"><strong>Logout</strong></button>
@@ -256,30 +303,28 @@
         </div>
     </div>
 </nav>
-  <div class="header">
-    <h2>XRAi Reporting</h2>
-  </div>
-
   <div class="container">
     <!-- Toggle Button -->
-    <div class="toggle-container">
+    <!-- <div class="toggle-container">
       <button class="toggle-button btn btn-primary" onclick="toggleDetails()">Toggle to Callback Page</button>
-    </div>
+    </div> -->
     <div class="radiologist-details-table">
     <div class="card">
       <div class="card-body">
         <h2 class="text-center">Radiologist's Form Dashboard</h2>
+        <hr>
         <div class="row-container">
-          <div><button class="refresh" onclick="refreshPage()">Refresh</button></div>
-          <br>
           <div class="count-container">
             <div id="count1">Total Entries: <span id="totalRowCount">0</span></div>
             <div id="count2">Verified by Coordinator: <span id="CoordinatorVerifiedRowCount">0</span></div>
             <div id="count3">Verified by Super Coordinator: <span id="SuperCoordinatorVerifiedRowCount">0</span></div>
           </div>
           <br>
+          <div class="helpers">
+          <div><button class="btn btn-primary " onclick="refreshPage()">Refresh</button></div>
+        
           <div><button class="btn btn-primary" onclick="sortCoordinatorTable()">Sort the Table</button></div>
-          <br>
+          
           <div class="filter-dropdown-container">
             <div class="dropdown-select">
               <select id="selectStatus">
@@ -287,6 +332,7 @@
                 <option value="applied">Applied</option>
                 <option value="under_progress">Under Progress</option>
                 <option value="verified_by_coordinator">Verified by Coordinator</option>
+                <option value="verified_by_supercoordinator">Verified by SuperCoordinator</option>
                 <option value="verification_failed">Verification Failed</option>
               </select>
             </div>
@@ -294,7 +340,9 @@
           <div class="search-container">
             <input type="text" id="myInput" placeholder="Search by Name" onkeyup="searchByName()">
           </div>
+          
           <div class="greeting">Hello, {{ request.user.username }}</div>
+        </div>
         </div>
       </div>
     </div>
@@ -313,13 +361,13 @@
                 <th>Rate List Details</th>
                 <th>Rate List Status</th>
                 <th>Stage 1 Status</th>
-                {% if is_supercoordinator %}
+                
                 <th>Stage 2 Status</th>
-                {% endif %}
+                
                 </th>
-                {% if is_supercoordinator %}
+                
                 <th>Send Confirmation Mail</th>
-                {% endif %}
+                
                 </th>
               </tr>
             </thead>
@@ -348,25 +396,34 @@
                     <option value="verification_failed" {% if data.stage1status == 'verification_failed' %} selected {% endif %}>Verification Failed</option>
                   </select>
                   <br>
-                    <input class="updatemessage1" type="text" placeholder="Coordinator's Message" style="width: 77%;" value="{{ data.updatemessage1 }}">
+                    <input class="updatemessage1" type="text" placeholder="Coordinator's Message" style="width: 100%;" value="{{ data.coordinator_message }}">
                 </td>
-                {% if is_supercoordinator %}
+                
                 <td class="stage2-status-column">
-                    <select class="stage2status-dropdown" data-pk="{{ data.pk }}">
+                    <select class="stage2status-dropdown" data-pk="{{ data.pk }}" {% if not is_supercoordinator %} disabled {% endif %}>
                       <option value="applied" {% if data.stage2status == 'applied' %} selected {% endif %}>Applied</option>
                       <option value="under_progress" {% if data.stage2status == 'under_progress' %} selected {% endif %}>Under Progress</option>
                       <option value="verified_by_supercoordinator" {% if data.stage2status == 'verified_by_supercoordinator' %} selected {% endif %}>Verified by Supercoordinator</option>
                       <option value="verification_failed" {% if data.stage2status == 'verification_failed' %} selected {% endif %}>Verification Failed</option>
                     </select>
                     <br>
-                    <input class="updatemessage2" type="text" placeholder="SuperCoordinator's Message" style="width: 83%;" value="{{ data.updatemessage2 }}">
+                    <input class="updatemessage2" type="text" placeholder="SuperCoordinator's Message" style="width: 100%;" value="{{ data.supercoordinator_message}}" {% if not is_supercoordinator %} readonly {% endif %}>
                 </td>
-                {% endif %}
-                {% if is_supercoordinator %}
+               
+                
                 <td>
-                  <a href="{% url 'send_confirmation_mail' data.pk %}" class="btn btn-primary" >Send Confirmation Mail</a>
+                  <a href="{% url 'send_confirmation_mail' data.pk %}" class="btn btn-primary send-email-button" data-status="{{ data.stage2status }}" 
+                    {% if not is_supercoordinator or data.stage2status == 'verification_failed' %} 
+                      style="pointer-events: none; opacity: 0.5; cursor: not-allowed;" 
+                    {% endif %}>
+                    {% if data.email_sent %}
+                      Email Sent!
+                    {% else %}
+                      Send Confirmation Mail
+                    {% endif %}
+                  </a>
                 </td>
-                {% endif %}
+                
               </tr>
               {% endfor %}
             </tbody>
@@ -381,6 +438,7 @@
     <div class="card">
       <div class="card-body">
         <h2 class="text-center">Callback Form Dashboard</h2>
+        <hr>
             <div class="row-container">
                 <div class="count-container">
                     Total Entries: <span id="totalCallbackRowCount">0</span>
@@ -510,7 +568,7 @@
                 coordinatorVerifiedCount++;
             }
 
-            if (stage2Status === 'reported') {
+            if (stage2Status === 'verified_by_supercoordinator') {
                 superCoordinatorVerifiedCount++;
             }
         });
@@ -732,25 +790,34 @@ $(document).ready(function() {
             modalContent += '</div>';
             // Experience Details
             modalContent += '<div><h4 style="background-color: lightblue;">Experience Details</h4>';
-            modalContent += '<p><span class="label">Experience 1 Institution: </span><span class="value">' + response.experience_info.exinstitution1 + '</span></p>';
-            modalContent += '<p><span class="label">Experience 1 Starting Date: </span><span class="value">' + response.experience_info.exstdate1 + '</span></p>';
-            modalContent += '<p><span class="label">Experience 1 Ending Date: </span><span class="value">' + response.experience_info.exenddate1 + '</span></p>';
-            modalContent += '<p><span class="label">Experience 2 Institution: </span><span class="value">' + response.experience_info.exinstitution2 + '</span></p>';
-            modalContent += '<p><span class="label">Experience 2 Starting Date: </span><span class="value">' + response.experience_info.exstdate2 + '</span></p>';
-            modalContent += '<p><span class="label">Experience 2 Ending Date: </span><span class="value">' + response.experience_info.exenddate2 + '</span></p>';
-            modalContent += '<p><span class="label">Experience 3 Institution: </span><span class="value">' + response.experience_info.exinstitution3 + '</span></p>';
-            modalContent += '<p><span class="label">Experience 3 Starting Date: </span><span class="value">' + response.experience_info.exstdate3 + '</span></p>';
-            modalContent += '<p><span class="label">Experience 3 Ending Date: </span><span class="value">' + response.experience_info.exenddate3 + '</span></p>';
+            for (let i = 1; i <= 5; i++) {
+                if (response.experience_info[`exinstitution${i}`]) {
+                    modalContent += `<p><span class="label">Experience ${i} Institution: </span><span class="value">${response.experience_info[`exinstitution${i}`]}</span></p>`;
+                }
+                if (response.experience_info[`exstdate${i}`]) {
+                    modalContent += `<p><span class="label">Experience ${i} Starting Date: </span><span class="value">${response.experience_info[`exstdate${i}`]}</span></p>`;
+                }
+                if (response.experience_info[`exenddate${i}`]) {
+                    modalContent += `<p><span class="label">Experience ${i} Ending Date: </span><span class="value">${response.experience_info[`exenddate${i}`]}</span></p>`;
+                }
+            }
             modalContent += '</div>';
-    
+
             // Achievement Details
             modalContent += '<div><h4 style="background-color: lightblue;">Achievement Details</h4>';
-            modalContent += '<p><span class="label">Award 1: </span><span class="value">' + response.achievement_info.award1 + '</span></p>';
-            modalContent += '<p><span class="label">Award Date 1: </span><span class="value">' + response.achievement_info.awarddate1 + '</span></p>';
-            modalContent += '<p><span class="label">Award 2: </span><span class="value">' + response.achievement_info.award2 + '</span></p>';
-            modalContent += '<p><span class="label">Award Date 2: </span><span class="value">' + response.achievement_info.awarddate2 + '</span></p>';
-            modalContent += '<p><span class="label">Publish Link: </span><span class="value">' + response.achievement_info.publishlink + '</span></p>';
+            for (let i = 1; i <= 5; i++) {
+                if (response.achievement_info[`award${i}`]) {
+                    modalContent += `<p><span class="label">Award ${i}: </span><span class="value">${response.achievement_info[`award${i}`]}</span></p>`;
+                }
+                if (response.achievement_info[`awarddate${i}`]) {
+                    modalContent += `<p><span class="label">Award Date ${i}: </span><span class="value">${response.achievement_info[`awarddate${i}`]}</span></p>`;
+                }
+            }
+            if (response.achievement_info.publishlink) {
+                modalContent += `<p><span class="label">Publish Link: </span><span class="value">${response.achievement_info.publishlink}</span></p>`;
+            }
             modalContent += '</div>';
+
     
             // Banking Details
             modalContent += '<div><h4 style="background-color: lightblue;">Banking Details</h4>';
@@ -1180,7 +1247,93 @@ function sortTable() {
 //     });
 // });
 
+// $(document).ready(function() {
+//             $('#send-email-button').on('click', function(e) {
+//                 e.preventDefault();
+//                 var link = $(this);
+//                 var url = link.attr('href');
+                
+//                 $.ajax({
+//                     url: url,
+//                     method: 'GET',
+//                     success: function(response) {
+//                         alert(response.message);
+//                         if (response.status === 'success') {
+                            
+//                             link.text('Email Sent!');
+//                         }
+//                     },
+//                     error: function() {
+//                         alert('Email Not Sent! Try after some time.');
+//                     }
+//                 });
+//             });
+//         });
+
     </script>
+
+    {% if is_supercoordinator %}
+    <script>
+    $(document).ready(function() {
+      function updateButtonState() {
+        $('.stage2status-dropdown').each(function() {
+          var dropdown = $(this);
+          var status = dropdown.val();
+          var button = dropdown.closest('tr').find('.send-email-button');
+          
+          if (status === 'verified_by_supercoordinator') {
+            button.css({ 'pointer-events': '', 'opacity': '', 'cursor': '' });
+          } else {
+            button.css({ 'pointer-events': 'none', 'opacity': '0.5', 'cursor': 'not-allowed' });
+          }
+        });
+      }
+    
+      // Initial check
+      updateButtonState();
+    
+      // Check when dropdown value changes
+      $('.stage2status-dropdown').on('change', function() {
+        updateButtonState();
+      });
+    
+      $('.send-email-button').on('click', function(e) {
+        e.preventDefault();
+        var link = $(this);
+        var url = link.attr('href');
+        var status = link.closest('tr').find('.stage2status-dropdown').val();
+    
+        // Check the stage2status before sending the email
+        if (status !== 'verified_by_supercoordinator') {
+          alert('Cannot send email. Status is not verified by Supercoordinator.');
+          return;
+        }
+    
+        // Show confirmation popup
+        var confirmSend = confirm('Do you confirm to send the email?');
+        if (!confirmSend) {
+          return;
+        }
+    
+        $.ajax({
+          url: url,
+          method: 'GET',
+          success: function(response) {
+            alert(response.message);
+            if (response.status === 'success') {
+              link.text('Email Sent!');
+            }
+          },
+          error: function() {
+            alert('Email Not Sent! Try after some time.');
+          }
+        });
+      });
+    });
+    </script>
+    
+    {% endif %}
+    
     </body>
     </html>
     

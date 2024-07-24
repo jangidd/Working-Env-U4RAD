@@ -6,6 +6,12 @@ class AchievementDetails(models.Model):
     awarddate1 = models.DateField(null=True, default=None, blank=True)
     award2 = models.CharField(max_length=30, null=True, default=None, blank=True)
     awarddate2 = models.DateField(null=True, default=None, blank=True)
+    award3 = models.CharField(max_length=30, null=True, default=None, blank=True)
+    awarddate3 = models.DateField(null=True, default=None, blank=True)
+    award4 = models.CharField(max_length=30, null=True, default=None, blank=True)
+    awarddate4 = models.DateField(null=True, default=None, blank=True)
+    award5 = models.CharField(max_length=30, null=True, default=None, blank=True)
+    awarddate5 = models.DateField(null=True, default=None, blank=True)
     publishlink = models.CharField(max_length=30, null=True, default=None, blank=True)
     personal_information = models.ForeignKey(
         PersonalInformation,

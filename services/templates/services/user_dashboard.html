@@ -111,7 +111,7 @@
 </div>
 <div class="top-left-corner mt-3 text-center">
   {% if cart_value %}
-      <p>Total Amount: ₹{{ cart_value.total_amount }}</p>
+      <p>Total Amount Paid: ₹{{ cart_value.total_amount }}</p>
   {% else %}
       <p>₹0</p>
   {% endif %}
@@ -140,6 +140,7 @@
 </div>
 <div class="textend">
   <button class="btn btn-light mt-3 text-center" onclick="openPopup()">VIEW SUMMARY</button>
+  <button class="btn btn-light mt-3 text-center" onclick="viewExcelFile()">VIEW EXCEL FILE</button>
 </div>
 <div id="detailsPopup" class="modal">
   <div class="modal-content">
@@ -206,5 +207,24 @@
       row.querySelector(".balance").textContent = balance.toFixed(0);
     });
   });
+
+  function viewExcelFile() {
+    var userId = {{ request.user.id }}; // Get the user ID from the context
+    
+    fetch('{% url "download_latest_file" 0 %}'.replace('0', userId))
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(error => {
+            alert(error.error);
+          });
+        } else {
+          window.location.href = response.url; // Trigger download if response is successful
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while trying to download the file.');
+      });
+  }
 </script>
 {% endblock %}

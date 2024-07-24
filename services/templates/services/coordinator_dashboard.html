@@ -2,20 +2,34 @@
 {% block content %}
 {% load static %}
 <!-- Include these scripts if not already included -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <style>
   .container {
     padding: 15px;
-    margin-top: 5rem;
+    margin-top: 1rem;
     margin-bottom: 5rem;
     background-color: aliceblue;
     max-height: 60vh;
     overflow-y: auto;
   }
+  .customer-header {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-size: 38px;
+    color: white;
+    text-align: center;
+  }
 </style>
+
+<div class="customer-header">
+  Customer's Dashboard
+</div>
+<div>
+  <button style="margin-left: 200px;" class="btn btn-success" onclick="window.location.href='{% url 'service_list' %}'">Service Page</button>
+</div>
 
 <div class="container mt-10">
   <!-- Profile Details Table -->
@@ -61,6 +75,7 @@
                 <th>Case Count</th>
                 <th>Amount</th>
                 <th>Update Case Count</th>
+                <th>Upload File</th>
               </tr>
             </thead>
             <tbody>
@@ -80,10 +95,20 @@
                     <input
                       type="number"
                       name="casecount"
+                      placeholder="casecount"
                       value="{{ cart_item.casecount }}"
                     />
                     <button type="submit" class="btn btn-sm btn-success">
                       Update
+                    </button>
+                  </form>
+                </td>
+                <td>
+                  <form id="upload-form-{{ cart_item.id }}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="file" id="file-upload-{{ cart_item.id }}" class="upload-file" placeholder="upload" />
+                    <button type="button" class="btn btn-sm btn-success" onclick="uploadFile('{{ cart_item.id }}')">
+                      Upload
                     </button>
                   </form>
                 </td>
@@ -98,5 +123,39 @@
     </tbody>
   </table>
 </div>
+
+<script>
+  function uploadFile(cartItemId) {
+    var fileInput = document.getElementById('file-upload-' + cartItemId);
+    var file = fileInput.files[0];
+    if (!file) {
+      alert('Please choose a file to upload.');
+      return;
+    }
+    if (confirm('Are you sure you want to upload this file?')) {
+      var formData = new FormData();
+      formData.append('file', file);
+      formData.append('csrfmiddlewaretoken', document.querySelector('#upload-form-' + cartItemId + ' [name=csrfmiddlewaretoken]').value);
+
+      $.ajax({
+        url: '{% url "upload_file" 0 %}'.replace('0', cartItemId),
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          if (response.status === 'success') {
+            alert(response.message);
+          } else {
+            alert(response.message);
+          }
+        },
+        error: function() {
+          alert('File upload failed.');
+        }
+      });
+    }
+  }
+</script>
 
 {% endblock %}

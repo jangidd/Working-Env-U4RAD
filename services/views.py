@@ -1,7 +1,8 @@
+import os
 from django.shortcuts import render, get_object_or_404, redirect
 from .models.models import Service, ServiceRate
 from .models.profile import Profile
-from .models.CartItem import Cart
+from .models.CartItem import Cart, UploadFile
 from .models.CartValue import CartValue
 from .models.OrderHistory import OrderHistory
 from .forms import ServiceForm, ServiceRateForm
@@ -22,6 +23,7 @@ import logging
 from django.conf import settings
 import razorpay
 from .models.Order import Order
+from .models.OrderHistory import OrderHistory
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 from django.core.serializers import serialize
@@ -39,7 +41,7 @@ from datetime import datetime
 from .forms import CallbackForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
-from datetime import date
+from datetime import date, timedelta
 from .models.CallbackForm import Callback
 
 # reportlab imports :
@@ -50,7 +52,10 @@ from reportlab.lib.colors import blue, black
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, Image, Spacer
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase import pdfmetrics
+from reportlab.lib import colors
 
 # model imports :
 from .models.ratelist import RateList
@@ -68,6 +73,7 @@ from .models.CallbackForm import Callback
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import user_passes_test
 from django.template.loader import render_to_string
+from django.utils import timezone
 ################################ End of Multiform Imports ##########################################
 
 def login(request):
@@ -94,15 +100,10 @@ def login(request):
             else:
                 try:
                     personal_info = PersonalInformation.objects.get(email=identifier)
-                    context = {'personal_info': personal_info}
-                    if personal_info.stage2status == 'under_progress':
-                        return render(request, 'pending.html', context)
-                    elif personal_info.stage2status == 'applied':
-                        return render(request, 'pending.html', context)
-                    elif personal_info.stage2status == 'verification_failed':
-                        return render(request, 'pending.html', context)
-                    elif personal_info.stage2status == 'verified_by_supercoordinator':
-                        return redirect('work')
+                    if personal_info.password == password:
+                        context = {'personal_info': personal_info}
+                        if personal_info.stage2status in ['under_progress', 'applied', 'verification_failed', 'verified_by_supercoordinator']:
+                                return render(request, 'pending.html', context)
                     else:
                         return render(request, 'services/login.html', {'error': 'Invalid credentials'})
                 except PersonalInformation.DoesNotExist:
@@ -116,7 +117,7 @@ def login(request):
                         ContribLogin(request, user)
                         group = user.groups.values_list('name', flat=True).first()
                         if group == 'coordinator':
-                            return redirect('service_list')
+                            return redirect('coordinator')
                         else:
                             return redirect('quality')
                     else:
@@ -168,8 +169,8 @@ def login(request):
 
 def logout(request):
     ContribLogout(request)
-    # return redirect('login')
-    return redirect(settings.LOGOUT_REDIRECT_URL)
+    return redirect('login')
+    # return redirect(settings.LOGOUT_REDIRECT_URL)
 
 ############################## RAZORPAY ###################################
 
@@ -237,6 +238,63 @@ def user_dashboard(request):
     
 
 
+# def download_invoice(request):
+#     if not request.user.is_authenticated:
+#         return redirect('login')
+
+#     # Get the last order for the current user
+#     last_order = Order.objects.filter(user=request.user).order_by('-order_date').first()
+
+#     if not last_order:
+#         return HttpResponse("No orders found.", content_type='text/plain')
+
+#     # Calculate the time window for filtering order histories (±5 minutes)
+#     time_window_start = last_order.order_date - timedelta(minutes=5)
+#     time_window_end = last_order.order_date + timedelta(minutes=5)
+
+#     # Get all order histories for the user within the time window
+#     last_order_histories = OrderHistory.objects.filter(
+#         user=request.user,
+#         order_date__range=(time_window_start, time_window_end)
+#     )
+
+#     workbook = openpyxl.Workbook()
+#     sheet = workbook.active
+#     sheet.title = "Invoice"
+
+#     # Add order histories to the sheet
+#     if last_order_histories.exists():
+#         sheet['A1'] = 'Order History'
+#         sheet.append(['Service Name', 'Quantity', 'Amount'])
+#         for history in last_order_histories:
+#             service_name = history.service_name
+#             quantity = history.quantity
+#             amount = history.amount
+#             sheet.append([service_name, quantity, amount])
+
+#     sheet.append([])  # Empty row
+
+#     # Add the last order details to the sheet
+#     if last_order:
+#         sheet.append(['Order'])
+#         sheet.append(['Order ID', 'Customer Name', 'Amount', 'Status', 'Payment ID', 'Signature ID'])
+#         provider_order_id = last_order.provider_order_id
+#         name = last_order.name
+#         amount = last_order.amount
+#         status = last_order.status
+#         payment_id = last_order.payment_id
+#         signature_id = last_order.signature_id
+#         sheet.append([provider_order_id, name, amount, status, payment_id, signature_id])
+
+#     # Save the workbook to a BytesIO object
+#     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = 'attachment; filename=invoice.xlsx'
+#     buffer = BytesIO()
+#     workbook.save(buffer)
+#     buffer.seek(0)
+#     response.write(buffer.read())
+#     return response
+
 def download_invoice(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -257,47 +315,148 @@ def download_invoice(request):
         order_date__range=(time_window_start, time_window_end)
     )
 
-    workbook = openpyxl.Workbook()
-    sheet = workbook.active
-    sheet.title = "Invoice"
-
-    # Add order histories to the sheet
-    if last_order_histories.exists():
-        sheet['A1'] = 'Order History'
-        sheet.append(['Service Name', 'Quantity', 'Amount'])
-        for history in last_order_histories:
-            service_name = history.service_name
-            quantity = history.quantity
-            amount = history.amount
-            sheet.append([service_name, quantity, amount])
-
-    sheet.append([])  # Empty row
-
-    # Add the last order details to the sheet
-    if last_order:
-        sheet.append(['Order'])
-        sheet.append(['Order ID', 'Customer Name', 'Amount', 'Status', 'Payment ID', 'Signature ID'])
-        provider_order_id = last_order.provider_order_id
-        name = last_order.name
-        amount = last_order.amount
-        status = last_order.status
-        payment_id = last_order.payment_id
-        signature_id = last_order.signature_id
-        sheet.append([provider_order_id, name, amount, status, payment_id, signature_id])
-
-    # Save the workbook to a BytesIO object
-    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename=invoice.xlsx'
+    # Create a BytesIO buffer to receive the PDF data
     buffer = BytesIO()
-    workbook.save(buffer)
+
+    # Create a PDF document
+    doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=inch, leftMargin=inch, topMargin=inch, bottomMargin=inch)
+    elements = []
+
+    # Add the new logo
+    logo_path = os.path.join('services', 'static', 'image', 'Logo.png')
+    if os.path.isfile(logo_path):
+        logo = Image(logo_path, width=1.5*inch, height=0.5*inch)
+        elements.append(logo)
+    else:
+        elements.append(Paragraph("Logo not found", getSampleStyleSheet()['Normal']))
+
+    # Add a title
+    styles = getSampleStyleSheet()
+    title_style = styles['Title']
+    title = "Invoice"
+    elements.append(Paragraph(title, title_style))
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    # Customer Details
+    customer_name = last_order.name 
+    order_date = last_order.order_date.strftime('%Y-%m-%d %H:%M:%S')
+    
+    customer_details = [
+        ['Customer Details'],
+        ['Customer Name:', customer_name],
+        ['Date:', order_date]
+    ]
+    
+    customer_table = Table(customer_details, colWidths=[2*inch, 4*inch])
+    customer_table.setStyle(TableStyle([
+        ('SPAN', (0, 1), (-1, 1)),
+        ('BACKGROUND', (0, 1), (-1, 1), colors.lightblue),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('TEXTCOLOR', (0, 0), (-1, 1), colors.black),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ]))
+    elements.append(customer_table)
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    # Service Details Heading
+    service_details_heading = [['Service Details']]
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    service_heading_table = Table(service_details_heading, colWidths=[6*inch])
+    service_heading_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), colors.lightgrey),
+        ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ]))
+    elements.append(service_heading_table)
+
+    # Service Details
+    service_details = [['S.No', 'Service Title', 'Quantity', 'Amount']]
+    for idx, history in enumerate(last_order_histories, start=1):
+        service_details.append([
+            str(idx),
+            history.service_name,
+            str(history.quantity),
+            f"{history.amount:.2f}"
+        ])
+
+    service_table = Table(service_details, colWidths=[0.5*inch, 2*inch, 1.5*inch, 2*inch])
+    service_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ]))
+    elements.append(service_table)
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    # Add last order details
+    order_data = [
+        ['Order ID', 'Customer Name', 'Amount', 'Status', 'Payment ID', 'Signature ID'],
+        [last_order.provider_order_id, last_order.name, f"{last_order.amount:.2f}", last_order.status, last_order.payment_id, last_order.signature_id]
+    ]
+
+    # Transpose order data for columnar display
+    transposed_order_data = list(map(list, zip(*order_data)))
+
+    order_table = Table(transposed_order_data, colWidths=[1*inch, 5*inch])
+    order_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (0, -1), '#d0d0d0'),  # Background for the first column
+        ('TEXTCOLOR', (0, 0), (-1, 0), 'black'),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('GRID', (0, 0), (-1, -1), 1, 'black'),
+    ]))
+    elements.append(order_table)
+
+    # Footer
+    footer_data = [
+        ['Declaration : We declare that this invoice shows the actual price of the services described and that all particulars are true and correct'],
+        ['Signature :'],
+        ['for U4RAD Technologies LLP'],
+        ['Authorized Signatory'],
+        [''],
+        ['U4RAD Technologies LLP'],
+        ['XRAI DIGITAL'],
+        [''],
+        ['C406, 4th Floor Nirvana Courtyard, Sector-50 Gurugram Haryana 122018'],
+        ['PAN: AAGFU2874A, UAM: HR05E0030329 LLPIN: AAR-6317'],
+        ['Contact: 0124 - 4254012, Email: info@xraidigital.com']
+    ]
+
+    footer_table = Table(footer_data, colWidths=[6*inch])
+    footer_table.setStyle(TableStyle([
+        ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.white),
+    ]))
+    elements.append(footer_table)
+
+    # Build the PDF
+    doc.build(elements)
+
+    # Get the PDF data from the buffer
     buffer.seek(0)
-    response.write(buffer.read())
+    response = HttpResponse(buffer, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=invoice.pdf'
     return response
 
 @login_required
 def coordinator_dashboard(request):
     # Fetch all profiles and cart items
-    profiles = Profile.objects.select_related('user').all()
+    profiles = Profile.objects.select_related('user').all().order_by('-id')
     cart_items = Cart.objects.select_related('user', 'service').all()
     name = Order.objects.select_related('user').all()
 
@@ -330,7 +489,35 @@ def update_profile(request):
 
     return render(request, 'services/update_profile.html', {'form': form})
 
+@require_POST
+def upload_file(request, cart_item_id):
+    cart_item = get_object_or_404(Cart, id=cart_item_id)
+    if 'file' in request.FILES:
+        file = request.FILES['file']
+        upload_file = UploadFile(cart=cart_item, file=file)  # set the correct foreign key relationship
+        upload_file.save()
+        return JsonResponse({'status': 'success', 'message': 'File uploaded successfully!'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'No file chosen!'})
 
+def download_latest_file(request, user_id):
+    # Find the latest cart for the user
+    latest_cart = Cart.objects.filter(user_id=user_id).order_by('-id').first()
+    
+    if not latest_cart:
+        return JsonResponse({'error': 'No cart found for this user.'}, status=400)
+    
+    # Find the latest upload file associated with this cart
+    latest_file = UploadFile.objects.filter(cart=latest_cart).order_by('-upload_time').first()
+    
+    if latest_file:
+        file_path = latest_file.file.path
+        with open(file_path, 'rb') as f:
+            response = HttpResponse(f.read(), content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            response['Content-Disposition'] = f'attachment; filename="{latest_file.file.name}"'
+            return response
+    else:
+        return JsonResponse({'error': 'No file found for this cart.'}, status=400)        
 ########################################### 26-06 ###############################################
 @login_required
 def save_cart_data(request):
@@ -850,6 +1037,12 @@ def step4(request):
         request.session['awarddate1'] = request.POST.get('awarddate1', '')
         request.session['award2'] = request.POST.get('award2', '')
         request.session['awarddate2'] = request.POST.get('awarddate2', '')
+        request.session['award3'] = request.POST.get('award3', '')
+        request.session['awarddate3'] = request.POST.get('awarddate3', '')
+        request.session['award4'] = request.POST.get('award4', '')
+        request.session['awarddate4'] = request.POST.get('awarddate4', '')
+        request.session['award5'] = request.POST.get('award5', '')
+        request.session['awarddate5'] = request.POST.get('awarddate5', '')
         request.session['publishlink'] = request.POST.get('publishlink', '')
         return redirect('step5')
     return render(request, 'step4.html')
@@ -902,7 +1095,9 @@ def step7(request):
 
 def submit(request):
     if request.method == 'POST':
+        print("before saving..")
         try:
+
             # Extract and format date fields
             tenthpsyr = parse_date(request.POST.get('tenthpsyr', ''))
             twelthpsyr = parse_date(request.POST.get('twelthpsyr', ''))
@@ -910,6 +1105,9 @@ def submit(request):
             mdpsyr = parse_date(request.POST.get('mdpsyr', ''))
             awarddate1 = parsing_date(request.POST.get('awarddate1', ''))
             awarddate2 = parsing_date(request.POST.get('awarddate2', ''))
+            awarddate3 = parsing_date(request.POST.get('awarddate3', ''))
+            awarddate4 = parsing_date(request.POST.get('awarddate4', ''))
+            awarddate5 = parsing_date(request.POST.get('awarddate5', ''))
 
            # Helper function to get a list of selected options' names
             def get_selected_options_names(field_name):
@@ -974,6 +1172,12 @@ def submit(request):
                 exinstitution3=request.POST.get('exinstitution3', ''),
                 exstdate3=parsing_date(request.POST.get('exstdate3', '')),
                 exenddate3=parsing_date(request.POST.get('exenddate3', '')),
+                exinstitution4=request.POST.get('exinstitution4', ''),
+                exstdate4=parsing_date(request.POST.get('exstdate4', '')),
+                exenddate4=parsing_date(request.POST.get('exenddate4', '')),
+                exinstitution5=request.POST.get('exinstitution5', ''),
+                exstdate5=parsing_date(request.POST.get('exstdate5', '')),
+                exenddate5=parsing_date(request.POST.get('exenddate5', '')),
                 personal_information=personal_info
             )
 
@@ -983,6 +1187,12 @@ def submit(request):
                 awarddate1=awarddate1,
                 award2=request.POST.get('award2', ''),
                 awarddate2=awarddate2,
+                award3=request.POST.get('award3', ''),
+                awarddate3=awarddate3,
+                award4=request.POST.get('award4', ''),
+                awarddate4=awarddate4,
+                award5=request.POST.get('award5', ''),
+                awarddate5=awarddate5,
                 publishlink=request.POST.get('publishlink', ''),
                 personal_information=personal_info
             )
@@ -1034,6 +1244,7 @@ def submit(request):
                 personal_information=personal_info
             )
 
+            print("saving rate list...")
             # Create Rate List Instance 
             rate_list = RateList.objects.create(
                 mri1=int(request.POST.get('mri1', 200)),
@@ -1053,6 +1264,8 @@ def submit(request):
                 xray2=int(request.POST.get('xray2', 75)),
                 radiologist=personal_info
             )
+            
+
 
             # Continue creating other model instances as needed
 
@@ -1080,9 +1293,9 @@ def success(request, pk):
     return render(request, 'success.html', context)
 
 # This is the view for the rate list .
-@login_required
 def rate_list(request, radiologist_id):
     radiologist = get_object_or_404(PersonalInformation, pk=radiologist_id)
+    # personal_info = get_object_or_404(PersonalInformation, pk=pk)
     rate_list = get_object_or_404(RateList, radiologist=radiologist)
     return render(request, 'rate_list.html', {'rate_list': rate_list, 'radiologist': radiologist})
 
@@ -1302,6 +1515,12 @@ def view_complete_form(request, pk):
                 'exinstitution3': experience_info.exinstitution3,
                 'exstdate3': experience_info.exstdate3,
                 'exenddate3': experience_info.exenddate3,
+                'exinstitution4': experience_info.exinstitution4,
+                'exstdate4': experience_info.exstdate4,
+                'exenddate4': experience_info.exenddate4,
+                'exinstitution5': experience_info.exinstitution5,
+                'exstdate5': experience_info.exstdate5,
+                'exenddate5': experience_info.exenddate5,
                 # Add more fields as needed
             },
             'achievement_info': {
@@ -1309,6 +1528,12 @@ def view_complete_form(request, pk):
                 'awarddate1': achievement_info.awarddate1,
                 'award2': achievement_info.award2,
                 'awarddate2': achievement_info.awarddate2,
+                'award3': achievement_info.award3,
+                'awarddate3': achievement_info.awarddate3,
+                'award4': achievement_info.award4,
+                'awarddate4': achievement_info.awarddate4,
+                'award5': achievement_info.award5,
+                'awarddate5': achievement_info.awarddate5,
                 'publishlink': achievement_info.publishlink,
                 # Add more fields as needed
             },
@@ -1585,7 +1810,13 @@ def generate_pdf(request, pk):
     buffer = io.BytesIO()
     p = canvas.Canvas(buffer, pagesize=letter)
     width, height = letter
-    y = height - 40
+    y = height - 80
+
+    # Draw the logo at the top center
+    logo_path = 'services/static/image/Logo.png' 
+    logo_width = 100  
+    logo_height = 30  
+    p.drawImage(logo_path, x=(width - logo_width) / 2, y=height - logo_height - 20, width=logo_width, height=logo_height)
 
     def add_new_page(p, y):
         p.showPage()
@@ -1717,23 +1948,45 @@ def generate_pdf(request, pk):
 
     # Draw Experience Details section
     y = draw_text_heading("Experience Details","", y, p)
-    y = draw_text("Experience 1 Institution", experience_info.exinstitution1 or 'N/A', y, p)
-    y = draw_text("Experience 1 Starting Date", experience_info.exstdate1 or 'N/A', y, p)
-    y = draw_text("Experience 1 Ending Date", experience_info.exenddate1 or 'N/A', y, p)
-    y = draw_text("Experience 2 Institution", experience_info.exinstitution2 or 'N/A', y, p)
-    y = draw_text("Experience 2 Starting Date", experience_info.exstdate2 or 'N/A', y, p)
-    y = draw_text("Experience 2 Ending Date", experience_info.exenddate2 or 'N/A', y, p)
-    y = draw_text("Experience 3 Institution", experience_info.exinstitution3 or 'N/A', y, p)
-    y = draw_text("Experience 3 Starting Date", experience_info.exstdate3 or 'N/A', y, p)
-    y = draw_last_text("Experience 3 Ending Date", experience_info.exenddate3 or 'N/A', y, p)
+    if experience_info.exinstitution1:
+        y = draw_text("Experience Institution", experience_info.exinstitution1 or 'N/A', y, p)
+        y = draw_text("Experience Starting Date", experience_info.exstdate1 or 'N/A', y, p)
+        y = draw_last_text("Experience Ending Date", experience_info.exenddate1 or 'N/A', y, p)
+    if experience_info.exinstitution2:
+        y = draw_text("Experience Institution", experience_info.exinstitution2 or 'N/A', y, p)
+        y = draw_text("Experience Starting Date", experience_info.exstdate2 or 'N/A', y, p)
+        y = draw_last_text("Experience Ending Date", experience_info.exenddate2 or 'N/A', y, p)
+    if experience_info.exinstitution3:
+        y = draw_text("Experience Institution", experience_info.exinstitution3 or 'N/A', y, p)
+        y = draw_text("Experience Starting Date", experience_info.exstdate3 or 'N/A', y, p)
+        y = draw_last_text("Experience Ending Date", experience_info.exenddate3 or 'N/A', y, p)
+    if experience_info.exinstitution4:
+        y = draw_text("Experience Institution", experience_info.exinstitution2 or 'N/A', y, p)
+        y = draw_text("Experience Starting Date", experience_info.exstdate2 or 'N/A', y, p)
+        y = draw_last_text("Experience Ending Date", experience_info.exenddate2 or 'N/A', y, p)
+    if experience_info.exinstitution5:
+        y = draw_text("Experience Institution", experience_info.exinstitution3 or 'N/A', y, p)
+        y = draw_text("Experience Starting Date", experience_info.exstdate3 or 'N/A', y, p)
+        y = draw_last_text("Experience Ending Date", experience_info.exenddate3 or 'N/A', y, p)
     
 
     # Draw Achievement Details section
-    y = draw_text_heading("Achievement Details","", y-39, p)
-    y = draw_text("Award 1", achievement_info.award1 or 'N/A', y, p)
-    y = draw_text("Award Date 1", achievement_info.awarddate1 or 'N/A', y, p)
-    y = draw_text("Award 2", achievement_info.award2 or 'N/A', y, p)
-    y = draw_text("Award Date 2", achievement_info.awarddate2 or 'N/A', y, p)
+    y = draw_text_heading("Achievement Details","", y, p)
+    if achievement_info.award1:
+        y = draw_text("Award ", achievement_info.award1 or 'N/A', y, p)
+        y = draw_last_text("Award Date ", achievement_info.awarddate1 or 'N/A', y, p)
+    if achievement_info.award2:
+        y = draw_text("Award ", achievement_info.award2 or 'N/A', y, p)
+        y = draw_last_text("Award Date ", achievement_info.awarddate2 or 'N/A', y, p)
+    if achievement_info.award3:
+        y = draw_text("Award ", achievement_info.award1 or 'N/A', y, p)
+        y = draw_last_text("Award Date ", achievement_info.awarddate1 or 'N/A', y, p)
+    if achievement_info.award4:
+        y = draw_text("Award ", achievement_info.award1 or 'N/A', y, p)
+        y = draw_last_text("Award Date ", achievement_info.awarddate1 or 'N/A', y, p)
+    if achievement_info.award5:
+        y = draw_text("Award ", achievement_info.award2 or 'N/A', y, p)
+        y = draw_last_text("Award Date ", achievement_info.awarddate2 or 'N/A', y, p)
     y = draw_last_text("Publish Link", achievement_info.publishlink or 'N/A', y, p)
     
 
@@ -1775,20 +2028,24 @@ def generate_pdf(request, pk):
     y = draw_text(f"Friday:",availability_info.friday or 'N/A', y, p)
     y = draw_text(f"Saturday:",availability_info.saturday or 'N/A', y, p)
     y = draw_text(f"Sunday:",availability_info.sunday or 'N/A', y, p)
-    y = draw_text(f"Time Slot 1 (start):",availability_info.starttime1 or 'N/A', y, p)
-    y = draw_text(f"Time Slot 1 (end):",availability_info.endtime1 or 'N/A', y, p)
-    y = draw_text(f"Time Slot 2 (start):",availability_info.starttime2 or 'N/A', y, p)
-    y = draw_text(f"Time Slot 2 (end):",availability_info.endtime2 or 'N/A', y, p)
-    y = draw_text(f"Time Slot 3 (start):",availability_info.starttime3 or 'N/A', y, p)
-    y = draw_text(f"Time Slot 3 (end)",availability_info.endtime3 or 'N/A', y, p)
-    y = draw_text(f"Time Slot 4 (start):",availability_info.starttime4 or 'N/A', y, p)
-    y = draw_text(f"Time Slot 4 (end):",availability_info.endtime4 or 'N/A', y, p)
+    if availability_info.starttime1:
+        y = draw_text(f"Time Slot (start):",availability_info.starttime1 or 'N/A', y, p)
+        y = draw_last_text(f"Time Slot (end):",availability_info.endtime1 or 'N/A', y, p)
+    if availability_info.starttime2:
+        y = draw_text(f"Time Slot (start):",availability_info.starttime2 or 'N/A', y, p)
+        y = draw_last_text(f"Time Slot (end):",availability_info.endtime2 or 'N/A', y, p)
+    if availability_info.starttime3:
+        y = draw_text(f"Time Slot (start):",availability_info.starttime3 or 'N/A', y, p)
+        y = draw_last_text(f"Time Slot (end)",availability_info.endtime3 or 'N/A', y, p)
+    if availability_info.starttime4:
+        y = draw_text(f"Time Slot (start):",availability_info.starttime4 or 'N/A', y, p)
+        y = draw_last_text(f"Time Slot (end):",availability_info.endtime4 or 'N/A', y, p)
 
     p.save()
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=False, filename=f"{personal_info.first_name}_{personal_info.last_name}_form_data_{personal_info.pk}.pdf")
 
-# email_counts= {}
+
 def send_confirmation_mail(request, user_id):
     # Fetch the PersonalInformation instance
     person = get_object_or_404(PersonalInformation, pk=user_id)
@@ -1796,34 +2053,138 @@ def send_confirmation_mail(request, user_id):
     # Retrieve RateList objects associated with the PersonalInformation instance
     rate_lists = RateList.objects.filter(radiologist=person)
 
+    # Get the current date
+    current_date = timezone.now().strftime("%d %B %Y")
+
+    # Fetch time availability info
+    time_availabilities = AvailabilityDetails.objects.filter(personal_information=person)
+    
+    # Initialize lists to hold days and time slots
+    days = []
+    slots = []
+
+    for availability in time_availabilities:
+        # Collect time slots for each day
+        if availability.monday:
+            days.append('Monday')
+        if availability.tuesday:
+            days.append('Tuesday')
+        if availability.wednesday:
+            days.append('Wednesday')
+        if availability.thursday:
+            days.append('Thursday')
+        if availability.friday:
+            days.append('Friday')
+        if availability.saturday:
+            days.append('Saturday')
+        if availability.sunday:
+            days.append('Sunday')
+
+        if availability.starttime1:
+            slots.extend([
+                    f"{availability.starttime1} to {availability.endtime1}",
+                ])
+        if availability.starttime2:
+            slots.extend([
+                    f"{availability.starttime2} to {availability.endtime2}",
+                ])
+        if availability.starttime3:
+            slots.extend([
+                    f"{availability.starttime3} to {availability.endtime3}",
+                ])
+        if availability.starttime4:
+            slots.extend([
+                    f"{availability.starttime4} to {availability.endtime4}",
+                ])
+
+    # Join days with commas and 'and'
+    if len(days) > 1:
+        days_info = ", ".join(days[:-1]) + " and " + days[-1]
+    elif days:
+        days_info = days[0]
+    else:
+        days_info = "No days specified"
+
+    # Join slots with commas
+    if len(slots) > 1:
+        slots_info = ", ".join(slots[:-1]) + " and " + slots[-1]
+    elif slots:
+        slots_info = slots[0]
+    else:
+        slots_info = "No time slots available"
+    # slots_info = ", ".join(slots) if slots else "No time slots available"
+
+    # Format timings information
+    timings_info = f" {days_info} with the Time Slots: {slots_info}"
+
+    # Fetch reporting availability info
+    reporting_availabilities = ReportingAreaDetails.objects.filter(personal_information=person)
+    
+    for availability in reporting_availabilities:
+        sections = []
+        if availability.mriopt:
+            sections.append(f"MRI Options: {availability.mriopt}")
+        if availability.mriothers:
+            sections.append(f"MRI Others: {availability.mriothers}")
+        if availability.ctopt:
+            sections.append(f"CT Options: {availability.ctopt}")
+        if availability.ctothers:
+            sections.append(f"CT Others: {availability.ctothers}")
+        if availability.xray:
+            sections.append("X-Ray")
+        if availability.others:
+            sections.append(f"Other: {availability.otherText}")
+        
+
+    # Join sections with commas
+    if len(sections) > 1:
+        role_sections = ", ".join(sections[:-1]) + " and " + sections[-1]
+    elif slots:
+        role_sections = sections[0]
+    else:
+        role_sections = "No time slots available"
+    # role_sections = ", ".join(reporting_sections)
+
     # Email subject and message
     subject = 'Confirmation Mail from U4RAD'
-    message = render_to_string('confirmation_mail_template.html', {
+    message = render_to_string('confirmation_mail_template.txt', {
         'person': person,
         'rate_lists': rate_lists,
+        'current_date': current_date,
+        'timings_info': timings_info,
+        'role_sections': role_sections,
     })
 
     # Render HTML message
     html_message = render_to_string('confirmation_mail_template.html', {
         'person': person,
         'rate_lists': rate_lists,
+        'current_date': current_date,
+        'timings_info': timings_info,
+        'role_sections': role_sections,
     })
 
     # Send the email
-    send_mail(
-        subject,
-        message,
-        settings.DEFAULT_FROM_EMAIL,
-        [person.email],  # Assuming 'email' is a field in PersonalInformation
-        fail_silently=False,
-        html_message=html_message,
-    )
+    try:
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [person.email],  # Assuming 'email' is a field in PersonalInformation
+            fail_silently=False,
+            html_message=html_message,
+        )
+        person.email_sent = True
+        person.save()
+        response_data = {
+            'status': 'success',
+            'message': 'Email Sent Successfully!'
+        }
+    except Exception as e:
+        response_data = {
+            'status': 'error',
+            'message': 'Email Not Sent! Try after some time.'
+        }
 
-    # if user_id in email_counts:
-    #     email_counts[user_id]+= 1
-    # else:
-    #     email_counts[user_id]= 1
+    return JsonResponse(response_data)
 
-    messages.success(request, 'Email Sent Successfully!')
-
-    return redirect('coordinator')

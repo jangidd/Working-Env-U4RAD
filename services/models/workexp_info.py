@@ -11,6 +11,12 @@ class ExperienceDetails(models.Model):
     exinstitution3 = models.CharField(max_length=30, null=True, default=None, blank=True)
     exstdate3 = models.DateField(null=True, default=None, blank=True)
     exenddate3 = models.DateField(null=True, default=None, blank=True)
+    exinstitution4 = models.CharField(max_length=30, null=True, default=None, blank=True)
+    exstdate4 = models.DateField(null=True, default=None, blank=True)
+    exenddate4 = models.DateField(null=True, default=None, blank=True)
+    exinstitution5 = models.CharField(max_length=30, null=True, default=None, blank=True)
+    exstdate5 = models.DateField(null=True, default=None, blank=True)
+    exenddate5 = models.DateField(null=True, default=None, blank=True)
     personal_information = models.ForeignKey(
         PersonalInformation,
         on_delete=models.CASCADE,

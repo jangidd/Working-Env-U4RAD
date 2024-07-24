@@ -95,23 +95,68 @@
 
         <!-- Experience Details -->
         <h3 style="background-color: lightblue;">Experience Details</h3>
-        <p><span class="label">Institution 1:</span> {{ experience_info.exinstitution1|default:"None" }}</p>
-        <p><span class="label">Start Date 1:</span> {{ experience_info.exstdate1|default:"None" }}</p>
-        <p><span class="label">End Date 1:</span> {{ experience_info.exenddate1|default:"None" }}</p>
-        <p><span class="label">Institution 2:</span> {{ experience_info.exinstitution2|default:"None" }}</p>
-        <p><span class="label">Start Date 2:</span> {{ experience_info.exstdate2|default:"None" }}</p>
-        <p><span class="label">End Date 2:</span> {{ experience_info.exenddate2|default:"None" }}</p>
-        <p><span class="label">Institution 3:</span> {{ experience_info.exinstitution3|default:"None" }}</p>
-        <p><span class="label">Start Date 3:</span> {{ experience_info.exstdate3|default:"None" }}</p>
-        <p><span class="label">End Date 3:</span> {{ experience_info.exenddate3|default:"None" }}</p>
+        {% if experience_info.exinstitution1 %}
+            <p><span class="label">Institution :</span> {{ experience_info.exinstitution1 }}</p>
+            <p><span class="label">Start Date :</span> {{ experience_info.exstdate1 }}</p>
+            <p><span class="label">End Date :</span> {{ experience_info.exenddate1 }}</p>
+        {% endif %}
+        {% if experience_info.exinstitution2 %}
+            <p>----------------------------------------------</p>
+            <p><span class="label">Institution :</span> {{ experience_info.exinstitution2 }}</p>
+            <p><span class="label">Start Date :</span> {{ experience_info.exstdate2 }}</p>
+            <p><span class="label">End Date :</span> {{ experience_info.exenddate2 }}</p>
+        {% endif %}
+        {% if experience_info.exinstitution3 %}
+            <p>----------------------------------------------</p>
+            <p><span class="label">Institution :</span> {{ experience_info.exinstitution3 }}</p>
+            <p><span class="label">Start Date :</span> {{ experience_info.exstdate3 }}</p>
+            <p><span class="label">End Date :</span> {{ experience_info.exenddate3 }}</p>
+        {% endif %}
+        {% if experience_info.exinstitution4 %}
+            <p>----------------------------------------------</p>
+            <p><span class="label">Institution :</span> {{ experience_info.exinstitution4 }}</p>
+            <p><span class="label">Start Date :</span> {{ experience_info.exstdate4 }}</p>
+            <p><span class="label">End Date :</span> {{ experience_info.exenddate4 }}</p>
+        {% endif %}
+        {% if experience_info.exinstitution5 %}
+            <p>----------------------------------------------</p>
+            <p><span class="label">Institution :</span> {{ experience_info.exinstitution5 }}</p>
+            <p><span class="label">Start Date :</span> {{ experience_info.exstdate5 }}</p>
+            <p><span class="label">End Date :</span> {{ experience_info.exenddate5 }}</p>
+        {% endif %}
 
         <!-- Achievement Details -->
         <h3 style="background-color: lightblue;">Achievement Details</h3>
-        <p><span class="label">Award 1:</span> {{ achievement_info.award1|default:"None" }}</p>
-        <p><span class="label">Award Date 1:</span> {{ achievement_info.awarddate1|default:"None" }}</p>
-        <p><span class="label">Award 2:</span> {{ achievement_info.award2|default:"None" }}</p>
-        <p><span class="label">Award Date 2:</span> {{ achievement_info.awarddate2|default:"None" }}</p>
-        <p><span class="label">Publication Link:</span> {{ achievement_info.publishlink|default:"None" }}</p>
+        {% if achievement_info.award1 %}
+            <p><span class="label">Award :</span> {{ achievement_info.award1 }}</p>
+            <p><span class="label">Award Date :</span> {{ achievement_info.awarddate1 }}</p>
+        {% endif %}
+        {% if achievement_info.award2 %}
+            <p>----------------------------------------------</p>
+            <p><span class="label">Award :</span> {{ achievement_info.award2 }}</p>
+            <p><span class="label">Award Date :</span> {{ achievement_info.awarddate2 }}</p>
+        {% endif %}
+        {% if achievement_info.award3 %}
+            <p>----------------------------------------------</p>
+            <p><span class="label">Award :</span> {{ achievement_info.award3 }}</p>
+            <p><span class="label">Award Date :</span> {{ achievement_info.awarddate3 }}</p>
+        {% endif %}
+        {% if achievement_info.award4 %}
+            <p>----------------------------------------------</p>
+            <p><span class="label">Award :</span> {{ achievement_info.award4 }}</p>
+            <p><span class="label">Award Date :</span> {{ achievement_info.awarddate4 }}</p>
+        {% endif %}
+        {% if achievement_info.award5 %}
+            <p>----------------------------------------------</p>
+            <p><span class="label">Award :</span> {{ achievement_info.award5 }}</p>
+            <p><span class="label">Award Date :</span> {{ achievement_info.awarddate5 }}</p>
+        {% endif %}
+        {% if achievement_info.publishlink %}
+            <p>----------------------------------------------</p>
+            <p><span class="label">Publication Link:</span>{% if achievement_info.publishlink %}<a href="{{ achievement_info.publishlink.url }}">{{ achievement_info.publishlink }}</a>{% else %}None{% endif %}</p>
+        {% endif %}
+
+
 
         <!-- Banking Details -->
         <h3 style="background-color: lightblue;">Banking Details</h3>
@@ -145,14 +190,26 @@
         <p><span class="label">Friday:</span> {{ availability_info.friday|default:"None" }}</p>
         <p><span class="label">Saturday:</span> {{ availability_info.saturday|default:"None" }}</p>
         <p><span class="label">Sunday:</span> {{ availability_info.sunday|default:"None" }}</p>
+        {% if availability_info.starttime1 %}
+        <p>----------------------------------------------</p>
         <p><span class="label">Start Time 1:</span> {{ availability_info.starttime1|default:"None" }}</p>
         <p><span class="label">End Time 1:</span> {{ availability_info.endtime1|default:"None" }}</p>
+        {% endif %}
+        {% if availability_info.starttime2 %}
+        <p>----------------------------------------------</p>
         <p><span class="label">Start Time 2:</span> {{ availability_info.starttime2|default:"None" }}</p>
         <p><span class="label">End Time 2:</span> {{ availability_info.endtime2|default:"None" }}</p>
+        {% endif %}
+        {% if availability_info.starttime3 %}
+        <p>----------------------------------------------</p>
         <p><span class="label">Start Time 3:</span> {{ availability_info.starttime3|default:"None" }}</p>
         <p><span class="label">End Time 3:</span> {{ availability_info.endtime3|default:"None" }}</p>
+        {% endif %}
+        {% if availability_info.starttime4 %}
+        <p>----------------------------------------------</p>
         <p><span class="label">Start Time 4:</span> {{ availability_info.starttime4|default:"None" }}</p>
         <p><span class="label">End Time 4:</span> {{ availability_info.endtime4|default:"None" }}</p>
+        {% endif %}
 
         
         

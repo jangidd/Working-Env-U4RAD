@@ -1,0 +1,40 @@
+Dear Dr. {{ person.first_name }} {{ person.last_name }},
+
+We at U4RAD would like to thank you for the interest you have shown in our organization. Given below are the tele-radiology reporting service offer details, as per your discussion with Mr Partha/Dr. Ruchi:
+
+Role: Consultant Radiologist, you will be independently reporting radiology cases – All CT & X-RAY assigned to you, following the quality processes, laid down as per U4RAD, & reputed clinical organizations. You will be provided with online software (PACS), that will give you access to images and relevant clinical information required for reporting. The standard TAT (turnaround time) for regular (Non-Emergency) reporting is 2 (Two) hours. In case of Emergency reporting, you will be intimated in advance for the same, and reporting TAT will be 30 (Thirty) minutes for such cases.
+
+Type of Engagement: Retainership: You will work with U4RAD on retainer ship basis and be paid as per rates discussed (shown in the rate card given below), At a later date dependent on certain factors we may discuss, and review the rates accordingly. Remuneration is subject to tax deduction at source (TDS) and any other withholding taxes that are deductible as per law.
+{% for rate_list in rate_lists %}
+Sl    Modality    Case Type    Doctor Rate
+1.    MRI         Head/Brain/Chest/Abdomen/Pelvis/PNS/Face               ₹ {{ rate_list.mri1 }}
+2.    MRI         MRI Screening(per body parts)                          ₹ {{ rate_list.mri2 }}
+3.    MRI         MSK                                                    ₹ {{ rate_list.mri3 }}
+4.    MRI         Whole Abdomen                                          ₹ {{ rate_list.mri4 }}
+5.    MRI         Special Cases(ex. Neurography, Defacography, Breast)   ₹ {{ rate_list.mri5 }}
+6.    MRI         MRI Angiography(per body parts)                        ₹ {{ rate_list.mri6 }}
+7.    CT          Head/Brain/PNS/Face/Orbit                              ₹ {{ rate_list.ct1 }}
+8.    CT          NCCT Spine                                             ₹ {{ rate_list.ct2 }}
+9.    CT          HRCT Chest/KUB                                         ₹ {{ rate_list.ct3 }}
+10.   CT          Abdomen/Pelvis/Neck                                    ₹ {{ rate_list.ct4 }}
+11.   CT          Whole Abdomen                                          ₹ {{ rate_list.ct5 }}
+12.   CT          CT Angiography(per body parts)                         ₹ {{ rate_list.ct6 }}
+13.   CT          Cardiac Angiography                                    ₹ {{ rate_list.ct7 }}
+14.   X-Ray       Per Exposure - any body parts                          ₹ {{ rate_list.xray1 }}
+15.   X-Ray       Special Procedure - Barium/IVP/HSG                     ₹ {{ rate_list.xray2 }}
+{% endfor %}
+Note: Radiologists are required to have appropriate computer and high-speed internet connection to view images and report.
+
+Timings: Monday to Saturday day 6 pm to 12 am (IST) & Sunday 9 am - 12 am
+Professional Indemnity insurance: You will have your own self-provided professional indemnity insurance of INR 20 (Twenty) lakhs for the period of engagement.
+Date of Joining: 29th April 2024
+Engagement Period: 1 (One) year, with the option of either party to end this engagement with 30-day notice period.
+Location of Work: Work from home or at U4RAD designated centre.
+
+You are requested to send us a signed copy of this letter or respond to this mail as a sign of acceptance of this offer, as soon as possible, along with which we request you to please provide us references.
+
+Please call Dr Kriti (9717917604) for any clarification. She will facilitate you with the onboarding process as well as coordinate with you for case allocation and reporting.
+
+Thanks
+Regards,
+HR Team - U4RAD Technologies Pvt Ltd.

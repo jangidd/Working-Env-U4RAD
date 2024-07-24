@@ -32,6 +32,8 @@ urlpatterns = [
     path('download-invoice/', views.download_invoice, name='download_invoice'),
     path('coordinator_dashboard/', views.coordinator_dashboard, name='coordinator_dashboard'),
     path('update_casecount/<int:cart_item_id>/', views.update_casecount, name='update_casecount'),
+    path('upload_file/<int:cart_item_id>/', views.upload_file, name='upload_file'),
+    path('download_latest_file/<int:user_id>/', views.download_latest_file, name='download_latest_file'),
      path('user/details/', views.get_user_details, name='get_user_details'),
 
     ################################### Multiform URL's ########################################

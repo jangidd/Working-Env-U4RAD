@@ -95,9 +95,13 @@
 
 <div class="container services-container">
   <button class="btn-add-service" onclick="window.location.href='{% url 'service_rate_create' service.id %}'"><strong>+ </strong>Add New Rate</button>
+  <div>
+    <button class="btn btn-success" onclick="window.location.href='{% url 'service_list' %}'">Service Page</button>
+  </div>
   <div class="services-header">
     {{ service.service_name }} Rates
   </div>
+  
   <ul class="list-group">
     {% for rate in rates %}
       <li class="list-group-item">

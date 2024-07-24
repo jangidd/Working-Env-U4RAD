@@ -81,20 +81,20 @@
                     <div class="title">Personal Information :</div>
                     <div class="field">
                         <div class="label">First Name</div>
-                        <input type="text" name="first_name" class="form-field" />
+                        <input type="text" name="first_name" class="form-field" required/>
                     </div>
                     <div class="field">
                         <div class="label">Last Name</div>
-                        <input type="text" name="last_name" class="form-field" />
+                        <input type="text" name="last_name" class="form-field" required/>
                     </div>
                     <div class="field">
                         <div id="id_email" class="label">Email ID</div>
-                        <input type="email" name="email" class="form-field" placeholder="xyz@gmail.com"  />
+                        <input type="email" name="email" class="form-field" placeholder="xyz@gmail.com"  required/>
                         <div id="email-error" class="error-message" style="color: red;"></div>
                     </div>
                     <div class="field">
                         <div class="label">Create Password</div>
-                        <input id="password" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-sm form-field" maxlength="15" >
+                        <input id="password" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-sm form-field" maxlength="15" required>
                         show
                         <input type="checkbox" onclick="passWord()" >
                     </div>
@@ -107,19 +107,19 @@
                     </div>
                     <div class="field">
                         <div class="label">Confirm Password</div>
-                        <input id="cnfpassword" type="password" name="cnfpassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-sm form-field" maxlength="15" >  
+                        <input id="cnfpassword" type="password" name="cnfpassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control form-control-sm form-field" maxlength="15" required>  
                         show
                         <input type="checkbox" onclick="cnfpassWord()" style="display: inline-block;" />
                     </div>
                     
                     <div class="field">
                         <div class="label">Address</div>
-                        <input type="text" name="address"class="form-field" />
+                        <input type="text" name="address"class="form-field" required/>
                     </div>
                     <div class="field">
                         <div class="label">Contact No.</div>
-                        <div class="tel-input-field">
-                            <input type="tel" id="contact_no" name="contact_no" class="form-field">
+                        <div class="tel-input-field form-field">
+                            <input type="tel" id="contact_no" name="contact_no" maxlength="15" class="form-field" required>
                         </div>
                     </div>
                     
@@ -127,15 +127,15 @@
                     
                     <div class="field">
                         <div class="label">Upload Resume</div>
-                        <input type="file" name="resume" class="form-field" />
+                        <input type="file" name="resume" class="form-field" required/>
                     </div>
                     <div class="field">
                         <div class="label">Upload Passport Size Photo</div>
-                        <input type="file" name="photo" class="form-field" />
+                        <input type="file" name="photo" class="form-field" required/>
                     </div>
                     <div class="field">
                         <div class="label">Years of Experience</div>
-                        <input id="experience_years" class="form-field" type="number" name="experience_years" min="0" max="50" maxlength="2" />
+                        <input id="experience_years" class="form-field" type="number" name="experience_years" min="0" max="50" maxlength="2" required/>
                     </div>
 
                 </div>
@@ -156,84 +156,84 @@
                         <br>
                         <div class="field">
                             <div class="label">School Name</div>
-                            <input type="text" name="tenthname" class="form-field" />
+                            <input type="text" name="tenthname" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Grade</div>
-                            <input type="text" name="tenthgrade" class="form-field" />
+                            <input type="text" name="tenthgrade" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Passing Year</div>
-                            <input type="month" name="tenthpsyr" class="form-field" />
+                            <input type="month" name="tenthpsyr" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Upload 10th Certificate</div>
-                            <input type="file" name="tenthcertificate" class="form-field" />
+                            <input type="file" name="tenthcertificate" class="form-field" required/>
                         </div>
                         <br>
                         <h3>Class 12th details</h3>
                         <br>
                         <div class="field">
                             <div class="label">School Name</div>
-                            <input type="text" name="twelthname"  class="form-field" />
+                            <input type="text" name="twelthname"  class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Grade</div>
-                            <input type="text" name="twelthgrade" class="form-field" />
+                            <input type="text" name="twelthgrade" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Passing Year</div>
-                            <input type="month" name="twelthpsyr" class="form-field" />
+                            <input type="month" name="twelthpsyr" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Upload 12th Certificate</div>
-                            <input type="file" name="twelthcertificate" class="form-field" />
+                            <input type="file" name="twelthcertificate" class="form-field" required/>
                         </div>
                         <br>
                         <h3>MBBS Details</h3>
                         <br>
                         <div class="field">
                             <div class="label">Institution Name</div>
-                            <input type="text" name="mbbsinstitution" class="form-field" />
+                            <input type="text" name="mbbsinstitution" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Grade</div>
-                            <input type="text" name="mbbsgrade"class="form-field" />
+                            <input type="text" name="mbbsgrade"class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Passing Year</div>
-                            <input type="month" name="mbbspsyr" class="form-field" />
+                            <input type="month" name="mbbspsyr" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Upload Marksheets (Use ctrl to upload multiple files)</div>
-                            <input type="file" multiple name="mbbsmarksheet" class="form-field"/>
+                            <input type="file" multiple name="mbbsmarksheet" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Upload Degree</div>
-                            <input type="file" name="mbbsdegree" class="form-field" />
+                            <input type="file" name="mbbsdegree" class="form-field" required/>
                         </div>
                         <br>
                          <h3>MD/DNB Details</h3>
                          <br>
                         <div class="field">
                             <div class="label">Institution Name</div>
-                            <input type="text" name="mdinstitution" class="form-field"/>
+                            <input type="text" name="mdinstitution" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Grade</div>
-                            <input type="text" name="mdgrade" class="form-field" />
+                            <input type="text" name="mdgrade" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Passing Year</div>
-                            <input type="month" name="mdpsyr" class="form-field" />
+                            <input type="month" name="mdpsyr" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Upload Marksheets (Use ctrl to upload multiple files)</div>
-                            <input type="file" multiple name="mdmarksheet" class="form-field" />
+                            <input type="file" multiple name="mdmarksheet" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Upload Degree</div>
-                            <input type="file" name="mddegree" class="form-field" />
+                            <input type="file" name="mddegree" class="form-field" required/>
                         </div>
                         <br>
                         <h3>About You</h3>
@@ -256,11 +256,11 @@
                         <br>
                         <div class="field">
                             <div class="label">Name of the Institution</div>
-                            <input type="text" name="exinstitution1" class="form-field" />
+                            <input type="text" name="exinstitution1" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">Starting Date</div>
-                            <input type="date" name="exstdate1" class="form-field" />
+                            <input type="date" name="exstdate1" class="form-field" required/>
                         </div>
                         <div class="field">
                             <div class="label">End Date (Leave the field if Currently working)</div>
@@ -293,7 +293,7 @@
                             <input type="date" name="exstdate3" class="form-field" />
                         </div>
                         <div class="field">
-                            <div class="label">End Date / Currently Working</div>
+                            <div class="label">End Date (Leave the field if Currently working)</div>
                             <input type="date" name="exenddate3" class="form-field" />
                         </div>
                         </div>
@@ -316,11 +316,11 @@
                     <br>
                     <div class="field">
                         <div class="label">Name of the Award</div>
-                        <input type="text" name="award1" class="form-field" />
+                        <input type="text" name="award1" class="form-field" required/>
                     </div>
                     <div class="field">
                         <div class="label">Date of Recieving the Award</div>
-                        <input type="date" name="awarddate1" class="form-field" />
+                        <input type="date" name="awarddate1" class="form-field" required/>
                     </div>
                     <br>
                     <h3>Recognition / Awards (2)</h3>
@@ -357,43 +357,43 @@
                             <br>
                             <div class="field">
                                 <div class="label">Account Holder's Name</div>
-                                <input type="text" name="accholdername" class="form-field" />
+                                <input type="text" name="accholdername" class="form-field" required/>
                             </div>
                             <div class="field">
                                 <div class="label">Bank Name</div>
-                                <input type="text" name="bankname" class="form-field" />
+                                <input type="text" name="bankname" class="form-field" required/>
                             </div>
                             <div class="field">
                                 <div class="label">Branch Name</div>
-                                <input type="text" name="branchname" class="form-field" />
+                                <input type="text" name="branchname" class="form-field" required/>
                             </div>
                             <div class="field">
                                 <div class="label">Account Number</div>
-                                <input type="text" name="acnumber" maxlength="20" class="form-field" />
+                                <input type="number" id="acnumber" name="acnumber" maxlength="20" class="form-field" required/>
                             </div>
                             <div class="field">
                                 <div class="label">IFSC Code</div>
-                                <input type="text" name="ifsc" class="form-field" />
+                                <input type="text" name="ifsc" class="form-field" required/>
                             </div>
                             <div class="field">
                                 <div class="label">PAN Card Number</div>
-                                <input type="text" class="form-field" name="pancardno" maxlength="10"/>
+                                <input type="text" class="form-field" name="pancardno" maxlength="10" placeholder="(Use Capital Letters)" required/>
                             </div>
                             <div class="field">
                                 <div class="label">AADHAR Card Number</div>
-                                <input type="text" name="aadharcardno" maxlength="12" class="form-field"/>
+                                <input type="number" id="aadharcardno" name="aadharcardno" maxlength="12" class="form-field" placeholder="000011112222" required/>
                                 </div>
                             <div class="field">
                                 <div class="label">Upload PAN Card </div>
-                                <input type="file" name="pancard" class="form-field" />
+                                <input type="file" name="pancard" class="form-field" required/>
                             </div>
                             <div class="field">
                                 <div class="label">Upload AADHAR Card </div>
-                                <input type="file" name="aadharcard" class="form-field" />
+                                <input type="file" name="aadharcard" class="form-field" required/>
                             </div>
                             <div class="field">
                                 <div class="label">Upload Cancelled Cheque </div>
-                                <input type="file" name="cheque" class="form-field" />
+                                <input type="file" name="cheque" class="form-field" required/>
                             </div>
                     <div class="field btns">
                         <button type="button" class="prev-4 prev">Previous</button>
@@ -472,10 +472,10 @@
                     <div class="time-slots-container">
                         <div class="field time-slot" style="margin-left: 20%;">
                             <div class="label form-field">From:</div>
-                            <input type="time" name="starttime1" value="00:00" class="form-control-sm">
+                            <input type="time" name="starttime1" value="00:00" class="form-control-sm" required>
                             <br>
                             <div class="label form-field">To:</div>
-                            <input type="time" name="endtime1" value="00:00" class="form-control-sm">
+                            <input type="time" name="endtime1" value="00:00" class="form-control-sm" required>
                         </div>
                     </div>
                     <div class="field">
@@ -483,7 +483,7 @@
                     </div>
                     <div class="field btns">
                         <button type="button" class="prev-6 prev">Previous</button>
-                        <button type="submit" class="submit">Submit</button>
+                        <button type="submit" class="submit" id="submit-btn">Submit</button>
                     </div>
                 </div>
 
@@ -616,6 +616,22 @@ function initMultiStepForm() {
         nextButtons[i].addEventListener("click", function (event) {
             event.preventDefault();
 
+            // Validation for PAN and Aadhar Card
+            if (current === 5) { // Page 5: Banking Details
+                const pancard = document.querySelector('input[name="pancardno"]').value.trim();
+                const aadharcard = document.querySelector('input[name="aadharcardno"]').value.trim();
+
+                if (!validatePancard(pancard)) {
+                    alert('Fill the PAN card details correctly.');
+                    return;
+                }
+
+                if (!validateAadharCard(aadharcard)) {
+                    alert('Fill the Aadhar card details correctly.');
+                    return;
+                }
+            }
+
             // Only check email on the first page
             if (current === 1) {
                 const email = document.querySelector('input[name="email"]').value.trim();
@@ -624,16 +640,40 @@ function initMultiStepForm() {
                         if (exists) {
                             alert('This email is already registered.');
                         } else {
-                            proceedToNextPage();
+                            if (matchPassword()) {
+                                proceedToNextPage();
+                            }
                         }
                     }).catch(error => {
                         console.error('Error checking email existence:', error);
                     });
                 }
             } else {
-                proceedToNextPage();
-            }
+                if (matchPassword()) {
+                    proceedToNextPage();
+                }
+        }
         });
+    }
+
+    function matchPassword() {
+        if (cnfpassword.value !== password.value) {
+            cnfpassword.style.borderColor = "red";
+            alert("Passwords do not match. Please check your entries.");
+            cnfpassword.focus();
+            return false;
+        } else {
+            cnfpassword.style.borderColor = "initial";
+            return true;
+        }
+    }
+
+    function validatePancard(pancard) {
+        return pancard.length === 10 && /^[A-Z0-9]+$/.test(pancard);
+    }
+
+    function validateAadharCard(aadharcard) {
+        return aadharcard.length === 12 && /^[0-9]+$/.test(aadharcard);
     }
 
     for (let i = 0; i < prevButtons.length; i++) {
@@ -778,6 +818,15 @@ var myInput = document.getElementById("password");
       }
     }
 
+     // Validate confirm password field on input
+     cnfpassword.oninput = function() {
+        if (cnfpassword.value === password.value) {
+            cnfpassword.style.borderColor = "initial"; // Reset border color
+        } else {
+            cnfpassword.style.borderColor = "red"; // Set border color to red if passwords do not match
+        }
+    };
+
 
     function toggleOtherInput(checkbox) {
         var otherText = document.getElementById('otherText');
@@ -807,6 +856,25 @@ var myInput = document.getElementById("password");
         input.value = 50;
     }
 });
+
+
+    document.getElementById('aadharcardno').addEventListener('input', function (e) {
+        const input = e.target;
+        let value = input.value;
+        // Limit to 12 digits.
+        if (value.length > 12) {
+            input.value = value.slice(0, 12);
+        }
+    });
+    document.getElementById('acnumber').addEventListener('input', function (e) {
+        const input = e.target;
+        let value = input.value;
+
+        // Limit to 17 digits because it is the maximum no. of acno. digits in the world.
+        if (value.length > 17) {
+            input.value = value.slice(0, 17);
+        }
+    }); 
 
 // The below function I've made to restrict all the input type numbers to get any special character if a user types any number - Himanshu.
 function restrictSpecialCharacters(input) {
@@ -880,7 +948,7 @@ document.addEventListener("DOMContentLoaded", function() {
         placeholderNumberType: "MOBILE",
         geoIpLookup: function(success, failure) {
           // Optional: Use a service to determine user's location
-          // success('IN'); // Example: Set the default country
+          success('IN'); // Example: Set the default country
         },
         preferredCountries: ['us', 'gb', 'in'],
         excludeCountries: ['ch'],
@@ -898,9 +966,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Adjust input field width
       input.style.width = "calc(100% - 35px)"; // Adjust width based on dropdown width and margins
+
+      // Function to be called by another js code also.
+    function updateFullNumber() {
+        var fullNumber = iti.getNumber();
+        var countryCode = iti.getSelectedCountryData().dialCode;
+        var nationalNumber = iti.getNumber(intlTelInputUtils.numberFormat.NATIONAL).replace(/\D/g, '');
+        var separatedNumber = `+${countryCode}-${nationalNumber}`;
+        input.value = separatedNumber;
+    }
+
+       // Add event listener to update contact_no with full number on form submission
+        var form = document.querySelector("#signup-form"); 
+        form.addEventListener("submit", function() {
+            updateFullNumber();
+        });
+
+            
+        document.getElementById("submit-btn").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the form from submitting immediately
+        var confirmation = confirm("Are you sure you want to submit?");
+        if (confirmation) {
+            // If the user clicks "OK", submit the form
+            updateFullNumber();
+            document.getElementById("signup-form").submit();
+        } else {
+            // If the user clicks "Cancel", do nothing and stay on the form page
+        }
+    });
+      
     });
 
     document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector("#signup-form");
             let fields = document.querySelectorAll('.form-field');
             fields.forEach((field, index) => {
                 field.addEventListener('keydown', function(event) {
@@ -917,6 +1015,12 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                     }
                 });
+            });
+             // Prevent form submission on Enter key press
+            form.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                }
             });
         });
 
@@ -984,6 +1088,22 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 });
             });
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+        var today = new Date().toISOString().split('T')[0];
+        document.querySelectorAll('input[type="date"]').forEach(function(input) {
+            input.setAttribute('max', today);
+        });
+
+        var today = new Date();
+        var month = today.toISOString().substring(0, 7);
+        document.querySelectorAll('input[type="month"]').forEach(function(input) {
+            input.setAttribute('max', month);
+        });
+
+        });
 
 
     </script>

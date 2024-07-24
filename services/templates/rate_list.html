@@ -49,7 +49,7 @@
                         // Redirect to login page after 2 seconds
                         setTimeout(function() {
                             window.location.href = "/";
-                        }, 2000);
+                        }, 0);
                     } else {
                         alert("Error updating status.");
                     }
@@ -188,15 +188,17 @@
                 </tr>
             </tbody>
         </table>
-        
+        {% if radiologist.stage2status == 'applied' or radiologist.stage2status == 'under_progress' %}
         <div class="button-container">
             <button class="btn" onclick="handleAgree()"><strong>I Agree</strong></button>
             <button class="btn" onclick="handleDisagree()"><strong>I Disagree</strong></button>
         </div>
+        
         <br>
         <p style="text-align: center;">After choosing any of the above options you will be redirected to the login page automatically.</p>
+        {% endif %}
         <p style="text-align: center;">If you have any doubts regarding the Rate List, you can email us at <span style="font-weight: bold;">contact@u4rad.com</span></p>
-        <p style="text-align: center;">For further assistance you can contact to our team at <span style="font-weight: bold;">Ph:</span>9876543210  </p>
+        <!-- <p style="text-align: center;">For further assistance you can contact to our team at <span style="font-weight: bold;">Ph:</span>9876543210  </p> -->
         <p style="text-align: center;">THANK YOU!</p>
     </div>
 

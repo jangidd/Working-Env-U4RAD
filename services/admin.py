@@ -1,11 +1,10 @@
 from django.contrib import admin
 from .models.models import Service, ServiceRate
 from .models.profile import Profile
-from .models.CartItem import Cart
+from .models.CartItem import Cart, UploadFile
 from .models.CartValue import CartValue
 from .models.Order import Order
 from .models.OrderHistory import OrderHistory
-
 from .models.personal_info import PersonalInformation
 from .models.educational_info import EducationalDetails
 from .models.workexp_info import ExperienceDetails
@@ -31,13 +30,25 @@ class ServiceAdmin(admin.ModelAdmin):
         obj.modified_by = request.user
         super().save_model(request, obj, form, change)
 
+class UploadFileInline(admin.TabularInline):
+    model = UploadFile
+    extra = 1
+
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('user', 'service', 'quantity', 'casecount', 'amount', 'get_uploads')
+    inlines = [UploadFileInline]
+
+    def get_uploads(self, obj):
+        return ", ".join([f.file.url for f in obj.uploads.all()])
+
+    get_uploads.short_description = 'Uploaded Files'
+
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(Profile)
-admin.site.register(Cart)
+admin.site.register(Cart, CartAdmin)
 admin.site.register(CartValue)
 admin.site.register(Order)
 admin.site.register(OrderHistory)
-
 admin.site.register(PersonalInformation)
 admin.site.register(EducationalDetails)
 admin.site.register(ExperienceDetails)

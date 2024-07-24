@@ -68,13 +68,11 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    // Fetch user details when the page loads
-    fetchUserDetails();
 
     // Handle form submission
     document.getElementById('pay-button').addEventListener('click', function(event) {
         event.preventDefault();
-        createRazorpayOrder();
+        checkProfileCompletion();
     });
 });
 
@@ -96,8 +94,44 @@ function fetchUserDetails() {
         .catch(error => console.error('Error:', error));
 }
 
+function checkProfileCompletion() {
+    fetch("{% url 'check_profile_completion' %}")
+    .then(response => response.json())
+        .then(data => {
+            if (data.profile_complete) {
+                createRazorpayOrder();
+            } else {
+                alert("Your Profile is not completed yet! \n Fill in the following details to continue.");
+                closePopup();
+                document.getElementById('update-profile-container').style.display = 'block';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+  }
+
+  window.addEventListener("message", function (event) {
+    if (event.data === "profileUpdated") {
+      // Hide the iframe
+      const iframeContainer = document.getElementById(
+        "update-profile-container"
+      );
+      if (iframeContainer) {
+        iframeContainer.style.display = "none";
+
+        // Show completion message to the user
+        alert("Profile updated successfully!");
+
+        // Initiate checkProfileCompletion() after a slight delay
+        setTimeout(() => {
+        }, 500); // Adjust the delay time as needed
+        openPopup();
+      }
+    }
+  });
+
 // Function to create Razorpay order
 function createRazorpayOrder() {
+    fetchUserDetails();
     const amount = document.getElementById('topup_amount').value;
 
     fetch('/payment/', {
@@ -395,6 +429,25 @@ function openPopup() {
     from { opacity: 0; }
     to { opacity: 1; }
   }
+
+  .container { padding: 15px; margin-top: 5rem; background-color: aliceblue; }
+    #update-profile-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+        width: 80%;
+        max-width: 400px;
+        height: 80%;
+        max-height: 460px;
+        background-color: white;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        padding: 10px;
+    }
+    #update-profile-iframe { width: 100%; height: 100%; border: none; }
 </style>
 
 <div class="top-right-corner">
@@ -469,4 +522,13 @@ function openPopup() {
   </div>
 </div>
 </div>
+<span id="update-profile-container" style="display: none">
+  <iframe
+    id="update-profile-iframe"
+    src="{% url 'update_profile' %}"
+    width="100%"
+    height="100%"
+    frameborder="0"
+  ></iframe>
+</span>
 {% endblock %}

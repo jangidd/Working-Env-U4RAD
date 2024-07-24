@@ -180,5 +180,5 @@ DEFAULT_FROM_EMAIL = 'contact@u4rad.com'
 
 # This is for my development only , this will not send the email right now, it will just show the email 
 # structure in my console. I will remove it afterwards.
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
