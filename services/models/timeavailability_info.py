@@ -15,7 +15,7 @@ class AvailabilityDetails(models.Model):
     endtime2 = models.CharField(max_length=100,null=True, default="Individual", blank=True)
     starttime3 = models.CharField(max_length=100,null=True, default="Individual", blank=True)
     endtime3 = models.CharField(max_length=100,null=True, default="Individual", blank=True)
-    starttime4 = models.CharField(max_length=100,null=True, default="Individual", blank=True)
+    starttime4 = models.CharField(max_length=100,null=True, default="Individual", blank=True)   
     endtime4 = models.CharField(max_length=100,null=True, default="Individual", blank=True)
 
 

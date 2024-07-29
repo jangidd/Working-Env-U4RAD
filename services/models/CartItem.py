@@ -12,7 +12,3 @@ class Cart(models.Model):
     def __str__(self):
         return f"Cart Item: {self.service.service_name} (Quantity: {self.quantity})"
 
-class UploadFile(models.Model):
-    cart = models.ForeignKey(Cart, related_name='uploads', on_delete=models.CASCADE, default=None, null=True, blank=True)
-    file = models.FileField(upload_to='uploads/')
-    upload_time = models.DateTimeField(auto_now_add=True)

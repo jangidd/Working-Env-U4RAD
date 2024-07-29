@@ -2,18 +2,18 @@
 <style>
   .container {
     padding: 15px;
-    margin-top: 10rem;
+    margin-top: 12rem;
     background-color: aliceblue;
   }
   .top-right-corner {
     position: absolute;
-    top: 60px; /* Adjust as needed */
+    top: 70px; /* Adjust as needed */
     right: 10px; /* Adjust as needed */
   }
 
   .top-left-corner {
     position: absolute;
-    top: 60px; /* Adjust as needed */
+    top: 70px; /* Adjust as needed */
     left: 10px; /* Adjust as needed */
     background: #ffffff;
     width: 200px;
@@ -111,11 +111,18 @@
 </div>
 <div class="top-left-corner mt-3 text-center">
   {% if cart_value %}
-      <p>Total Amount Paid: ₹{{ cart_value.total_amount }}</p>
+      <p>Total Amount Paid : ₹{{ cart_value.grand_total }}</p>
+  {% else %}
+      <p>Total Amount Paid : ₹0</p>
+  {% endif %}
+  <!-- {% if cart_value %}
+      <p>Cashback Earned : ₹{{ cart_value.discount }}</p>
   {% else %}
       <p>₹0</p>
-  {% endif %}
+  {% endif %} -->
+
 </div>
+
 <div class="container mt-10">
   <table class="table table-striped" id="cart-items-table">
     <thead>
@@ -142,61 +149,91 @@
   <button class="btn btn-light mt-3 text-center" onclick="openPopup()">VIEW SUMMARY</button>
   <button class="btn btn-light mt-3 text-center" onclick="viewExcelFile()">VIEW EXCEL FILE</button>
 </div>
+
 <div id="detailsPopup" class="modal">
   <div class="modal-content">
     <button class="close btn btn-danger" onclick="closePopup()">&times;</button>
     <h2>Cart Items</h2>
-        {% if cart_items %}
-            <ul>
-                {% for item in cart_items %}
-                    <li>{{ item.service.service_name }} - {{ item.quantity }} - {{ item.amount }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No items in cart.</p>
-        {% endif %}
+    <ul id="cartItemsList">
+      {% if cart_items %}
+        {% for item in cart_items %}
+          <li data-service-name="{{ item.service.service_name }}" data-quantity="{{ item.quantity }}" data-amount="{{ item.amount }}">
+            {{ item.service.service_name }} - {{ item.quantity }} - {{ item.amount }}
+          </li>
+        {% endfor %}
+      {% else %}
+        <p>No items in cart.</p>
+      {% endif %}
+    </ul>
 
-        <h2>Order History</h2>
+    <h2>Order History</h2>
+    <table id="orderHistoryTable" class="table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer Name</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Payment ID</th>
+          <th>Signature ID</th>
+        </tr>
+      </thead>
+      <tbody>
         {% if orders %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Customer Name</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                        <th>Payment ID</th>
-                        <th>Signature ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in orders %}
-                        <tr>
-                            <td>{{ order.provider_order_id }}</td>
-                            <td>{{ order.name }}</td>
-                            <td>{{ order.amount }}</td>
-                            <td>{{ order.status }}</td>
-                            <td>{{ order.payment_id }}</td>
-                            <td>{{ order.signature_id }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+          {% for order in orders %}
+            <tr data-provider-order-id="{{ order.provider_order_id }}" data-name="{{ order.name }}" data-amount="{{ order.amount }}" data-status="{{ order.status }}" data-payment-id="{{ order.payment_id }}" data-signature-id="{{ order.signature_id }}">
+              <td>{{ order.provider_order_id }}</td>
+              <td>{{ order.name }}</td>
+              <td>{{ order.amount }}</td>
+              <td>{{ order.status }}</td>
+              <td>{{ order.payment_id }}</td>
+              <td>{{ order.signature_id }}</td>
+            </tr>
+          {% endfor %}
         {% else %}
-            <p>No orders found.</p>
+          <tr>
+            <td colspan="6">No orders found.</td>
+          </tr>
         {% endif %}
+      </tbody>
+    </table>
 
-        <button class="btn btn-success" onclick="window.location.href='{% url 'download_invoice' %}'">Download Invoice</button>
+    <button class="btn btn-success" onclick="window.location.href='{% url 'download_invoice' %}'">Download Invoice</button>
   </div>
 </div>
+
 <script>
-  function closePopup() {
-    document.getElementById('detailsPopup').style.display = 'none';
-  }
+  // i can use this if i want to updatethe modal data.
+  // function closePopup() {
+  //   document.getElementById('detailsPopup').style.display = 'none';
+  // }
+
+  // function openPopup() {
+  //   document.getElementById('detailsPopup').style.display = 'block';
+  // }
 
   function openPopup() {
-    document.getElementById('detailsPopup').style.display = 'block';
-  }
+  // Display the modal
+  document.getElementById('detailsPopup').style.display = 'block';
+
+  // Reverse the cart items
+  let cartItemsList = document.getElementById('cartItemsList');
+  let cartItems = Array.from(cartItemsList.getElementsByTagName('li'));
+  cartItems.reverse(); // Reverse the order of the items
+  cartItems.forEach(item => cartItemsList.appendChild(item)); // Re-append in reversed order
+
+  // Reverse the order history
+  let orderHistoryTableBody = document.getElementById('orderHistoryTable').getElementsByTagName('tbody')[0];
+  let orders = Array.from(orderHistoryTableBody.getElementsByTagName('tr'));
+  orders.reverse(); // Reverse the order of the rows
+  orders.forEach(row => orderHistoryTableBody.appendChild(row)); // Re-append in reversed order
+}
+
+function closePopup() {
+  document.getElementById('detailsPopup').style.display = 'none';
+}
+
+
   // JavaScript to calculate and display balance cases
   document.addEventListener("DOMContentLoaded", function () {
     const rows = document.querySelectorAll("#cart-items-table tbody tr");

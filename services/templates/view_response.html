@@ -153,7 +153,13 @@
         {% endif %}
         {% if achievement_info.publishlink %}
             <p>----------------------------------------------</p>
-            <p><span class="label">Publication Link:</span>{% if achievement_info.publishlink %}<a href="{{ achievement_info.publishlink.url }}">{{ achievement_info.publishlink }}</a>{% else %}None{% endif %}</p>
+            <p><span class="label">Publication Link:</span>
+            {% if achievement_info.publishlink %}
+                <a href="{{ achievement_info.publishlink }}" target="_blank">{{ achievement_info.publishlink }}</a>
+            {% else %}
+                None
+            {% endif %}
+            </p>
         {% endif %}
 
 
@@ -177,19 +183,20 @@
         <p><span class="label">MRI Others:</span> {{ reporting_area_info.mriothers|default:"None" }}</p>
         <p><span class="label">CT Options:</span> {{ reporting_area_info.ctopt|default:"None" }}</p>
         <p><span class="label">CT Others:</span> {{ reporting_area_info.ctothers|default:"None" }}</p>
-        <p><span class="label">X-Ray:</span> {{ reporting_area_info.xray|default:"None" }}</p>
-        <p><span class="label">Others:</span> {{ reporting_area_info.others|default:"None" }}</p>
+        <p><span class="label">X-Ray:</span> {% if reporting_area_info.xray %}Yes{% else %}No{% endif %}</p>
+        <p><span class="label">Others:</span> {% if reporting_area_info.others %}Yes{% else %}No{% endif %}</p>
         <p><span class="label">Other Text:</span> {{ reporting_area_info.otherText|default:"None" }}</p>
 
         <!-- Availability Details -->
         <h3 style="background-color: lightblue;">Availability Details</h3>
-        <p><span class="label">Monday:</span> {{ availability_info.monday|default:"None" }}</p>
-        <p><span class="label">Tuesday:</span> {{ availability_info.tuesday|default:"None" }}</p>
-        <p><span class="label">Wednesday:</span> {{ availability_info.wednesday|default:"None" }}</p>
-        <p><span class="label">Thursday:</span> {{ availability_info.thursday|default:"None" }}</p>
-        <p><span class="label">Friday:</span> {{ availability_info.friday|default:"None" }}</p>
-        <p><span class="label">Saturday:</span> {{ availability_info.saturday|default:"None" }}</p>
-        <p><span class="label">Sunday:</span> {{ availability_info.sunday|default:"None" }}</p>
+        <p><span class="label">Monday:</span> {% if availability_info.monday %}Yes{% else %}No{% endif %}</p>
+        <p><span class="label">Tuesday:</span> {% if availability_info.tuesday %}Yes{% else %}No{% endif %}</p>
+        <p><span class="label">Wednesday:</span> {% if availability_info.wednesday %}Yes{% else %}No{% endif %}</p>
+        <p><span class="label">Thursday:</span> {% if availability_info.thursday %}Yes{% else %}No{% endif %}</p>
+        <p><span class="label">Friday:</span> {% if availability_info.friday %}Yes{% else %}No{% endif %}</p>
+        <p><span class="label">Saturday:</span> {% if availability_info.saturday %}Yes{% else %}No{% endif %}</p>
+        <p><span class="label">Sunday:</span> {% if availability_info.sunday %}Yes{% else %}No{% endif %}</p>
+
         {% if availability_info.starttime1 %}
         <p>----------------------------------------------</p>
         <p><span class="label">Start Time 1:</span> {{ availability_info.starttime1|default:"None" }}</p>

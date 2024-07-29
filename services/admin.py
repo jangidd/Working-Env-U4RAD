@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models.models import Service, ServiceRate
-from .models.profile import Profile
-from .models.CartItem import Cart, UploadFile
+from .models.profile import Profile, UploadFile
+from .models.CartItem import Cart
 from .models.CartValue import CartValue
 from .models.Order import Order
 from .models.OrderHistory import OrderHistory
@@ -34,8 +34,8 @@ class UploadFileInline(admin.TabularInline):
     model = UploadFile
     extra = 1
 
-class CartAdmin(admin.ModelAdmin):
-    list_display = ('user', 'service', 'quantity', 'casecount', 'amount', 'get_uploads')
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'email', 'address', 'organization', 'get_uploads')
     inlines = [UploadFileInline]
 
     def get_uploads(self, obj):
@@ -44,8 +44,8 @@ class CartAdmin(admin.ModelAdmin):
     get_uploads.short_description = 'Uploaded Files'
 
 admin.site.register(Service, ServiceAdmin)
-admin.site.register(Profile)
-admin.site.register(Cart, CartAdmin)
+admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Cart)
 admin.site.register(CartValue)
 admin.site.register(Order)
 admin.site.register(OrderHistory)

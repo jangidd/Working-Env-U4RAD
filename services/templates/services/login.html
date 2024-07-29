@@ -10,23 +10,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <style>
-
         .btn-signup:hover {
-           background-color: black;
-           color: white;
+            background-color: black;
+            color: white;
         }
+
         .gradient-custom-2 {
             /* fallback for old browsers */
             background: #ff0000;
             color: white;
 
             /* Chrome 10-25, Safari 5.1-6 */
-            background: -webkit-linear-gradient(to right,
-                    #ff0000);
+            background: -webkit-linear-gradient(to right, #ff0000);
 
             /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            background: linear-gradient(to right,
-                    #ff0000);
+            background: linear-gradient(to right, #ff0000);
         }
 
         @media (min-width: 768px) {
@@ -54,8 +52,7 @@
                             <div class="col-lg-6">
                                 <div class="card-body p-md-5 mx-md-4">
                                     <div class="text-center">
-                                        <img src="{% static 'logo.png' %}"
-                                            style="width: 185px" alt="U4RAD" />
+                                        <img src="{% static 'logo.png' %}" style="width: 185px" alt="U4RAD" />
                                         <h4 class="mt-1 mb-5 pb-1">We are The U4RAD team</h4>
                                     </div>
 
@@ -69,7 +66,7 @@
 
                                         <div data-mdb-input-init class="form-outline mb-4 form-group">
                                             <input type="text" id="identifier" name="identifier" class="form-control"
-                                                placeholder="Phone Number or Email" required />
+                                                placeholder="Phone Number or Email" required maxlength="50" onblur="validatePhoneNumber(this)" />
                                             <label class="form-label" for="identifier">Username</label>
                                         </div>
 
@@ -91,14 +88,14 @@
                                             <label class="form-label" for="new_password">Create Password</label>
                                             <span class="checkbox-btn">
                                                 <input type="checkbox" id="showPasswordCheckbox2"
-                                                    onclick="myFunction()" />
+                                                    onclick="myNewFunction()" />
                                             </span>
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <button data-mdb-button-init data-mdb-ripple-init
-                                                class="btn btn-signup btn-block fa-lg gradient-custom-2 mb-3 "
-                                                id="loginButton" type="submit">
+                                                class="btn btn-signup btn-block fa-lg gradient-custom-2 mb-3"
+                                                id="loginButton" type="submit" disabled>
                                                 Log in
                                             </button>
                                             <div class="spinner-grow text-warning" role="status" id="spinner"
@@ -107,10 +104,11 @@
                                             </div>
                                             <div>
                                                 <button data-mdb-button-init data-mdb-ripple-init
-                                                class="btn btn-signup btn-block fa-lg gradient-custom-2 mb-3"
-                                                id="radiologistregistration" type="button" onclick="window.location.href='/radiologist'">
-                                                Radiologist Registration
-                                            </button>
+                                                    class="btn btn-signup btn-block fa-lg gradient-custom-2 mb-3"
+                                                    id="radiologistregistration" type="button"
+                                                    onclick="window.location.href='/radiologist'">
+                                                    Radiologist Registration
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -120,7 +118,10 @@
                                 <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                                     <h4 class="mb-4">Radiology & Cardiology Reporting</h4>
                                     <p class="small mb-0">
-                                        Explore the seamless reporting services offered by U4RAD Technologies for your CT, MRI, and XRAY cases, ensuring top-notch quality reports with just a few clicks. Answer a few questions, select the modality and number of cases to be reported, and you're done!
+                                        Explore the seamless reporting services offered by U4RAD Technologies for your
+                                        CT, MRI, and XRAY cases, ensuring top-notch quality reports with just a few
+                                        clicks. Answer a few questions, select the modality and number of cases to be
+                                        reported, and you're done!
                                     </p>
                                 </div>
                             </div>
@@ -132,54 +133,75 @@
     </section>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        var loginForm = document.getElementById("loginForm");
-        var loginButton = document.getElementById("loginButton");
-        var spinner = document.getElementById("spinner");
-
-        loginForm.addEventListener("submit", function () {
-            spinner.style.display = "inline-block";
-            loginButton.style.display = "none"; // Hide the login button
-        });
-
-        document.getElementById("identifier").addEventListener("input", function () {
-            var identifier = this.value.trim();
-            if (identifier.length > 0) {
-                if (identifier.includes('@')) {
-                    // It's an email, show password field, hide new password field
-                    document.getElementById("password-field").style.display = "block";
-                    document.getElementById("new-password-field").style.display = "none";
-                } else {
-                    // It's a phone number, fetch to check if the user exists
-                    fetch(`/check_user_exists/?phone=${identifier}`)
-                        .then((response) => response.json())
-                        .then((data) => {
-                            if (data.exists) {
-                                document.getElementById("password-field").style.display = "block";
-                                document.getElementById("new-password-field").style.display = "none";
-                            } else {
-                                document.getElementById("password-field").style.display = "none";
-                                document.getElementById("new-password-field").style.display = "block";
-                            }
-                        });
-                }
-            }
-        });
-    });
-
-        function toggleCheckboxOption() {
-            var passwordInput = document.getElementById("password");
-            var checkboxOption = document.getElementById("showPasswordCheckbox1");
-
-            if (passwordInput.value.trim().length > 0) {
-                checkboxOption.style.display = "inline-block";
+        function validatePhoneNumber(input) {
+            const loginButton = document.getElementById("loginButton");
+            let value = input.value;
+            let isDigitsOnly = /^\d+$/.test(value);
+            if (isDigitsOnly && value.length !== 10) {
+                alert("Please provide a valid 10 digit number.");
+                loginButton.disabled = true;
             } else {
-                checkboxOption.style.display = "none";
+                loginButton.disabled = false;
             }
         }
 
+        document.addEventListener("DOMContentLoaded", function () {
+            var loginForm = document.getElementById("loginForm");
+            var loginButton = document.getElementById("loginButton");
+            var spinner = document.getElementById("spinner");
+
+            loginForm.addEventListener("submit", function () {
+                spinner.style.display = "inline-block";
+                loginButton.style.display = "none"; // Hide the login button
+            });
+
+            document.getElementById("identifier").addEventListener("input", function () {
+                var identifier = this.value.trim();
+                if (identifier.length > 0) {
+                    if (identifier.includes('@')) {
+                        // It's an email, show password field, hide new password field
+                        document.getElementById("password-field").style.display = "block";
+                        document.getElementById("new-password-field").style.display = "none";
+                        loginButton.disabled = false;
+                    } else if (/^\d+$/.test(identifier)) {
+                        // It's a phone number, fetch to check if the user exists
+                        fetch(`/check_user_exists/?phone=${identifier}`)
+                            .then((response) => response.json())
+                            .then((data) => {
+                                if (data.exists) {
+                                    document.getElementById("password-field").style.display = "block";
+                                    document.getElementById("new-password-field").style.display = "none";
+                                } else {
+                                    document.getElementById("password-field").style.display = "none";
+                                    document.getElementById("new-password-field").style.display = "block";
+                                }
+                                loginButton.disabled = false;
+                            });
+                    } else {
+                        
+                        document.getElementById("password-field").style.display = "none";
+                        document.getElementById("new-password-field").style.display = "none";
+                        loginButton.disabled = true;
+                    }
+                } else {
+                    document.getElementById("password-field").style.display = "none";
+                    document.getElementById("new-password-field").style.display = "none";
+                    loginButton.disabled = true;
+                }
+            });
+        });
+
         function myFunction() {
             var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        function myNewFunction() {
+            var x = document.getElementById("new_password");
             if (x.type === "password") {
                 x.type = "text";
             } else {
@@ -190,6 +212,7 @@
 </body>
 
 </html>
+
 
 <!-- <div class="container">
     <div class="row">

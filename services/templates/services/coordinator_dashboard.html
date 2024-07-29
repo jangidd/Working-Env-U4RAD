@@ -1,7 +1,6 @@
 {% extends 'services/base_generic.html' %}
 {% block content %}
 {% load static %}
-<!-- Include these scripts if not already included -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -22,6 +21,90 @@
     color: white;
     text-align: center;
   }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 60px;
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #888;
+    width: 80%;
+    max-height: 60vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    position: relative;
+    animation: fadeIn 0.5s;
+    
+  }
+  .close {
+    color: black;
+    float: right;
+    font-size: 18px;
+    font-weight: bold;
+    width: 3rem;
+    cursor: pointer;
+    position: relative;
+    
+  }
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  .modal-content h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  .modal-content h3 {
+    margin-top: 20px;
+    color: #555;
+  }
+  .modal-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .modal-content ul li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  .modal-content ul li:nth-child(even) {
+    background: #f1f1f1;
+  }
+  .modal-content ul li span {
+    display: block;
+    font-size: 14px;
+    color: #666;
+  }
+  .modal-content ul li strong {
+    display: block;
+    font-size: 16px;
+    color: #333;
+  }
+
+  @media screen and (max-width: 600px) {
+      .modal-content {
+          width: 100%;
+      }
+  }
 </style>
 
 <div class="customer-header">
@@ -32,15 +115,16 @@
 </div>
 
 <div class="container mt-10">
-  <!-- Profile Details Table -->
   <table class="table table-striped" id="profile-table" border="1">
     <thead>
       <tr>
         <th>User</th>
-        <th>Organization Name</th>
         <th>Email</th>
         <th>Address</th>
         <th>Organization</th>
+        <th>Upload File</th>
+        <th>Invoices</th>
+        <th>Files</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -48,19 +132,22 @@
       {% for profile in profiles %}
       <tr>
         <td>{{ profile.user.username }}</td>
-        <td>{{ profile.user.orders.first.name }}</td>
         <td>{{ profile.email }}</td>
         <td>{{ profile.address }}</td>
         <td>{{ profile.organization }}</td>
         <td>
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-toggle="collapse"
-            data-target="#cart-items-table-{{ profile.user.id }}"
-            aria-expanded="false"
-            aria-controls="cart-items-table-{{ profile.user.id }}"
-          >
+            <form id="upload-form-{{ profile.user.id }}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="file" name="file" id="file-upload-{{ profile.user.id }}" class="upload-file" placeholder="upload" />
+              <button type="button" class="btn btn-sm btn-success" onclick="uploadFile('{{ profile.user.id }}')">Upload</button>
+            </form>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-primary" onclick="openInvoicePopUp('{{ profile.user.id }}')">View Invoices</button>
+        </td>
+        <td><button class="btn btn-sm btn-success" onclick="openFilesPopUp('{{ profile.user.id }}')">View Files</button></td>
+        <td>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#cart-items-table-{{ profile.user.id }}" aria-expanded="false" aria-controls="cart-items-table-{{ profile.user.id }}">
             Toggle Cart Items
           </button>
         </td>
@@ -73,9 +160,7 @@
                 <th>Service Name</th>
                 <th>Quantity</th>
                 <th>Case Count</th>
-                <th>Amount</th>
                 <th>Update Case Count</th>
-                <th>Upload File</th>
               </tr>
             </thead>
             <tbody>
@@ -85,31 +170,11 @@
                 <td>{{ cart_item.service.service_name }}</td>
                 <td>{{ cart_item.quantity }}</td>
                 <td>{{ cart_item.casecount }}</td>
-                <td>{{ cart_item.amount }}</td>
                 <td>
-                  <form
-                    method="post"
-                    action="{% url 'update_casecount' cart_item.id %}"
-                  >
+                  <form method="post" action="{% url 'update_casecount' cart_item.id %}">
                     {% csrf_token %}
-                    <input
-                      type="number"
-                      name="casecount"
-                      placeholder="casecount"
-                      value="{{ cart_item.casecount }}"
-                    />
-                    <button type="submit" class="btn btn-sm btn-success">
-                      Update
-                    </button>
-                  </form>
-                </td>
-                <td>
-                  <form id="upload-form-{{ cart_item.id }}" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="file" name="file" id="file-upload-{{ cart_item.id }}" class="upload-file" placeholder="upload" />
-                    <button type="button" class="btn btn-sm btn-success" onclick="uploadFile('{{ cart_item.id }}')">
-                      Upload
-                    </button>
+                    <input type="number" name="casecount" placeholder="casecount" value="{{ cart_item.casecount }}" />
+                    <button type="submit" class="btn btn-sm btn-success">Update</button>
                   </form>
                 </td>
               </tr>
@@ -124,9 +189,82 @@
   </table>
 </div>
 
+<!-- Modal for the Invoice Pop Up -->
+<div id="invoiceDetailsPopup" class="modal">
+  <div class="modal-content">
+    <button class="close btn btn-danger" onclick="closeInvoicePopUp()">&times;</button>
+    <div id="invoiceDetailsPopupContent">
+      <!-- Content will be dynamically inserted here -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal for the Files Pop Up -->
+<div id="filesDetailsPopup" class="modal">
+  <div class="modal-content">
+    <button class="close btn btn-danger" onclick="closeFilesPopup()">&times;</button>
+    <h2>Total Files Uploaded:</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>File No.</th>
+          <th>File Link</th>
+        </tr>
+      </thead>
+      <tbody id="filesDetailsPopupContent">
+        <!-- Content will be dynamically inserted here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <script>
-  function uploadFile(cartItemId) {
-    var fileInput = document.getElementById('file-upload-' + cartItemId);
+  // Logic for the PopUp's.
+function closeInvoicePopUp() {
+  document.getElementById('invoiceDetailsPopup').style.display = 'none';
+}
+
+function openInvoicePopUp(userId) {
+  $.ajax({
+    url: '/get_user_orders/' + userId + '/',
+    type: 'GET',
+    success: function(response) {
+      if (response.status === 'success') {
+        let orders = response.orders;
+        let ordersTable = '<h2>Order History</h2>';
+        if (orders.length > 0) {
+          ordersTable += '<table class="table"><thead><tr>';
+          ordersTable += '<th>Order ID</th><th>Customer Name</th><th>Amount</th><th>Status</th><th>Payment ID</th><th>Download Invoice</th>';
+          ordersTable += '</tr></thead><tbody>';
+          orders.forEach(function(order) {
+            ordersTable += '<tr>';
+            ordersTable += '<td>' + order.provider_order_id + '</td>';
+            ordersTable += '<td>' + order.name + '</td>';
+            ordersTable += '<td>' + order.amount + '</td>';
+            ordersTable += '<td>' + order.status + '</td>';
+            ordersTable += '<td>' + order.payment_id + '</td>';
+            ordersTable += '<td style="width: 100%;"><a href="/download_single_invoice/' + userId + '/' + order.provider_order_id + '/" class="btn btn-sm btn-primary">Download</a></td>';
+            ordersTable += '</tr>';
+          });
+          ordersTable += '</tbody></table>';
+        } else {
+          ordersTable += '<p>No orders found.</p>';
+        }
+        document.getElementById('invoiceDetailsPopupContent').innerHTML = ordersTable;
+        document.getElementById('invoiceDetailsPopup').style.display = 'block';
+      } else {
+        alert(response.message);
+      }
+    },
+    error: function() {
+      alert('Failed to fetch order details.');
+    }
+  });
+}
+
+  // Logic for Uploading file.
+  function uploadFile(profileId) {
+    var fileInput = document.getElementById('file-upload-' + profileId);
     var file = fileInput.files[0];
     if (!file) {
       alert('Please choose a file to upload.');
@@ -135,10 +273,10 @@
     if (confirm('Are you sure you want to upload this file?')) {
       var formData = new FormData();
       formData.append('file', file);
-      formData.append('csrfmiddlewaretoken', document.querySelector('#upload-form-' + cartItemId + ' [name=csrfmiddlewaretoken]').value);
+      formData.append('csrfmiddlewaretoken', document.querySelector('#upload-form-' + profileId + ' [name=csrfmiddlewaretoken]').value);
 
       $.ajax({
-        url: '{% url "upload_file" 0 %}'.replace('0', cartItemId),
+        url: '{% url "upload_file" 0 %}'.replace('0', profileId),
         type: 'POST',
         data: formData,
         processData: false,
@@ -156,6 +294,47 @@
       });
     }
   }
+
+  function closeFilesPopup() {
+    document.getElementById('filesDetailsPopup').style.display = 'none';
+}
+
+function openFilesPopUp(userId) {
+    $.ajax({
+        url: '/get_user_files/' + userId + '/',
+        type: 'GET',
+        success: function(response) {
+            if (response.status === 'success') {
+                let files = response.files;
+                let filesTable = '';
+                if (files.length > 0) {
+                    files.forEach(function(file, index) {
+                        filesTable += '<tr>';
+                        filesTable += '<td>' + (index + 1) + '</td>';
+                        filesTable += '<td><a href="' + file.file_url + '" target="_blank">' + file.file_name + '</a></td>';
+                        filesTable += '</tr>';
+                    });
+                    filesTable += '<tr><td colspan="2"><button class="btn btn-success" onclick="downloadAllFiles(' + userId + ')">Download All Files (as zip)</button></td></tr>';
+                } else {
+                    filesTable += '<tr><td colspan="2">No files found.</td></tr>';
+                }
+                document.getElementById('filesDetailsPopupContent').innerHTML = filesTable;
+                document.getElementById('filesDetailsPopup').style.display = 'block';
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function() {
+            alert('Failed to fetch file details.');
+        }
+    });
+}
+
+function downloadAllFiles(userId) {
+    window.location.href = '/download_all_files_as_zip/' + userId + '/';
+}
+
+  
 </script>
 
 {% endblock %}

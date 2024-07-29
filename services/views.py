@@ -1,8 +1,8 @@
 import os
 from django.shortcuts import render, get_object_or_404, redirect
 from .models.models import Service, ServiceRate
-from .models.profile import Profile
-from .models.CartItem import Cart, UploadFile
+from .models.profile import Profile, UploadFile
+from .models.CartItem import Cart
 from .models.CartValue import CartValue
 from .models.OrderHistory import OrderHistory
 from .forms import ServiceForm, ServiceRateForm
@@ -50,7 +50,7 @@ from reportlab.lib.utils import ImageReader
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.lib.colors import blue, black
 from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet , ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, Image, Spacer
 from reportlab.pdfbase.ttfonts import TTFont
@@ -74,6 +74,9 @@ from django.core.mail import send_mail
 from django.contrib.auth.decorators import user_passes_test
 from django.template.loader import render_to_string
 from django.utils import timezone
+from django.core.files.storage import default_storage
+import zipfile
+import re
 ################################ End of Multiform Imports ##########################################
 
 def login(request):
@@ -219,6 +222,30 @@ def generate_order(request):
 
     return render(request, "services/payment.html")
 
+@csrf_protect
+def generate_topup_order(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        profile = Profile.objects.get(user=request.user)
+        # Initialize Razorpay client
+        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+
+         # Create Razorpay order
+        try:
+            razorpay_order = client.order.create(
+                {"amount": int(data['topup_amount']) * 100, "currency": "INR", "payment_capture": "1"}
+            )
+        except razorpay.errors.BadRequestError as e:
+            return render(request, "services/error.html", {"error": "Failed to create Razorpay order. Authentication failed."})
+        
+        # Create Order in your database
+        order = Order.objects.create(
+            name=profile.organization, amount=data['topup_amount'], provider_order_id=razorpay_order["id"], user=request.user
+        )
+        order.save()
+        return JsonResponse({'message': 'RZP Order generated successfully', 'order_id': order.provider_order_id, 'amount': int(data['topup_amount']) * 100, 'key': settings.RAZORPAY_KEY_ID, 'user': { 'name': profile.organization, 'email': profile.email, 'contact': profile.user.username }})
+
+    return render(request, "services/payment.html")
 ############################################################################
 
 @login_required
@@ -340,7 +367,7 @@ def download_invoice(request):
     elements.append(Spacer(1, 12))
 
     # Customer Details
-    customer_name = last_order.name 
+    customer_name = last_order.name
     order_date = last_order.order_date.strftime('%Y-%m-%d %H:%M:%S')
     
     customer_details = [
@@ -351,11 +378,12 @@ def download_invoice(request):
     
     customer_table = Table(customer_details, colWidths=[2*inch, 4*inch])
     customer_table.setStyle(TableStyle([
-        ('SPAN', (0, 1), (-1, 1)),
-        ('BACKGROUND', (0, 1), (-1, 1), colors.lightblue),
+        ('SPAN', (0, 0), (-1, 0)),
+        ('BACKGROUND', (0, 0), (0, 0), colors.lightblue),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('ALIGN', (0, 0), (0, 0), 'CENTER'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        ('TEXTCOLOR', (0, 0), (-1, 1), colors.black),
+        ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
     ]))
     elements.append(customer_table)
@@ -365,13 +393,9 @@ def download_invoice(request):
 
     # Service Details Heading
     service_details_heading = [['Service Details']]
-
-    # Add a space
-    elements.append(Spacer(1, 12))
-
     service_heading_table = Table(service_details_heading, colWidths=[6*inch])
     service_heading_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, -1), colors.lightgrey),
+        ('BACKGROUND', (0, 0), (-1, -1), colors.lightblue),
         ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -380,7 +404,7 @@ def download_invoice(request):
     elements.append(service_heading_table)
 
     # Service Details
-    service_details = [['S.No', 'Service Title', 'Quantity', 'Amount']]
+    service_details = [['S.No', 'Service', 'Quantity', 'Amount']]
     for idx, history in enumerate(last_order_histories, start=1):
         service_details.append([
             str(idx),
@@ -391,7 +415,7 @@ def download_invoice(request):
 
     service_table = Table(service_details, colWidths=[0.5*inch, 2*inch, 1.5*inch, 2*inch])
     service_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -402,16 +426,28 @@ def download_invoice(request):
     # Add a space
     elements.append(Spacer(1, 12))
 
+    # Order Details Heading
+    order_details_heading = [['Order Details']]
+    order_heading_table = Table(order_details_heading, colWidths=[6*inch])
+    order_heading_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), colors.lightblue),
+        ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ]))
+    elements.append(order_heading_table)
+
     # Add last order details
     order_data = [
-        ['Order ID', 'Customer Name', 'Amount', 'Status', 'Payment ID', 'Signature ID'],
-        [last_order.provider_order_id, last_order.name, f"{last_order.amount:.2f}", last_order.status, last_order.payment_id, last_order.signature_id]
+        ['Order ID', 'Amount', 'Status', 'Payment ID', 'Signature ID'],
+        [last_order.provider_order_id, f"{last_order.amount:.2f}", last_order.status, last_order.payment_id, last_order.signature_id]
     ]
 
     # Transpose order data for columnar display
     transposed_order_data = list(map(list, zip(*order_data)))
 
-    order_table = Table(transposed_order_data, colWidths=[1*inch, 5*inch])
+    order_table = Table(transposed_order_data, colWidths=[1.1*inch, 4.9*inch])
     order_table.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (0, -1), '#d0d0d0'),  # Background for the first column
         ('TEXTCOLOR', (0, 0), (-1, 0), 'black'),
@@ -420,52 +456,358 @@ def download_invoice(request):
     ]))
     elements.append(order_table)
 
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    # Declaration and Signature table
+    declaration_details = [
+        ['Declaration', 'Signature'],
+        ['We declare that this invoice shows the actual \n price of the services described and that all \n    particulars are true and correct.', 'U4RAD Technologies LLP\n(Authorised Signatory)']
+    ]
+
+    declaration_table = Table(declaration_details, colWidths=[3*inch, 3*inch])
+    declaration_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ]))
+    elements.append(declaration_table)
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
     # Footer
     footer_data = [
-        ['Declaration : We declare that this invoice shows the actual price of the services described and that all particulars are true and correct'],
-        ['Signature :'],
-        ['for U4RAD Technologies LLP'],
-        ['Authorized Signatory'],
-        [''],
         ['U4RAD Technologies LLP'],
         ['XRAI DIGITAL'],
-        [''],
         ['C406, 4th Floor Nirvana Courtyard, Sector-50 Gurugram Haryana 122018'],
         ['PAN: AAGFU2874A, UAM: HR05E0030329 LLPIN: AAR-6317'],
+        ['GSTIN : 06AAGFU2874A1ZC'],
         ['Contact: 0124 - 4254012, Email: info@xraidigital.com']
     ]
 
     footer_table = Table(footer_data, colWidths=[6*inch])
     footer_table.setStyle(TableStyle([
         ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
-        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.white),
     ]))
     elements.append(footer_table)
 
+    # Footer Note
+    footer_note_style = ParagraphStyle(name='FooterNote', alignment=1, fontName='Helvetica-Bold')
+    footer_note = Paragraph(
+        "* This is a computer-generated invoice and does not require a physical signature *",
+        footer_note_style
+    )
+
+    # Add a spacer to push the footer note to the bottom
+    elements.append(Spacer(1, 100))
+    elements.append(footer_note)
+
     # Build the PDF
     doc.build(elements)
 
     # Get the PDF data from the buffer
-    buffer.seek(0)
-    response = HttpResponse(buffer, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=invoice.pdf'
+    pdf_data = buffer.getvalue()
+    buffer.close()
+
+    # Create a response to return the PDF
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="invoice.pdf"'
+    response.write(pdf_data)
+
     return response
+
+# This view i have created to download a single order invoice on the coordinator page (customer's dashboard.)
+@login_required
+def download_single_invoice(request, user_id, provider_order_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    # Fetch the user profile
+    user_profile = get_object_or_404(Profile, user_id=user_id)
+    user = user_profile.user  # Get the User instance
+
+    # Fetch the specific order using provider_order_id
+    order = get_object_or_404(Order, provider_order_id=provider_order_id, user=user)
+
+    # Get all order histories for the specific order
+    order_histories = OrderHistory.objects.filter(user=user)  # Use the User instance
+
+    # Create a BytesIO buffer to receive the PDF data
+    buffer = BytesIO()
+
+    # Create a PDF document
+    doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=inch, leftMargin=inch, topMargin=inch, bottomMargin=inch)
+    elements = []
+
+    # Add the new logo
+    logo_path = os.path.join('services', 'static', 'image', 'Logo.png')
+    if os.path.isfile(logo_path):
+        logo = Image(logo_path, width=1.5*inch, height=0.5*inch)
+        elements.append(logo)
+    else:
+        elements.append(Paragraph("Logo not found", getSampleStyleSheet()['Normal']))
+
+    # Add a title
+    styles = getSampleStyleSheet()
+    title_style = styles['Title']
+    title = "Invoice"
+    elements.append(Paragraph(title, title_style))
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    # Customer Details
+    customer_name = order.name
+    order_date = order.order_date.strftime('%Y-%m-%d %H:%M:%S')
+    
+    customer_details = [
+        ['Customer Details'],
+        ['Customer Name:', customer_name],
+        ['Date:', order_date]
+    ]
+    
+    customer_table = Table(customer_details, colWidths=[2*inch, 4*inch])
+    customer_table.setStyle(TableStyle([
+        ('SPAN', (0, 0), (-1, 0)),
+        ('BACKGROUND', (0, 0), (0, 0), colors.lightblue),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('ALIGN', (0, 0), (0, 0), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ]))
+    elements.append(customer_table)
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    # Service Details Heading
+    service_details_heading = [['Service Details']]
+    service_heading_table = Table(service_details_heading, colWidths=[6*inch])
+    service_heading_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), colors.lightblue),
+        ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ]))
+    elements.append(service_heading_table)
+
+    # Initialize service_details to avoid UnboundLocalError
+    service_details = []
+
+    # Append service details table if order histories are available
+    if order_histories.exists():
+        service_details = [['S.No', 'Service', 'Quantity', 'Amount']]
+        for idx, history in enumerate(order_histories, start=1):
+            service_details.append([
+                str(idx),
+                history.service_name,
+                str(history.quantity),
+                f"{history.amount:.2f}"
+            ])
+
+        service_table = Table(service_details, colWidths=[0.5*inch, 2*inch, 1.5*inch, 2*inch])
+        service_table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+        ]))
+        elements.append(service_table)
+    else:
+        # Create a table with a single row for the message
+        no_service_details = [['No service details available.']]
+        no_service_table = Table(no_service_details, colWidths=[6*inch])
+        no_service_table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, -1), colors.lightyellow),
+            ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+        ]))
+        elements.append(no_service_table)
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    # Order Details Heading
+    order_details_heading = [['Order Details']]
+    order_heading_table = Table(order_details_heading, colWidths=[6*inch])
+    order_heading_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), colors.lightblue),
+        ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ]))
+    elements.append(order_heading_table)
+
+    # Add order details
+    order_data = [
+        ['Order ID', 'Amount', 'Status', 'Payment ID', 'Signature ID'],
+        [order.provider_order_id, f"{order.amount:.2f}", order.status, order.payment_id, order.signature_id]
+    ]
+
+    # Transpose order data for columnar display
+    transposed_order_data = list(map(list, zip(*order_data)))
+
+    order_table = Table(transposed_order_data, colWidths=[1.1*inch, 4.9*inch])
+    order_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (0, -1), '#d0d0d0'),  # Background for the first column
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 1, 'black'),
+    ]))
+    elements.append(order_table)
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    # Declaration and Signature table
+    declaration_details = [
+        ['Declaration', 'Signature'],
+        ['We declare that this invoice shows the actual \n price of the services described and that all \n    particulars are true and correct.', 'U4RAD Technologies LLP\n(Authorised Signatory)']
+    ]
+
+    declaration_table = Table(declaration_details, colWidths=[3*inch, 3*inch])
+    declaration_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ]))
+    elements.append(declaration_table)
+
+    # Add a space
+    elements.append(Spacer(1, 12))
+
+    # Footer
+    footer_data = [
+        ['U4RAD Technologies LLP'],
+        ['XRAI DIGITAL'],
+        ['C406, 4th Floor Nirvana Courtyard, Sector-50 Gurugram Haryana 122018'],
+        ['PAN: AAGFU2874A, UAM: HR05E0030329 LLPIN: AAR-6317'],
+        ['GSTIN : 06AAGFU2874A1ZC'],
+        ['Contact: 0124 - 4254012, Email: info@xraidigital.com']
+    ]
+
+    footer_table = Table(footer_data, colWidths=[6*inch])
+    footer_table.setStyle(TableStyle([
+        ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.white),
+    ]))
+    elements.append(footer_table)
+
+    # Footer Note
+    footer_note_style = ParagraphStyle(name='FooterNote', alignment=1, fontName='Helvetica-Bold')
+    footer_note = Paragraph(
+        "* This is a computer-generated invoice and does not require a physical signature *",
+        footer_note_style
+    )
+
+    # Add a spacer to push the footer note to the bottom
+    elements.append(Spacer(1, 100))
+    elements.append(footer_note)
+
+
+    # Build the PDF
+    doc.build(elements)
+
+    # Get the PDF value from buffer
+    pdf = buffer.getvalue()
+    buffer.close()
+
+    # Send the PDF response
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="invoice_{order.provider_order_id}.pdf"'
+
+    return response
+
 
 @login_required
 def coordinator_dashboard(request):
     # Fetch all profiles and cart items
     profiles = Profile.objects.select_related('user').all().order_by('-id')
     cart_items = Cart.objects.select_related('user', 'service').all()
-    name = Order.objects.select_related('user').all()
+    all_orders = Order.objects.select_related('user').all()
+
+    # Create a dictionary to hold orders for each user
+    orders_dict = {}
+    for profile in profiles:
+        user_orders = all_orders.filter(user=profile.user)
+        orders_dict[profile.user.id] = user_orders
 
     context = {
         'profiles': profiles,
         'cart_items': cart_items,
+        'orders_dict': orders_dict,
     }
 
     return render(request, 'services/coordinator_dashboard.html', context)
+
+@login_required
+def get_user_orders(request, user_id):
+    try:
+        profile = Profile.objects.get(user_id=user_id)
+        orders = Order.objects.filter(user=profile.user).values(
+            'provider_order_id', 'name', 'amount', 'status', 'payment_id'
+        ).order_by('-provider_order_id')
+        orders_list = list(orders)
+        return JsonResponse({'status': 'success', 'orders': orders_list})
+    except Profile.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'User not found.'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})
+
+def get_user_files(request, user_id):
+    profile = get_object_or_404(Profile, user__id=user_id)
+    files = profile.uploads.all().order_by('-id')
+    files_data = [{'id': file.id, 'file_name': file.file.name, 'file_url': file.file.url} for file in files]
+    
+    return JsonResponse({'status': 'success', 'files': files_data})
+
+def download_all_files_as_zip(request, user_id):
+    try:
+        profile = Profile.objects.get(user_id=user_id)
+        files = profile.uploads.all()
+
+        if not files:
+            return JsonResponse({'status': 'error', 'message': f'No files present for {profile.user.username}'})
+        
+        zip_subdir = profile.user.username
+        zip_filename = f"{zip_subdir}.zip"
+
+        s = io.BytesIO()
+        with zipfile.ZipFile(s, "w") as zf:
+            for file in files:
+                file_path = default_storage.path(file.file.name)
+                if os.path.isfile(file_path):
+                    with open(file_path, 'rb') as f:
+                        file_data = f.read()
+                    file_name = os.path.basename(file_path)
+                    zip_path = os.path.join(zip_subdir, file_name)
+                    zf.writestr(zip_path, file_data)
+
+        s.seek(0)
+        response = HttpResponse(s, content_type="application/zip")
+        response['Content-Disposition'] = f'attachment; filename={zip_filename}'
+        return response
+
+    except Profile.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Profile not found'})
+
 
 @require_POST
 def update_casecount(request, cart_item_id):
@@ -490,40 +832,42 @@ def update_profile(request):
     return render(request, 'services/update_profile.html', {'form': form})
 
 @require_POST
-def upload_file(request, cart_item_id):
-    cart_item = get_object_or_404(Cart, id=cart_item_id)
+def upload_file(request, profileId):
+    profile = get_object_or_404(Profile, id=profileId)
     if 'file' in request.FILES:
         file = request.FILES['file']
-        upload_file = UploadFile(cart=cart_item, file=file)  # set the correct foreign key relationship
+        upload_file = UploadFile(profile=profile, file=file)
         upload_file.save()
         return JsonResponse({'status': 'success', 'message': 'File uploaded successfully!'})
     else:
         return JsonResponse({'status': 'error', 'message': 'No file chosen!'})
 
 def download_latest_file(request, user_id):
-    # Find the latest cart for the user
-    latest_cart = Cart.objects.filter(user_id=user_id).order_by('-id').first()
+    # Find the profile for the user
+    profile = Profile.objects.filter(user_id=user_id).first()
     
-    if not latest_cart:
-        return JsonResponse({'error': 'No cart found for this user.'}, status=400)
+    if not profile:
+        return JsonResponse({'error': 'No Profile found for this user.'}, status=400)
     
-    # Find the latest upload file associated with this cart
-    latest_file = UploadFile.objects.filter(cart=latest_cart).order_by('-upload_time').first()
+    # Find the latest uploaded file associated with this profile
+    latest_file = UploadFile.objects.filter(profile=profile).order_by('-upload_time').first()
     
     if latest_file:
         file_path = latest_file.file.path
         with open(file_path, 'rb') as f:
-            response = HttpResponse(f.read(), content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            response = HttpResponse(f.read(), content_type="application/octet-stream")
             response['Content-Disposition'] = f'attachment; filename="{latest_file.file.name}"'
             return response
     else:
-        return JsonResponse({'error': 'No file found for this cart.'}, status=400)        
+        return JsonResponse({'error': 'No file found for this profile.'}, status=400)
+        
 ########################################### 26-06 ###############################################
 @login_required
 def save_cart_data(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
+            print("Received Data:", data)
             user = request.user
             cart_items = data.get('cart_items', [])
             promo_code = data.get('promo_code', '')
@@ -549,53 +893,72 @@ def save_cart_data(request):
 
             print(f"Cart Value Updated: {cart_value}")
 
-            # Process each cart item
-            for item in cart_items:
-                quantity = item.get('quantity')
-                amount = item.get('amount')
-                service_name = item.get('service_name')
+            # Process each cart item only if there are items in the cart
+            if cart_items:
+                for item in cart_items:
+                    quantity = item.get('quantity')
+                    amount = item.get('amount')
+                    service_name = item.get('service_name')
 
-                # Ensure all required fields are present
-                if not all([quantity, amount, service_name]):
-                    return JsonResponse({'error': 'Missing fields in cart item'}, status=400)
+                    # Ensure all required fields are present
+                    if not all([quantity, amount, service_name]):
+                        return JsonResponse({'error': 'Missing fields in cart item'}, status=400)
 
-                try:
-                    # Retrieve the Service instance using service_name
-                    service = Service.objects.get(service_name=service_name)
-                except Service.DoesNotExist:
-                    return JsonResponse({'error': f'Service "{service_name}" not found'}, status=404)
+                    try:
+                        # Retrieve the Service instance using service_name
+                        service = Service.objects.get(service_name=service_name)
+                    except Service.DoesNotExist:
+                        return JsonResponse({'error': f'Service "{service_name}" not found'}, status=404)
 
-                # Save the order to OrderHistory
-                OrderHistory.objects.create(
-                    user=user,
-                    service_name=service_name,
-                    quantity=quantity,
-                    amount=amount
-                )
+                    # Save the order to OrderHistory
+                    OrderHistory.objects.create(
+                        user=user,
+                        service_name=service_name,
+                        quantity=quantity,
+                        amount=amount
+                    )
 
-                # Check if a cart with the same user and service already exists
-                cart_instance, created = Cart.objects.get_or_create(user=user, service=service)
+                    # Check if a cart with the same user and service already exists
+                    cart_instance, created = Cart.objects.get_or_create(user=user, service=service)
 
-                # If a cart with the same user and service already exists, update its fields
-                if not created:
-                    cart_instance.quantity += quantity
-                    cart_instance.amount += amount
-                else:
-                    # If it doesn't exist, create a new cart instance
-                    cart_instance.quantity = quantity
-                    cart_instance.amount = amount
-                cart_instance.save()
+                    # If a cart with the same user and service already exists, update its fields
+                    if not created:
+                        cart_instance.quantity += quantity
+                        cart_instance.amount += amount
+                    else:
+                        # If it doesn't exist, create a new cart instance
+                        cart_instance.quantity = quantity
+                        cart_instance.amount = amount
+                    cart_instance.save()
 
-                print(f"Cart Item Updated: {cart_instance}")
+                    print(f"Cart Item Updated: {cart_instance}")
+
+             # Call the checkUserInCart function after saving cart data
+            checkUserInCart(user)
 
             return JsonResponse({'message': 'Cart data saved successfully', 'cart': cart_value.pk}, status=201)
-        except Service.DoesNotExist:
-            return JsonResponse({'error': 'Service not found'}, status=404)
         except Exception as e:
             print(f"Error: {str(e)}")
             return JsonResponse({'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+def checkUserInCart(user):
+    # Fetch all services
+    all_services = Service.objects.all()
+    
+    for service in all_services:
+        # Check if a cart with the same user and service already exists
+        cart_instance, created = Cart.objects.get_or_create(user=user, service=service)
+        
+        if created:
+            # If it doesn't exist, create a new cart instance with zero data
+            cart_instance.quantity = 0
+            cart_instance.amount = 0
+            cart_instance.save()
+            print(f"New Cart Item Created: {cart_instance}")
+        else:
+            print(f"Cart Item Already Exists: {cart_instance}")
 
 #################################################################################################
 
@@ -667,18 +1030,23 @@ def get_user_details(request):
         'username': profile.user.username,
         'organization': profile.organization,
         'email': profile.email,
-        'contact': profile.contact,
-        'amount': profile.topup_amount  # Assuming `topup_amount` is a field in Profile model
+        'address': profile.address,
     }
     print(user_details)
     return JsonResponse({'success': True, 'user': user_details})
 
 
+# def check_user_exists(request):
+#     phone = request.GET.get('phone')
+#     exists = User.objects.filter(username=phone).exists()
+#     return JsonResponse({'exists': exists})
+
 def check_user_exists(request):
     phone = request.GET.get('phone')
-    exists = User.objects.filter(username=phone).exists()
+    personalinfoexists = PersonalInformation.objects.filter(contact_no=phone).exists()
+    servicesphoneexists = User.objects.filter(username=phone).exists()
+    exists = personalinfoexists or servicesphoneexists
     return JsonResponse({'exists': exists})
-
 
 
 
@@ -1211,6 +1579,10 @@ def submit(request):
                 cheque=request.FILES.get('cheque', ''),
                 personal_information=personal_info
             )
+
+            # Helper function to convert boolean to "Yes" or "No"
+            def bool_to_yes_no(value):
+                return 'Yes' if value else 'No'
 
             # Create AvailabilityDetails instance
             availability_info = AvailabilityDetails.objects.create(

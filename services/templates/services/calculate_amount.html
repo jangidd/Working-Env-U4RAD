@@ -8,6 +8,7 @@
 />
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
+  // Start of the basic logic of the page.
   function calculateAmount(serviceId, rateData) {
     const quantityInput = document.getElementById(`quantity_${serviceId}`);
     const amountDisplay = document.getElementById(`amount_${serviceId}`);
@@ -67,6 +68,49 @@
     window.location.href = "{% url 'cart' %}";
   }
 
+
+  // The below function I've made to restrict all the input type numbers to get any special character if a user types any number - Himanshu.
+function restrictSpecialCharacters(input) {
+    input.addEventListener('input', function (e) {
+        const value = e.target.value;
+
+        // Remove any non-numeric characters
+        e.target.value = value.replace(/\D/g, '');
+    });
+}
+
+// Apply the restriction to all number inputs
+document.addEventListener('DOMContentLoaded', function () {
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    numberInputs.forEach(input => {
+        restrictSpecialCharacters(input);
+    });
+});
+
+// End of the basic logic logic of the page.
+
+// This is the logic for the topup payment section.
+
+function applyPromocode() {
+    const promoCode = document.getElementById("promocode").value.toUpperCase();
+    let creditbalance = 0;
+    const topup_amount = parseFloat(document.getElementById("topup_amount").value);
+    if (promoCode === "XRAI10") {
+        creditbalance = topup_amount * 0.1;
+        const grandTotal = topup_amount + creditbalance;
+        document.getElementById("creditbalance").innerText = `${creditbalance}`;
+        document.getElementById("total_balance").innerText = `${grandTotal}`;
+        document.getElementById("promocode").style.color = "green";
+    } else {
+        document.getElementById("creditbalance").innerText = "0";
+        document.getElementById("total_balance").innerText = `${topup_amount}`;
+        document.getElementById("promocode").style.color = "red";
+    }
+    validateTopupAmount(); // Call validate function to ensure the button state is updated
+}
+
+  // Logic for the razorpay payment.
+
   document.addEventListener('DOMContentLoaded', function() {
 
     // Handle form submission
@@ -77,22 +121,22 @@
 });
 
 // Function to fetch user details
-function fetchUserDetails() {
-    fetch('/user/details/')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('username').value = data.user.username;
-                document.getElementById('organization').value = data.user.organization;
-                document.getElementById('email').value = data.user.email;
-                document.getElementById('contact').value = data.user.contact;
-                document.getElementById('amount').value = data.user.amount; // Assuming this is pre-calculated
-            } else {
-                console.error('Failed to fetch user details');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
+// function fetchUserDetails() {
+//     fetch('/user/details/')
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.success) {
+//                 document.getElementById('username').value = data.user.username;
+//                 document.getElementById('organization').value = data.user.organization;
+//                 document.getElementById('email').value = data.user.email;
+//                 // document.getElementById('contact').value = data.user.contact;
+//                 document.getElementById('topup_amount').value = data.user.amount;
+//             } else {
+//                 console.error('Failed to fetch user details');
+//             }
+//         })
+//         .catch(error => console.error('Error:', error));
+// }
 
 function checkProfileCompletion() {
     fetch("{% url 'check_profile_completion' %}")
@@ -131,17 +175,17 @@ function checkProfileCompletion() {
 
 // Function to create Razorpay order
 function createRazorpayOrder() {
-    fetchUserDetails();
+    closePopup();
     const amount = document.getElementById('topup_amount').value;
 
-    fetch('/payment/', {
+    fetch('/topuppayment/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': getCookie('csrftoken')
         },
         body: JSON.stringify({
-            grand_total: amount
+          topup_amount: amount
         })
     })
     .then(response => response.json())
@@ -192,10 +236,12 @@ function updatePaymentStatus(response) {
         if (response.status === 200) {
             // Call the function to store cart data
             storeCartData()
-            .then(() => {
-                window.location.href = 'user_dashboard/';
-            })
-            .catch(error => console.error('Failed to store cart data:', error));
+                .then(() => closePopup())
+                .then(() => {
+                    alert("Congratulations! Your Payment was made Successfully.");
+                    window.location.href = 'user_dashboard/';
+                })
+                .catch(error => console.error('Failed to store cart data:', error));
         } else {
             console.error('Failed to update payment status');
         }
@@ -204,18 +250,23 @@ function updatePaymentStatus(response) {
 }
 
 function storeCartData() {
-    const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+    const cartItems = JSON.parse('[]');
     const promoCode = localStorage.getItem('promo_code') || '';
     const totalAmount = parseFloat(localStorage.getItem('total_amount') || 0);
     const discount = parseFloat(localStorage.getItem('discount') || 0);
     const grandTotal = parseFloat(localStorage.getItem('grand_total') || 0);
-    
+
     // Assuming you have the top-up amount available as a variable
     const topupAmount = parseFloat(document.getElementById('topup_amount').value);
+    const finaltopupAmount = parseFloat(document.getElementById('total_balance').innerText);
+    const topup_promocode = document.getElementById('promocode').value;
+    const currentdiscount = parseFloat(document.getElementById('creditbalance').innerText)
 
     // Adding the top-up amount to the total and grand total
     const updatedTotalAmount = totalAmount + topupAmount;
-    const updatedGrandTotal = grandTotal + topupAmount;
+    const updatedPromoCode = topup_promocode;
+    const updatedGrandTotal = grandTotal + finaltopupAmount;
+    const updatedDiscount = discount + currentdiscount;
 
     return fetch('/save_cart_data/', {
         method: 'POST',
@@ -225,9 +276,9 @@ function storeCartData() {
         },
         body: JSON.stringify({
             cart_items: cartItems,
-            promo_code: promoCode,
+            promo_code: updatedPromoCode,
             total_amount: updatedTotalAmount,
-            discount: discount,
+            discount: updatedDiscount,
             grand_total: updatedGrandTotal
         })
     })
@@ -245,7 +296,6 @@ function storeCartData() {
     });
 }
 
-
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -261,6 +311,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
+
 function closePopup() {
     document.getElementById('topUpPopup').style.display = 'none';
 }
@@ -269,6 +320,19 @@ function openPopup() {
     document.getElementById('topUpPopup').style.display = 'block';
 }
 
+function validateTopupAmount() {
+    const topup_amount = document.getElementById("topup_amount").value;
+    const payButton = document.getElementById("pay-button");
+    if (topup_amount === "") {
+        payButton.disabled = true;
+    } else {
+        payButton.disabled = false;
+    }
+}
+
+function toUpperCaseInput(input) {
+    input.value = input.value.toUpperCase();
+}
 
 </script>
 <style>
@@ -459,11 +523,16 @@ function openPopup() {
   <div class="top-up-popup-content">
     <span class="close" onclick="closePopup()">&times;</span>
     <h2>Top Up Amount</h2>
-    <label for="topup_amount">Enter amount to top up:</label>
-    <input type="number" id="topup_amount" class="form-control" placeholder="Enter amount" />
-    <button id="pay-button" class="btn btn-dark mt-3">Proceed to Top Up</button>
+    <label for="topup_amount">Enter amount to top up :</label>
+    <input type="number" id="topup_amount" class="form-control" placeholder="Enter amount" oninput="applyPromocode(); validateTopupAmount();" required />
+    <label for="topup_promocode">Add Promocode :</label>
+    <input type="text" id="promocode" class="form-control" placeholder="PROMOCODE" oninput="toUpperCaseInput(this); applyPromocode();" />
+    <label>Credit Balance : +<span id="creditbalance"> 0</span></label>
+    <label>Total Balance  : <span id="total_balance"> 0</span></label>
+    <button id="pay-button" class="btn btn-dark mt-3" disabled>Proceed to Top Up</button>
   </div>
 </div>
+
 
 <div class="row">
   <div class="modal-content col-sm-3">

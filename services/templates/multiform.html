@@ -316,11 +316,11 @@
                     <br>
                     <div class="field">
                         <div class="label">Name of the Award</div>
-                        <input type="text" name="award1" class="form-field" required/>
+                        <input type="text" name="award1" class="form-field" />
                     </div>
                     <div class="field">
                         <div class="label">Date of Recieving the Award</div>
-                        <input type="date" name="awarddate1" class="form-field" required/>
+                        <input type="date" name="awarddate1" class="form-field" />
                     </div>
                     <br>
                     <h3>Recognition / Awards (2)</h3>
@@ -373,11 +373,11 @@
                             </div>
                             <div class="field">
                                 <div class="label">IFSC Code</div>
-                                <input type="text" name="ifsc" class="form-field" required/>
+                                <input type="text" name="ifsc" class="form-field" oninput=toUpperCaseInput(this) required/>
                             </div>
                             <div class="field">
                                 <div class="label">PAN Card Number</div>
-                                <input type="text" class="form-field" name="pancardno" maxlength="10" placeholder="(Use Capital Letters)" required/>
+                                <input type="text" class="form-field" name="pancardno" maxlength="10" oninput=toUpperCaseInput(this) required/>
                             </div>
                             <div class="field">
                                 <div class="label">AADHAR Card Number</div>
@@ -502,6 +502,9 @@
   
     <script>
         initMultiStepForm();
+        function toUpperCaseInput(input) {
+    input.value = input.value.toUpperCase();
+}
 
 // function initMultiStepForm() {
 //     const progressNumber = document.querySelectorAll(".step").length;
@@ -894,12 +897,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Apply the restriction to all number inputs
+document.addEventListener('DOMContentLoaded', function () {
+    const numberInputs = document.querySelectorAll('input[type="tel"]');
+    numberInputs.forEach(input => {
+        restrictSpecialCharacters(input);
+    });
+});
+
 // This function i've created to add more time slots on the last page of the form.
 document.addEventListener('DOMContentLoaded', function () {
     const addMoreSlotsBtn = document.querySelector('.add-more-slots');
     const timeSlotsContainer = document.querySelector('.time-slots-container');
-    let slotsAdded = 0;
-    const maxSlots = 3;
+    let slotsAdded = 1;
+    const maxSlots = 4;
 
     addMoreSlotsBtn.addEventListener('click', function () {
         if (slotsAdded < maxSlots) {
@@ -1025,85 +1036,95 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         document.addEventListener('DOMContentLoaded', function () {
-                // Experience Section
-                const addMoreExperienceBtn = document.querySelector('.add-more-experience');
-                const experienceContainer = document.querySelector('.experience-container');
-                let experienceCount = 3;
-                const maxExperience = 5;
-
-                addMoreExperienceBtn.addEventListener('click', function () {
-                    if (experienceCount < maxExperience) {
-                        experienceCount++;
-                        const newExperience = document.createElement('div');
-                        newExperience.classList.add('field');
-                        newExperience.innerHTML = `
-                        <br>    
-                        <h3>Work Experience ${experienceCount}</h3>
-                            <br>
-                            <div class="label">Name of the Institution</div>
-                            <input type="text" name="exinstitution${experienceCount}" class="form-field" />
-                            <br><br>
-                            <div class="label">Starting Date</div>
-                            <input type="date" name="exstdate${experienceCount}" class="form-field" />
-                            <br><br>
-                            <div class="label">End Date (Leave the field if Currently working)</div>
-                            <input type="date" name="exenddate${experienceCount}" class="form-field" />
-                            <br>
-                        `;
-                        experienceContainer.appendChild(newExperience);
-
-                        if (experienceCount === maxExperience) {
-                            addMoreExperienceBtn.style.display = 'none';
-                        }
-                    }
-                });
-
-                // Awards Section
-                const addMoreAwardsBtn = document.querySelector('.add-more-awards');
-                const awardsContainer = document.querySelector('.awards-container');
-                let awardsCount = 2;
-                const maxAwards = 5;
-
-                addMoreAwardsBtn.addEventListener('click', function () {
-                    if (awardsCount < maxAwards) {
-                        awardsCount++;
-                        const newAward = document.createElement('div');
-                        newAward.classList.add('field');
-                        newAward.innerHTML = `
-                            <br>
-                            <h3>Recognition / Awards (${awardsCount})</h3>
-                            <br>
-                            <div class="label">Name of the Award</div>
-                            <input type="text" name="award${awardsCount}" class="form-field" />
-                            <br><br>
-                            <div class="label">Date of Receiving the Award</div>
-                            <input type="date" name="awarddate${awardsCount}" class="form-field" />
-                            <br>
-                        `;
-                        awardsContainer.appendChild(newAward);
-
-                        if (awardsCount === maxAwards) {
-                            addMoreAwardsBtn.style.display = 'none';
-                        }
-                    }
-                });
-            });
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-        var today = new Date().toISOString().split('T')[0];
-        document.querySelectorAll('input[type="date"]').forEach(function(input) {
-            input.setAttribute('max', today);
-        });
-
+    // Function to set max date for date inputs
+    function setDateRestrictions() {
+        // Initialize today as a Date object
         var today = new Date();
-        var month = today.toISOString().substring(0, 7);
-        document.querySelectorAll('input[type="month"]').forEach(function(input) {
-            input.setAttribute('max', month);
+        var todayISOString = today.toISOString().split('T')[0];
+        var monthISOString = today.toISOString().substring(0, 7);
+
+        document.querySelectorAll('input[type="date"]').forEach(function(input) {
+            input.setAttribute('max', todayISOString);
         });
 
+        document.querySelectorAll('input[type="month"]').forEach(function(input) {
+            input.setAttribute('max', monthISOString);
         });
+    }
+
+    // Set initial date restrictions
+    setDateRestrictions();
+
+    // Experience Section
+    const addMoreExperienceBtn = document.querySelector('.add-more-experience');
+    const experienceContainer = document.querySelector('.experience-container');
+    let experienceCount = 3;
+    const maxExperience = 5;
+
+    addMoreExperienceBtn.addEventListener('click', function () {
+        if (experienceCount < maxExperience) {
+            experienceCount++;
+            const newExperience = document.createElement('div');
+            newExperience.classList.add('field');
+            newExperience.innerHTML = `
+            <br>    
+            <h3>Work Experience ${experienceCount}</h3>
+                <br>
+                <div class="label">Name of the Institution</div>
+                <input type="text" name="exinstitution${experienceCount}" class="form-field" />
+                <br><br>
+                <div class="label">Starting Date</div>
+                <input type="date" name="exstdate${experienceCount}" class="form-field" />
+                <br><br>
+                <div class="label">End Date (Leave the field if Currently working)</div>
+                <input type="date" name="exenddate${experienceCount}" class="form-field" />
+                <br>
+            `;
+            experienceContainer.appendChild(newExperience);
+
+            // Set date restrictions for new date fields
+            setDateRestrictions();
+
+            if (experienceCount === maxExperience) {
+                addMoreExperienceBtn.style.display = 'none';
+            }
+        }
+    });
+
+    // Awards Section
+    const addMoreAwardsBtn = document.querySelector('.add-more-awards');
+    const awardsContainer = document.querySelector('.awards-container');
+    let awardsCount = 2;
+    const maxAwards = 5;
+
+    addMoreAwardsBtn.addEventListener('click', function () {
+        if (awardsCount < maxAwards) {
+            awardsCount++;
+            const newAward = document.createElement('div');
+            newAward.classList.add('field');
+            newAward.innerHTML = `
+                <br>
+                <h3>Recognition / Awards (${awardsCount})</h3>
+                <br>
+                <div class="label">Name of the Award</div>
+                <input type="text" name="award${awardsCount}" class="form-field" />
+                <br><br>
+                <div class="label">Date of Receiving the Award</div>
+                <input type="date" name="awarddate${awardsCount}" class="form-field" />
+                <br>
+            `;
+            awardsContainer.appendChild(newAward);
+
+            // Set date restrictions for new date fields
+            setDateRestrictions();
+
+            if (awardsCount === maxAwards) {
+                addMoreAwardsBtn.style.display = 'none';
+            }
+        }
+    });
+});
+
 
 
     </script>

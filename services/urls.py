@@ -26,15 +26,20 @@ urlpatterns = [
     path('calculate-amount/user_dashboard/', login_required(views.user_dashboard), name='calculate-amount/user_dashboard'),
     path('logout/', views.logout, name='logout'),
     path("payment/", views.generate_order, name="generate_order"),
+    path("topuppayment/", views.generate_topup_order, name="generate_topup_order"),
     path("home/", views.home, name="home"),
     path("quality/", views.quality, name="quality"),
     path("payment/update-status/", views.update_payment_status, name='update_payment_status'),
     path('download-invoice/', views.download_invoice, name='download_invoice'),
     path('coordinator_dashboard/', views.coordinator_dashboard, name='coordinator_dashboard'),
     path('update_casecount/<int:cart_item_id>/', views.update_casecount, name='update_casecount'),
-    path('upload_file/<int:cart_item_id>/', views.upload_file, name='upload_file'),
+    path('upload_file/<int:profileId>/', views.upload_file, name='upload_file'),
     path('download_latest_file/<int:user_id>/', views.download_latest_file, name='download_latest_file'),
-     path('user/details/', views.get_user_details, name='get_user_details'),
+    path('user/details/', views.get_user_details, name='get_user_details'),
+    path('get_user_files/<int:user_id>/', views.get_user_files, name='get_user_files'),
+    path('download_all_files_as_zip/<int:user_id>/', views.download_all_files_as_zip, name='download_all_files_as_zip'),
+    path('get_user_orders/<int:user_id>/', views.get_user_orders, name='get_user_orders'),
+    path('download_single_invoice/<int:user_id>/<str:provider_order_id>/', views.download_single_invoice, name='download_single_invoice'),
 
     ################################### Multiform URL's ########################################
     #------------------------------------ Himanshu --------------------------------------------#

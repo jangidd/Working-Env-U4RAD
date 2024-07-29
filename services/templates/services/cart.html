@@ -89,7 +89,7 @@
               type="text"
               id="promo_code"
               class="form-control"
-              oninput="applyPromoCode()"
+              oninput="toUpperCaseInput(this); applyPromoCode();"
             />
           </td>
         </tr>
@@ -124,6 +124,10 @@
 </span>
 
 <script>
+  function toUpperCaseInput(input) {
+    input.value = input.value.toUpperCase();
+}
+
   window.addEventListener("message", function (event) {
     if (event.data === "profileUpdated") {
       // Hide the iframe
@@ -258,16 +262,18 @@
     const totalAmount = parseFloat(
       document.getElementById("total_amount").innerText
     );
+    const presentdiscount = parseFloat(localStorage.getItem('discount') || 0);
     const discount = parseFloat(document.getElementById("discount").innerText);
     const grandTotal = parseFloat(
       document.getElementById("grand_total").innerText
     );
+    const updateddiscount = discount + presentdiscount;
 
     const cartData = {
       cart_items: cartItems,
       promo_code: promoCode,
       total_amount: totalAmount,
-      discount: discount,
+      discount: presentdiscount,
       grand_total: grandTotal,
     };
 
@@ -396,22 +402,33 @@
   }
 
   function applyPromoCode() {
-    const promoCode = document.getElementById("promo_code").value;
+    const promoCodeInput = document.getElementById("promo_code");
+    const promoCode = promoCodeInput.value;
     let discount = 0;
-    const totalAmount = parseFloat(
-      document.getElementById("total_amount").innerText
-    );
+    const totalAmount = parseFloat(document.getElementById("total_amount").innerText);
+    
     if (isNaN(totalAmount)) {
-      document.getElementById("grand_total").innerText = "Invalid total amount";
-      return;
+        document.getElementById("grand_total").innerText = "Invalid total amount";
+        return;
     }
+    
     if (promoCode === "XRAI10") {
-      discount = totalAmount * 0.1;
+        discount = totalAmount * 0.1;
+        promoCodeInput.style.color = "green";
+    } else {
+        promoCodeInput.style.color = "red";
     }
+    
     const grandTotal = totalAmount - discount;
     document.getElementById("discount").innerText = `${discount}`;
     document.getElementById("grand_total").innerText = `${grandTotal}`;
-  }
+    validateProceedButton(grandTotal);
+}
+
+function validateProceedButton(grandTotal) {
+    const proceedButton = document.querySelector(".btn-dark");
+    proceedButton.disabled = grandTotal <= 0;
+}
 
   function updateCart(serviceId, quantity, amount) {
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
