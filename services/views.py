@@ -1381,6 +1381,8 @@ def step2(request):
         request.session['mdpsyr'] = request.POST.get('mdpsyr', '')
         request.session['mdmarksheet'] = request.FILES.get('mdmarksheet', '')
         request.session['mddegree'] = request.FILES.get('mddegree', '')
+        request.session['regno'] = request.POST.get('regno', '')
+        request.session['regfile'] = request.FILES.get('regfile', '')
         request.session['videofile'] = request.FILES.get('videofile', '')
         return redirect('step3')
     return render(request, 'step2.html')
@@ -1525,6 +1527,8 @@ def submit(request):
                 mdpsyr=mdpsyr,
                 mdmarksheet=request.FILES.get('mdmarksheet', ''),
                 mddegree=request.FILES.get('mddegree', ''),
+                regno=request.POST.get('regno', ''),
+                regfile=request.FILES.get('regfile', ''),
                 videofile=request.FILES.get('videofile', ''),
                 personal_information=personal_info
             )
@@ -1874,6 +1878,8 @@ def view_complete_form(request, pk):
                 'mdpsyr': educational_info.mdpsyr,
                 'mdmarksheet': request.build_absolute_uri(educational_info.mdmarksheet.url) if educational_info.mdmarksheet else None,
                 'mddegree': request.build_absolute_uri(educational_info.mddegree.url) if educational_info.mddegree else None,
+                'regno' : educational_info.regno,
+                'regfile' : request.build_absolute_uri(educational_info.regfile.url) if educational_info.regfile else None,
                 'videofile': request.build_absolute_uri(educational_info.videofile.url) if educational_info.videofile else None,
                 # Add more fields as needed
             },
@@ -2182,13 +2188,14 @@ def generate_pdf(request, pk):
     buffer = io.BytesIO()
     p = canvas.Canvas(buffer, pagesize=letter)
     width, height = letter
+
     y = height - 80
 
     # Draw the logo at the top center
     logo_path = 'services/static/image/Logo.png' 
     logo_width = 100  
     logo_height = 30  
-    p.drawImage(logo_path, x=(width - logo_width) / 2, y=height - logo_height - 20, width=logo_width, height=logo_height)
+    p.drawImage(logo_path, x=(width - logo_width) / 2, y=height - logo_height - 20, width=logo_width, height=logo_height, mask='auto')
 
     def add_new_page(p, y):
         p.showPage()
@@ -2314,6 +2321,10 @@ def generate_pdf(request, pk):
     if educational_info.mddegree:
         md_degree_url = request.build_absolute_uri(educational_info.mddegree.url) if educational_info.mddegree else None
         y = draw_link("MD Degree", md_degree_url, "View MD Degree", y, p)
+    y = draw_text("State Registration Number", educational_info.regno or 'N/A', y, p)
+    if educational_info.regfile:
+        regfile_url = request.build_absolute_uri(educational_info.regfile.url) if educational_info.regfile else None
+        y = draw_link("State Registration File", regfile_url, "View Registration File", y, p)
     if educational_info.videofile:
         video_url = request.build_absolute_uri(educational_info.videofile.url) if educational_info.videofile else None
         y = draw_last_link("Video File", video_url, "View Video", y, p)

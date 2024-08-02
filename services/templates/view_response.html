@@ -91,6 +91,8 @@
         <p><span class="label">MD Passing Year:</span> {{ educational_info.mdpsyr|default:"None" }}</p>
         <p><span class="label">MD Marksheet:</span> {% if educational_info.mdmarksheet %}<a href="{{ educational_info.mdmarksheet.url }}">View Marksheets</a>{% else %}None{% endif %}</p>
         <p><span class="label">MD Degree:</span> {% if educational_info.mddegree %}<a href="{{ educational_info.mddegree.url }}">View Degree</a>{% else %}None{% endif %}</p>
+        <p><span class="label">State Registration Number :</span> {{ educational_info.regno|default:"None" }}</p>
+        <p><span class="label">Registration File:</span> {% if educational_info.regfile %}<a href="{{ educational_info.regfile.url }}">View Registration File</a>{% else %}None{% endif %}</p>
         <p><span class="label">Video File:</span> {% if educational_info.videofile %}<a href="{{ educational_info.videofile.url }}">View Video</a>{% else %}None{% endif %}</p>
 
         <!-- Experience Details -->

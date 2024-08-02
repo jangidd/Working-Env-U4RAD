@@ -892,6 +892,14 @@ $(document).ready(function() {
               modalContent += 'No Degree Uploaded';
             }
             modalContent += '</span></p>';
+            modalContent += '<p><span class="label">State Registration Number : </span><span class="value">' + response.educational_info.regno + '</span></p>';
+            modalContent += '<p><span class="label">Registration File: </span><span class="value">';
+            if (response.educational_info.regfile) {
+              modalContent += '<a href="' + response.educational_info.regfile + '" target="_blank">View Registraton File</a>';
+            } else {
+              modalContent += 'No File Uploaded';
+            }
+            modalContent += '</span></p>';
             modalContent += '<p><span class="label">Video File: </span><span class="value">';
             if (response.educational_info.videofile) {
               modalContent += '<a href="' + response.educational_info.videofile + '" target="_blank">View Video</a>';
@@ -1261,10 +1269,10 @@ function toggleDetails() {
                 modalContent += '<p><span class="label">Email: </span><span class="value">' + response.callback_details.email + '</span></p>';
                 modalContent += '<p><span class="label">Qualification: </span><span class="value">' + response.callback_details.qualification + '</span></p>';
                 modalContent += '<p><span class="label">Experience: </span><span class="value">' + response.callback_details.experience + '</span></p>';
-                modalContent += '<p><span class="label">CT Modality: </span><span class="value">' + boolToYesNo(response.callback_details.ctcheckbox) + '</span></p>';
-                modalContent += '<p><span class="label">MRI Modality: </span><span class="value">' + boolToYesNo(response.callback_details.mricheckbox) + '</span></p>';
-                modalContent += '<p><span class="label">X-ray Modality: </span><span class="value">' + boolToYesNo(response.callback_details.xraycheckbox) + '</span></p>';
-                modalContent += '<p><span class="label">Mammography Modality: </span><span class="value">' + boolToYesNo(response.callback_details.mammographycheckbox) + '</span></p>';
+                modalContent += '<p><span class="label">CT : </span><span class="value">' + boolToYesNo(response.callback_details.ctcheckbox) + '</span></p>';
+                modalContent += '<p><span class="label">MRI : </span><span class="value">' + boolToYesNo(response.callback_details.mricheckbox) + '</span></p>';
+                modalContent += '<p><span class="label">X-ray : </span><span class="value">' + boolToYesNo(response.callback_details.xraycheckbox) + '</span></p>';
+                modalContent += '<p><span class="label">Mammography : </span><span class="value">' + boolToYesNo(response.callback_details.mammographycheckbox) + '</span></p>';
                 modalContent += '</div>';
 
                 // Display modal using Bootstrap modal

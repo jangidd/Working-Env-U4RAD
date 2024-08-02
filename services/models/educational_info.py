@@ -20,6 +20,8 @@ class EducationalDetails(models.Model):
     mdpsyr = models.DateField()
     mdmarksheet = models.FileField(upload_to='uploads/',null=True, default=None, blank=True)
     mddegree = models.FileField(upload_to='uploads/')
+    regno = models.CharField(max_length=30, null=True, default=None, blank=True)
+    regfile = models.FileField(upload_to='uploads/', null=True)
     videofile = models.FileField(upload_to='uploads/')
     personal_information = models.ForeignKey(
         PersonalInformation,

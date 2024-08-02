@@ -236,6 +236,17 @@
                             <input type="file" name="mddegree" class="form-field" required/>
                         </div>
                         <br>
+                        <h3>State Registration </h3>
+                        <br>
+                        <div class="field">
+                            <div class="label">Registration Number</div>
+                            <input type="text" name="regno" class="form-field" required/>
+                        </div>
+                        <div class="field">
+                            <div class="label">Registration Certificate</div>
+                            <input type="file" name="regfile" class="form-field" required/>
+                        </div>
+                        <br>
                         <h3>About You</h3>
                         <br>
                         <div class="field">
@@ -252,7 +263,7 @@
                 <div class="page page3">
                     <div class="title">Work Experience :</div>
                     <div class="experience-container">
-                        <h3>Work Experience 1</h3>
+                        <h3>Current Experience</h3>
                         <br>
                         <div class="field">
                             <div class="label">Name of the Institution</div>
@@ -267,7 +278,7 @@
                             <input type="date" name="exenddate1" class="form-field" />
                         </div>
                         <br>
-                        <h3>Work Experience 2</h3>
+                        <h3>Previous Experience</h3>
                         <br>
                         <div class="field">
                             <div class="label">Name of the Institution</div>
@@ -282,7 +293,7 @@
                             <input type="date" name="exenddate2" class="form-field" />
                         </div>
                         <br>
-                        <h3>Work Experience 3</h3>
+                        <h3>Previous Experience</h3>
                         <br>
                         <div class="field">
                             <div class="label">Name of the Institution</div>
@@ -1068,7 +1079,7 @@ document.addEventListener("DOMContentLoaded", function() {
             newExperience.classList.add('field');
             newExperience.innerHTML = `
             <br>    
-            <h3>Work Experience ${experienceCount}</h3>
+            <h3>Previous Experience</h3>
                 <br>
                 <div class="label">Name of the Institution</div>
                 <input type="text" name="exinstitution${experienceCount}" class="form-field" />
